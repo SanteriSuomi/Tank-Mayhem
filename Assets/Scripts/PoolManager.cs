@@ -2,7 +2,7 @@
 using UnityEngine;
 using System.Linq;
 
-public class TankAmmoPool : MonoBehaviour
+public class PoolManager : MonoBehaviour
 {
     [SerializeField]
     private GameObject projectile = default;
@@ -22,7 +22,7 @@ public class TankAmmoPool : MonoBehaviour
         }
     }
 
-    public GameObject GetProjectile()
+    public GameObject GetAmmo()
     {
         GameObject firstInactive = ammoList.Where(p => !p.activeSelf).FirstOrDefault();
         return firstInactive;

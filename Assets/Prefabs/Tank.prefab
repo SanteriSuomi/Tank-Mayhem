@@ -41,7 +41,6 @@ GameObject:
   - component: {fileID: 29147179314762924}
   - component: {fileID: 29147179314762925}
   - component: {fileID: 29147179314762926}
-  - component: {fileID: 29147179314762927}
   m_Layer: 0
   m_Name: TankFrame
   m_TagString: Untagged
@@ -111,19 +110,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &29147179314762927
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 29147179314762928}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &29147179431953507
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,7 +121,6 @@ GameObject:
   - component: {fileID: 29147179431953503}
   - component: {fileID: 29147179431953504}
   - component: {fileID: 29147179431953505}
-  - component: {fileID: 29147179431953506}
   - component: {fileID: 29147180215406337}
   m_Layer: 0
   m_Name: TankTurretBody
@@ -205,19 +190,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &29147179431953506
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 29147179431953507}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &29147180215406337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,9 +204,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turretBarrelBase: {fileID: 8891075882001772977}
   turretRotationSpeed: 0.6
-  barrelRotationSpeed: 0.6
+  barrelRotationSpeed: 0.5
   turretBodyHorizontalClampRange: 150
-  turrentBarrelVerticalClampRange: 45
+  turrentBarrelVerticalClampRange: 37.5
 --- !u!1 &29147180318676260
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,7 +218,6 @@ GameObject:
   - component: {fileID: 29147180318676256}
   - component: {fileID: 29147180318676257}
   - component: {fileID: 29147180318676258}
-  - component: {fileID: 29147180318676259}
   m_Layer: 0
   m_Name: TankTrackRight
   m_TagString: Untagged
@@ -314,19 +285,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &29147180318676259
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 29147180318676260}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &29147180342812352
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,6 +295,7 @@ GameObject:
   m_Component:
   - component: {fileID: 29147180342812351}
   - component: {fileID: 8807332700096618904}
+  - component: {fileID: 4975454657018535638}
   - component: {fileID: 8536799647837131656}
   - component: {fileID: 782226120}
   m_Layer: 0
@@ -378,6 +337,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!64 &4975454657018535638
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 29147180342812352}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 0}
 --- !u!114 &8536799647837131656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -415,7 +388,6 @@ GameObject:
   - component: {fileID: 29147180443418057}
   - component: {fileID: 29147180443418058}
   - component: {fileID: 29147180443418059}
-  - component: {fileID: 29147180443418060}
   m_Layer: 0
   m_Name: TankTrackLeft
   m_TagString: Untagged
@@ -483,19 +455,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &29147180443418060
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 29147180443418061}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &29147181323860769
 GameObject:
   m_ObjectHideFlags: 0
@@ -507,7 +466,6 @@ GameObject:
   - component: {fileID: 29147181323860765}
   - component: {fileID: 29147181323860766}
   - component: {fileID: 29147181323860767}
-  - component: {fileID: 29147181323860768}
   - component: {fileID: 1904868725}
   m_Layer: 0
   m_Name: TankTurretBarrel
@@ -577,20 +535,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &29147181323860768
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 29147181323860769}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!114 &1904868725
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -604,6 +548,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   barrelHole: {fileID: 962004110}
+  tankTurretBody: {fileID: 29147179431953503}
+  tankCollider: {fileID: 4975454657018535638}
+  projectileSpeed: 25
 --- !u!1 &5303429037278766897
 GameObject:
   m_ObjectHideFlags: 0

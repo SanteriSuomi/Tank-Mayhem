@@ -8,7 +8,7 @@ public class TankTurretController : MonoBehaviour
     [SerializeField] [Range(0, 1.0f)]
     private float turretRotationSpeed = 0.6f;
     [SerializeField] [Range(0, 1.0f)]
-    private float barrelRotationSpeed = 0.6f;
+    private float barrelRotationSpeed = 0.5f;
 
     private float mouseHorizontal;
     private float mouseHorizontalClamped;
@@ -18,13 +18,7 @@ public class TankTurretController : MonoBehaviour
     [SerializeField]
     private int turretBodyHorizontalClampRange = 150;
     [SerializeField]
-    private int turrentBarrelVerticalClampRange = 45;
-
-    private void Start()
-    {
-        // Lock cursor to the center of the game.
-        Cursor.lockState = CursorLockMode.Locked;
-    }
+    private float turrentBarrelVerticalClampRange = 37.5f;
 
     private void Update()
     {
