@@ -20,11 +20,6 @@ public class TankController : MonoBehaviour
         rigidBody = GetComponent<Rigidbody>();
     }
 
-    private void Start()
-    {
-
-    }
-
     private void Update()
     {
         verticalMove = Input.GetAxis("Vertical") * moveSpeed;

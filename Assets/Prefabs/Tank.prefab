@@ -230,7 +230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 165e009e460d770419009a6a98e834e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turretBarrelBase: {fileID: 5303429037278766897}
+  turretBarrelBase: {fileID: 8891075882001772977}
   turretRotationSpeed: 0.6
   barrelRotationSpeed: 0.6
   turretBodyHorizontalClampRange: 150
@@ -338,6 +338,7 @@ GameObject:
   - component: {fileID: 29147180342812351}
   - component: {fileID: 8807332700096618904}
   - component: {fileID: 8536799647837131656}
+  - component: {fileID: 782226120}
   m_Layer: 0
   m_Name: Tank
   m_TagString: Untagged
@@ -391,6 +392,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   rotationSpeed: 1
+--- !u!114 &782226120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 29147180342812352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 533cf90df3122ab4697521677b89141f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &29147180443418061
 GameObject:
   m_ObjectHideFlags: 0
@@ -495,6 +508,7 @@ GameObject:
   - component: {fileID: 29147181323860766}
   - component: {fileID: 29147181323860767}
   - component: {fileID: 29147181323860768}
+  - component: {fileID: 1904868725}
   m_Layer: 0
   m_Name: TankTurretBarrel
   m_TagString: Untagged
@@ -577,6 +591,19 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &1904868725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 29147181323860769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 811b67353cf9d674c973f37fd3d5503e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barrelHole: {fileID: 962004110}
 --- !u!1 &5303429037278766897
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,7 +3,7 @@
 public class TankTurretController : MonoBehaviour
 {
     [SerializeField]
-    private GameObject turretBarrelBase = default;
+    private Transform turretBarrelBase = default;
 
     [SerializeField] [Range(0, 1.0f)]
     private float turretRotationSpeed = 0.6f;
@@ -12,7 +12,6 @@ public class TankTurretController : MonoBehaviour
 
     private float mouseHorizontal;
     private float mouseHorizontalClamped;
-
     private float mouseVerticalTurretBase;
     private float mouseVerticalTurretBaseClamped;
 
@@ -20,11 +19,6 @@ public class TankTurretController : MonoBehaviour
     private int turretBodyHorizontalClampRange = 150;
     [SerializeField]
     private int turrentBarrelVerticalClampRange = 45;
-
-    private void Awake()
-    {
-
-    }
 
     private void Start()
     {
