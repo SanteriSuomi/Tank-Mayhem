@@ -37,7 +37,6 @@ public class TankController : MonoBehaviour
     private void FixedUpdate()
     {
         rigidBody.AddRelativeForce(new Vector3(horizontalMove, 0, verticalMove));
-       // rigidBody.AddForce(new Vector3(horizontalMove, 0, verticalMove));
 
         if (pressingE)
         {
