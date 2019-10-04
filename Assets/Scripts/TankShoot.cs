@@ -8,17 +8,11 @@ public class TankShoot : MonoBehaviour
     private Transform tankTurretBody = default;
     [SerializeField]
     private Collider tankCollider = default;
-    private PoolManager ammoPool;
 
     [SerializeField]
     private float projectileSpeed = 50;
 
     private bool pressedLeftClick;
-
-    private void Awake()
-    {
-        ammoPool = FindObjectOfType<PoolManager>();
-    }
 
     private void Update()
     {
@@ -33,12 +27,10 @@ public class TankShoot : MonoBehaviour
         if (pressedLeftClick)
         {
             pressedLeftClick = false;
-            pressedLeftClick = false;
-
-            GameObject projectile = ammoPool.GetAmmo();
+            GameObject projectile = PoolManager.Instance.PopAmmo();
             Physics.IgnoreCollision(tankCollider, projectile.GetComponent<Collider>());
             projectile.transform.position = barrelHole.position;
-            projectile.GetComponent<Rigidbody>().velocity = tankTurretBody.transform.forward * projectileSpeed + transform.up * projectileSpeed;
+            projectile.GetComponent<Rigidbody>().velocity = (tankTurretBody.transform.forward * projectileSpeed) + (transform.up * projectileSpeed);
             projectile.SetActive(true);
         }
     }

@@ -10,7 +10,6 @@ public class TankController : MonoBehaviour
     private float rotationSpeed = 1;
 
     private float verticalMove;
-    private float horizontalMove;
 
     private bool pressingE;
     private bool pressingQ;
@@ -23,7 +22,6 @@ public class TankController : MonoBehaviour
     private void Update()
     {
         verticalMove = Input.GetAxis("Vertical") * moveSpeed;
-        horizontalMove = Input.GetAxis("Horizontal") * moveSpeed;
 
         pressingE = Input.GetKey(KeyCode.E);
         pressingQ = Input.GetKey(KeyCode.Q);
@@ -31,7 +29,7 @@ public class TankController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rigidBody.AddRelativeForce(new Vector3(/*horizontalMove*/0, 0, verticalMove));
+        rigidBody.AddRelativeForce(new Vector3(0, 0, verticalMove));
 
         if (pressingE)
         {

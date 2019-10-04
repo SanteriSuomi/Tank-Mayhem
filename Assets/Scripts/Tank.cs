@@ -2,7 +2,7 @@
 
 public abstract class Tank : MonoBehaviour
 {
-    public abstract float hitPoints { get; set; }
+    public abstract float HitPoints { get; set; }
 
     protected abstract void Initialize();
 
