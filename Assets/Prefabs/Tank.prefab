@@ -294,8 +294,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 29147180342812351}
+  - component: {fileID: 5095328748583951977}
   - component: {fileID: 8807332700096618904}
-  - component: {fileID: 4975454657018535638}
   - component: {fileID: 8536799647837131656}
   - component: {fileID: 782226120}
   m_Layer: 0
@@ -321,6 +321,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5095328748583951977
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 29147180342812352}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.15, y: 1.5, z: 5}
+  m_Center: {x: 0, y: 0.25, z: 0}
 --- !u!54 &8807332700096618904
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -330,27 +343,13 @@ Rigidbody:
   m_GameObject: {fileID: 29147180342812352}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 2.5
+  m_Drag: 2
   m_AngularDrag: 0
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &4975454657018535638
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 29147180342812352}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 0}
 --- !u!114 &8536799647837131656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -363,7 +362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c73c8700f2b1d0a4dab3f15f55833fa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  moveSpeed: 25
   rotationSpeed: 1
 --- !u!114 &782226120
 MonoBehaviour:
@@ -549,7 +548,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   barrelHole: {fileID: 962004110}
   tankTurretBody: {fileID: 29147179431953503}
-  tankCollider: {fileID: 4975454657018535638}
+  tankCollider: {fileID: 5095328748583951977}
   projectileSpeed: 35
 --- !u!1 &5303429037278766897
 GameObject:

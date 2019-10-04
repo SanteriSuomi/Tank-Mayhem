@@ -1,6 +1,6 @@
 ﻿public class TankEnemy : Tank, IDamageable
 {
-    public override float HitPoints { get; set; } = 5;
+    public override float HitPoints { get; set; } = 50;
 
     protected override void Initialize()
     {

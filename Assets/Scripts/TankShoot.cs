@@ -10,7 +10,7 @@ public class TankShoot : MonoBehaviour
     private Collider tankCollider = default;
 
     [SerializeField]
-    private float projectileSpeed = 50;
+    private float projectileSpeed = 35;
 
     private bool pressedLeftClick;
 
@@ -27,6 +27,7 @@ public class TankShoot : MonoBehaviour
         if (pressedLeftClick)
         {
             pressedLeftClick = false;
+
             GameObject projectile = PoolManager.Instance.PopAmmo();
             Physics.IgnoreCollision(tankCollider, projectile.GetComponent<Collider>());
             projectile.transform.position = barrelHole.position;

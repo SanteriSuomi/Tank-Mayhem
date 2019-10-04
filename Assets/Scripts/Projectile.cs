@@ -5,6 +5,10 @@ public class Projectile : MonoBehaviour
 {
     [SerializeField]
     private float deactiveTimer = 5;
+    [SerializeField]
+    private int projectileDamageMin = 15;
+    [SerializeField]
+    private int projectileDamageMax = 25;
 
     private void OnEnable()
     {
@@ -14,16 +18,29 @@ public class Projectile : MonoBehaviour
     private IEnumerator DeactiveTimer()
     {
         yield return new WaitForSeconds(deactiveTimer);
-        gameObject.SetActive(false);
-        PoolManager.Instance.PushAmmo(gameObject);
+        DeactivateGameObject();
+        PushAmmoToPool();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.GetComponent<IDamageable>() != null)
+        IDamageable collisionObject = collision.gameObject.GetComponent<IDamageable>();
+        if (collisionObject != null)
         {
-            int randomDamage = Random.Range(1, 10);
-            collision.gameObject.GetComponent<IDamageable>().TakeDamage(randomDamage);
+            int randomDamage = Random.Range(projectileDamageMin, projectileDamageMax);
+            collisionObject.TakeDamage(randomDamage);
+            DeactivateGameObject();
+            PushAmmoToPool();
         }
+    }
+
+    private void DeactivateGameObject()
+    {
+        gameObject.SetActive(false);
+    }
+
+    private void PushAmmoToPool()
+    {
+        PoolManager.Instance.PushAmmo(gameObject);
     }
 }
