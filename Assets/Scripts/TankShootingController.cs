@@ -9,7 +9,7 @@ public class TankShootingController : MonoBehaviour
     [SerializeField]
     private Transform barrelHole = default;
     [SerializeField]
-    private Collider tankCollider = default;
+    private Collider barrelCollider = default;
 
     [SerializeField]
     private float projectileSpeed = 55;
@@ -35,7 +35,7 @@ public class TankShootingController : MonoBehaviour
             timer = 0;
 
             GameObject projectile = PoolManager.Instance.PopAmmo();
-            Physics.IgnoreCollision(tankCollider, projectile.GetComponent<Collider>());
+            Physics.IgnoreCollision(barrelCollider, projectile.GetComponent<Collider>());
             projectile.transform.position = barrelHole.position;
             projectile.transform.rotation = tankTurretBarrel.rotation;
             projectile.GetComponent<Rigidbody>().velocity = (tankTurretBody.transform.forward + tankTurretBarrel.transform.up) * projectileSpeed;

@@ -17,7 +17,7 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        IDamageable collisionObject = collision.gameObject.GetComponent<IDamageable>();
+        IDamageable collisionObject = collision.transform.root.gameObject.GetComponent<IDamageable>();
         if (collisionObject != null)
         {
             int randomDamage = Random.Range(projectileDamageMin, projectileDamageMax);

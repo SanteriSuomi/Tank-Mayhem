@@ -2,6 +2,9 @@
 {
     protected override float HitPoints { get; set; } = 50;
 
+    private TankEnemyPatrol enemyPatrol;
+    private TankEnemyAttack enemyAttack;
+
     private enum TankStates
     {
         Stop,
@@ -13,6 +16,9 @@
 
     protected override void Initialize()
     {
+        enemyPatrol = GetComponent<TankEnemyPatrol>();
+        enemyAttack = GetComponent<TankEnemyAttack>();
+
         currentState = TankStates.Patrol;
     }
 
