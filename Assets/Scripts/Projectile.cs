@@ -34,11 +34,7 @@ public class Projectile : MonoBehaviour
 
     private void DeactivateAndPush()
     {
-<<<<<<< HEAD
-        AmmoPoolManager.Instance.PushHeavyAmmo(gameObject);
-=======
         gameObject.SetActive(false);
         PoolManager.Instance.PushAmmo(gameObject);
->>>>>>> TankControllerMaking
     }
 }
