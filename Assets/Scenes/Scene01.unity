@@ -44,7 +44,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 1
+  m_GIWorkflowMode: 0
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 108226662}
   - component: {fileID: 108226663}
   m_Layer: 0
-  m_Name: PoolManager
+  m_Name: AmmoPoolManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -164,10 +164,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f524048d299b914a95be1b4b84148f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 1997985812582198032, guid: 1d5f1688b981cb74dbc3b84c76592c1a,
+  heavyProjectile: {fileID: 1997985812582198032, guid: 1d5f1688b981cb74dbc3b84c76592c1a,
     type: 3}
-  ammoParent: {fileID: 806901393}
-  ammoPoolAmount: 50
+  heavyAmmoParent: {fileID: 806901393}
+  heavyAmmoPoolAmount: 50
+  lightProjectile: {fileID: 2339103290259989472, guid: f310ebe68d7febe4aa72980dacba6875,
+    type: 3}
+  lightAmmoParent: {fileID: 806901393}
+  lightAmmoPoolAmount: 100
 --- !u!1 &148253206
 GameObject:
   m_ObjectHideFlags: 0
@@ -544,6 +548,12 @@ Terrain:
   m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
   m_GroupingID: 0
   m_AllowAutoConnect: 1
+--- !u!65 &1031501150 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 5095328748583951977, guid: 7a4be20a687289c4c82eb2b7a9609490,
+    type: 3}
+  m_PrefabInstance: {fileID: 29147180215406335}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1401861413
 GameObject:
   m_ObjectHideFlags: 0
@@ -596,6 +606,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1402265339}
+  - component: {fileID: 1402265340}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -619,6 +630,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1402265340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1402265338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd03eff0e6112974f83c0026126df2d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1511739734
 GameObject:
   m_ObjectHideFlags: 0
@@ -894,6 +917,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!4 &1940601576 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8891075882001772977, guid: 7a4be20a687289c4c82eb2b7a9609490,
+    type: 3}
+  m_PrefabInstance: {fileID: 29147180215406335}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1992970458 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 962004110, guid: 7a4be20a687289c4c82eb2b7a9609490,
+    type: 3}
+  m_PrefabInstance: {fileID: 29147180215406335}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2008842339
 GameObject:
   m_ObjectHideFlags: 0
@@ -1028,6 +1063,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6618245397173114988, guid: 7a4be20a687289c4c82eb2b7a9609490,
+        type: 3}
+      propertyPath: tankTurretBarrelHole
+      value: 
+      objectReference: {fileID: 1992970458}
+    - target: {fileID: 6618245397173114988, guid: 7a4be20a687289c4c82eb2b7a9609490,
+        type: 3}
+      propertyPath: tankCollider
+      value: 
+      objectReference: {fileID: 1031501150}
+    - target: {fileID: 6618245397173114988, guid: 7a4be20a687289c4c82eb2b7a9609490,
+        type: 3}
+      propertyPath: tankTurretBarrelBase
+      value: 
+      objectReference: {fileID: 1940601576}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a4be20a687289c4c82eb2b7a9609490, type: 3}
 --- !u!4 &29147180215406338 stripped

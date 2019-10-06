@@ -41,6 +41,6 @@ public class Projectile : MonoBehaviour
 
     private void PushAmmoToPool()
     {
-        PoolManager.Instance.PushAmmo(gameObject);
+        AmmoPoolManager.Instance.PushHeavyAmmo(gameObject);
     }
 }

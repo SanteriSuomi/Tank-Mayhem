@@ -122,6 +122,7 @@ GameObject:
   - component: {fileID: 29147179431953504}
   - component: {fileID: 29147179431953505}
   - component: {fileID: 29147180215406337}
+  - component: {fileID: 6618245397173114988}
   m_Layer: 0
   m_Name: TankTurretBody
   m_TagString: Untagged
@@ -141,6 +142,7 @@ Transform:
   m_LocalScale: {x: 1.5, y: 0.5, z: 1.5}
   m_Children:
   - {fileID: 8891075882001772977}
+  - {fileID: 8531027022407339167}
   m_Father: {fileID: 29147180342812351}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -207,6 +209,22 @@ MonoBehaviour:
   barrelRotationSpeed: 0.5
   turretBodyHorizontalClampRange: 150
   turrentBarrelVerticalClampRange: 37.5
+--- !u!114 &6618245397173114988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 29147179431953507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 811b67353cf9d674c973f37fd3d5503e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tankTurretBarrel: {fileID: 0}
+  tankTurretBarrelHole: {fileID: 0}
+  tankCollider: {fileID: 0}
+  projectileSpeed: 35
 --- !u!1 &29147180318676260
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,8 +314,8 @@ GameObject:
   - component: {fileID: 29147180342812351}
   - component: {fileID: 5095328748583951977}
   - component: {fileID: 8807332700096618904}
-  - component: {fileID: 8536799647837131656}
   - component: {fileID: 782226120}
+  - component: {fileID: 8536799647837131656}
   m_Layer: 0
   m_Name: Tank
   m_TagString: Untagged
@@ -350,6 +368,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &782226120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 29147180342812352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 533cf90df3122ab4697521677b89141f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8536799647837131656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,18 +394,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 25
   rotationSpeed: 1
---- !u!114 &782226120
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 29147180342812352}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 533cf90df3122ab4697521677b89141f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &29147180443418061
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,7 +483,6 @@ GameObject:
   - component: {fileID: 29147181323860765}
   - component: {fileID: 29147181323860766}
   - component: {fileID: 29147181323860767}
-  - component: {fileID: 1904868725}
   m_Layer: 0
   m_Name: TankTurretBarrel
   m_TagString: Untagged
@@ -534,22 +551,115 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &1904868725
-MonoBehaviour:
+--- !u!1 &450277634061899576
+GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 29147181323860769}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1595751543603869968}
+  m_Layer: 0
+  m_Name: TankTurretMiniBarrelHole
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1595751543603869968
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 450277634061899576}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0.92499787, z: 0}
+  m_LocalScale: {x: 5, y: 1.6666636, z: 1.4999975}
+  m_Children: []
+  m_Father: {fileID: 8531027022407339167}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4157235632785069137
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8531027022407339167}
+  - component: {fileID: 1541392823200636154}
+  - component: {fileID: 8240083835216785335}
+  m_Layer: 0
+  m_Name: TankTurretMiniBarrel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &8531027022407339167
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4157235632785069137}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0.3, y: 0, z: 0.63100004}
+  m_LocalScale: {x: 0.045, y: 0.14966682, z: 0.1347001}
+  m_Children:
+  - {fileID: 1595751543603869968}
+  m_Father: {fileID: 29147179431953503}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!33 &1541392823200636154
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4157235632785069137}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &8240083835216785335
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4157235632785069137}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 811b67353cf9d674c973f37fd3d5503e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  barrelHole: {fileID: 962004110}
-  tankTurretBody: {fileID: 29147179431953503}
-  tankCollider: {fileID: 5095328748583951977}
-  projectileSpeed: 35
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &5303429037278766897
 GameObject:
   m_ObjectHideFlags: 0
