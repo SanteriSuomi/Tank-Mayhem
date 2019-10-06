@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 
-public class TankShoot : MonoBehaviour
+public class TankShootingController : MonoBehaviour
 {
     [SerializeField]
     private Transform tankTurretBody = default;
+    [SerializeField]
+    private Transform tankTurretBarrel = default;
     [SerializeField]
     private Transform barrelHole = default;
     [SerializeField]
@@ -31,7 +33,7 @@ public class TankShoot : MonoBehaviour
             GameObject projectile = PoolManager.Instance.PopAmmo();
             Physics.IgnoreCollision(tankCollider, projectile.GetComponent<Collider>());
             projectile.transform.position = barrelHole.position;
-            projectile.GetComponent<Rigidbody>().velocity = (tankTurretBody.transform.forward * projectileSpeed) + (transform.up * projectileSpeed);
+            projectile.GetComponent<Rigidbody>().velocity = (tankTurretBody.transform.forward * projectileSpeed) + (tankTurretBarrel.transform.up * projectileSpeed);
             projectile.SetActive(true);
         }
     }
