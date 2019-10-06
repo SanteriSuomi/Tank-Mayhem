@@ -4,43 +4,41 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [SerializeField]
-    private float deactiveTimer = 5;
+    private float deactiveTimer = 7.5f;
     [SerializeField]
-    private int projectileDamageMin = 15;
+    private int projectileDamageMin = 20;
     [SerializeField]
-    private int projectileDamageMax = 25;
+    private int projectileDamageMax = 30;
 
     private void OnEnable()
     {
-        StartCoroutine(DeactiveTimer());
-    }
-
-    private IEnumerator DeactiveTimer()
-    {
-        yield return new WaitForSeconds(deactiveTimer);
-        DeactivateGameObject();
-        PushAmmoToPool();
+        StartCoroutine(DeactivateTimer());
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        IDamageable collisionObject = collision.gameObject.GetComponent<IDamageable>();
+        IDamageable collisionObject = collision.transform.root.gameObject.GetComponent<IDamageable>();
         if (collisionObject != null)
         {
             int randomDamage = Random.Range(projectileDamageMin, projectileDamageMax);
             collisionObject.TakeDamage(randomDamage);
-            DeactivateGameObject();
-            PushAmmoToPool();
+            DeactivateAndPush();
         }
     }
 
-    private void DeactivateGameObject()
+    private IEnumerator DeactivateTimer()
     {
-        gameObject.SetActive(false);
+        yield return new WaitForSeconds(deactiveTimer);
+        DeactivateAndPush();
     }
 
-    private void PushAmmoToPool()
+    private void DeactivateAndPush()
     {
+<<<<<<< HEAD
         AmmoPoolManager.Instance.PushHeavyAmmo(gameObject);
+=======
+        gameObject.SetActive(false);
+        PoolManager.Instance.PushAmmo(gameObject);
+>>>>>>> TankControllerMaking
     }
 }

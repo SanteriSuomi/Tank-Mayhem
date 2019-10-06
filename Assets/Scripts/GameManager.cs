@@ -4,6 +4,7 @@ public class GameManager : MonoBehaviour
 {
     // Game manager will contains small items that will only have to be run once at the start of the game.
 
+<<<<<<< HEAD
     // Implement a static property for accessing this manager globally (singleton pattern).
     public static GameManager Instance { get; private set; }
 
@@ -21,6 +22,9 @@ public class GameManager : MonoBehaviour
     }
 
     private void Start()
+=======
+    private void Awake()
+>>>>>>> TankControllerMaking
     {
         // Lock cursor to the center of the game.
         Cursor.lockState = CursorLockMode.Locked;
