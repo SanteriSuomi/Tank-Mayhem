@@ -3,9 +3,9 @@
 public class TankShoot : MonoBehaviour
 {
     [SerializeField]
-    private Transform barrelHole = default;
-    [SerializeField]
     private Transform tankTurretBody = default;
+    [SerializeField]
+    private Transform barrelHole = default;
     [SerializeField]
     private Collider tankCollider = default;
 

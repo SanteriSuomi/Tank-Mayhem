@@ -8,11 +8,14 @@ public class TankController : MonoBehaviour
     private float moveSpeed = 10;
     [SerializeField]
     private float rotationSpeed = 1;
+    [SerializeField]
+    private float shiftMultiplier = 1.5f;
 
     private float verticalMove;
 
     private bool pressingE;
     private bool pressingQ;
+    private bool pressingShift;
 
     private void Awake()
     {
@@ -25,11 +28,11 @@ public class TankController : MonoBehaviour
 
         pressingE = Input.GetKey(KeyCode.E);
         pressingQ = Input.GetKey(KeyCode.Q);
+        pressingShift = Input.GetKey(KeyCode.LeftShift);
     }
 
     private void FixedUpdate()
     {
-        rigidBody.AddRelativeForce(new Vector3(0, 0, verticalMove));
 
         if (pressingE)
         {
@@ -39,5 +42,19 @@ public class TankController : MonoBehaviour
         {
             transform.Rotate(new Vector3(0, -rotationSpeed, 0), Space.Self);
         }
+
+        if (pressingShift)
+        {
+            MoveForward(verticalMove * shiftMultiplier);
+        }
+        else
+        {
+            MoveForward(verticalMove);
+        }
+    }
+
+    private void MoveForward(float force)
+    {
+        rigidBody.AddRelativeForce(new Vector3(0, 0, force));
     }
 }
