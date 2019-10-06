@@ -24,8 +24,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 962004109}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.92499787, z: 0}
-  m_LocalScale: {x: 5, y: 1.6666636, z: 1.4999975}
+  m_LocalPosition: {x: 0, y: 0.7999993, z: 0}
+  m_LocalScale: {x: 3.333333, y: 3.333325, z: 1}
   m_Children: []
   m_Father: {fileID: 29147181323860765}
   m_RootOrder: 0
@@ -89,7 +89,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: af2298b3b7c6d7c49894d2ecfafb5920, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -139,7 +139,7 @@ Transform:
   m_GameObject: {fileID: 29147179431953507}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1.25, z: 0.5}
-  m_LocalScale: {x: 1.5, y: 0.5, z: 1.5}
+  m_LocalScale: {x: 1.75, y: 0.5, z: 1.75}
   m_Children:
   - {fileID: 8891075882001772977}
   m_Father: {fileID: 29147180342812351}
@@ -170,7 +170,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: bd8d4128c910ad247be727e1dc916796, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -206,8 +206,8 @@ MonoBehaviour:
   turretBarrelBase: {fileID: 8891075882001772977}
   turretRotationSpeed: 0.6
   barrelRotationSpeed: 0.5
-  turretBodyHorizontalClampRange: 150
-  turrentBarrelVerticalClampRange: 37.5
+  horizontalClampRange: 150
+  verticalClampRange: 70
 --- !u!114 &183931864819676018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,7 +224,7 @@ MonoBehaviour:
   tankTurretBarrel: {fileID: 29147181323860765}
   barrelHole: {fileID: 962004110}
   tankCollider: {fileID: 5095328748583951977}
-  projectileSpeed: 35
+  projectileSpeed: 50
 --- !u!1 &29147180318676260
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,7 +282,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: bd8d4128c910ad247be727e1dc916796, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -452,7 +452,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: bd8d4128c910ad247be727e1dc916796, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -499,8 +499,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 29147181323860769}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0.7333337}
-  m_LocalScale: {x: 0.20000002, y: 0.6666679, z: 0.6000012}
+  m_LocalPosition: {x: 0, y: 0, z: 0.63}
+  m_LocalScale: {x: 0.20000002, y: 0.65, z: 0.65}
   m_Children:
   - {fileID: 962004110}
   m_Father: {fileID: 8891075882001772977}
@@ -531,7 +531,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: af2298b3b7c6d7c49894d2ecfafb5920, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -576,7 +576,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5303429037278766897}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.4}
+  m_LocalPosition: {x: 0, y: 0, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 29147181323860765}
