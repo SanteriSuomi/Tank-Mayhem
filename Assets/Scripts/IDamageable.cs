@@ -2,5 +2,5 @@
 {
     void TakeDamage(float damage);
 
-    void SelfDestroy();
+    void CheckDestroySelf();
 }

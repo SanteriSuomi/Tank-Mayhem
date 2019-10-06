@@ -18,8 +18,9 @@ public class TankTurretController : MonoBehaviour
     [SerializeField]
     private int horizontalClampRange = 150;
     [SerializeField]
-    private int verticalClampRange = 60;
-
+    private int verticalClampRange = 65;
+    [SerializeField]
+    private int verticalClampRangeMin = 5;
 
     private void Update()
     {
@@ -28,7 +29,7 @@ public class TankTurretController : MonoBehaviour
         mouseHorizontalClamp = Mathf.Clamp(mouseHorizontal, -horizontalClampRange, horizontalClampRange);
 
         mouseVertical += Input.GetAxis("Mouse Y");
-        mouseVerticalClamp = Mathf.Clamp(mouseVertical, -verticalClampRange, 0);
+        mouseVerticalClamp = Mathf.Clamp(mouseVertical, -verticalClampRange, -verticalClampRangeMin);
     }
 
     private void FixedUpdate()

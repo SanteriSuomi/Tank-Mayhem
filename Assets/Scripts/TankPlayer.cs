@@ -1,6 +1,6 @@
 ﻿public class TankPlayer : Tank, IDamageable
 {
-    public override float HitPoints { get; set; } = 100;
+    protected override float HitPoints { get; set; } = 150;
 
     protected override void Initialize()
     {
@@ -9,7 +9,12 @@
 
     protected override void UpdateState()
     {
-        SelfDestroy();
+        CheckDestroySelf();
+    }
+
+    protected override void UpdateStateFixed()
+    {
+
     }
 
     public void TakeDamage(float damage)
@@ -17,7 +22,7 @@
         HitPoints -= damage;
     }
 
-    public void SelfDestroy()
+    public void CheckDestroySelf()
     {
         if (HitPoints <= 0)
         {

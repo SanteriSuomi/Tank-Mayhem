@@ -4,22 +4,15 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [SerializeField]
-    private float deactiveTimer = 5;
+    private float deactiveTimer = 7.5f;
     [SerializeField]
-    private int projectileDamageMin = 15;
+    private int projectileDamageMin = 20;
     [SerializeField]
-    private int projectileDamageMax = 25;
+    private int projectileDamageMax = 30;
 
     private void OnEnable()
     {
-        StartCoroutine(DeactiveTimer());
-    }
-
-    private IEnumerator DeactiveTimer()
-    {
-        yield return new WaitForSeconds(deactiveTimer);
-        DeactivateGameObject();
-        PushAmmoToPool();
+        StartCoroutine(DeactivateTimer());
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -29,18 +22,19 @@ public class Projectile : MonoBehaviour
         {
             int randomDamage = Random.Range(projectileDamageMin, projectileDamageMax);
             collisionObject.TakeDamage(randomDamage);
-            DeactivateGameObject();
-            PushAmmoToPool();
+            DeactivateAndPush();
         }
     }
 
-    private void DeactivateGameObject()
+    private IEnumerator DeactivateTimer()
     {
-        gameObject.SetActive(false);
+        yield return new WaitForSeconds(deactiveTimer);
+        DeactivateAndPush();
     }
 
-    private void PushAmmoToPool()
+    private void DeactivateAndPush()
     {
+        gameObject.SetActive(false);
         PoolManager.Instance.PushAmmo(gameObject);
     }
 }

@@ -1,15 +1,41 @@
 ﻿public class TankEnemy : Tank, IDamageable
 {
-    public override float HitPoints { get; set; } = 50;
+    protected override float HitPoints { get; set; } = 50;
+
+    private enum TankStates
+    {
+        Stop,
+        Patrol,
+        Attack
+    }
+
+    private TankStates currentState;
 
     protected override void Initialize()
     {
-
+        currentState = TankStates.Patrol;
     }
 
     protected override void UpdateState()
     {
-        SelfDestroy();
+        CheckDestroySelf();
+
+        switch (currentState)
+        {
+            case TankStates.Stop:
+                break;
+            case TankStates.Patrol:
+                break;
+            case TankStates.Attack:
+                break;
+            default:
+                break;
+        }
+    }
+
+    protected override void UpdateStateFixed()
+    {
+
     }
 
     public void TakeDamage(float damage)
@@ -17,7 +43,7 @@
         HitPoints -= damage;
     }
 
-    public void SelfDestroy()
+    public void CheckDestroySelf()
     {
         if (HitPoints <= 0)
         {

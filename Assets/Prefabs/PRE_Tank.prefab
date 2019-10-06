@@ -23,9 +23,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 962004109}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.7999993, z: 0}
-  m_LocalScale: {x: 3.333333, y: 3.333325, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.8, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 29147181323860765}
   m_RootOrder: 0
@@ -207,7 +207,8 @@ MonoBehaviour:
   turretRotationSpeed: 0.6
   barrelRotationSpeed: 0.5
   horizontalClampRange: 150
-  verticalClampRange: 70
+  verticalClampRange: 65
+  verticalClampRangeMin: 5
 --- !u!114 &183931864819676018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,7 +225,8 @@ MonoBehaviour:
   tankTurretBarrel: {fileID: 29147181323860765}
   barrelHole: {fileID: 962004110}
   tankCollider: {fileID: 5095328748583951977}
-  projectileSpeed: 50
+  projectileSpeed: 60
+  timerThreshold: 1.2
 --- !u!1 &29147180318676260
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,8 +319,8 @@ GameObject:
   - component: {fileID: 782226120}
   - component: {fileID: 8536799647837131656}
   m_Layer: 0
-  m_Name: Tank
-  m_TagString: Untagged
+  m_Name: PRE_Tank
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

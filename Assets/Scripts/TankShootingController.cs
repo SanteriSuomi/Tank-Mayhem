@@ -12,12 +12,16 @@ public class TankShootingController : MonoBehaviour
     private Collider tankCollider = default;
 
     [SerializeField]
-    private float projectileSpeed = 35;
+    private float projectileSpeed = 55;
+    [SerializeField]
+    private float timerThreshold = 1;
+    private float timer;
 
     private bool pressedLeftClick;
 
     private void Update()
     {
+        timer += Time.deltaTime;
         if (Input.GetMouseButtonDown(0))
         {
             pressedLeftClick = true;
@@ -26,16 +30,18 @@ public class TankShootingController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (pressedLeftClick)
+        if (pressedLeftClick && timer > timerThreshold)
         {
-            pressedLeftClick = false;
+            timer = 0;
 
             GameObject projectile = PoolManager.Instance.PopAmmo();
             Physics.IgnoreCollision(tankCollider, projectile.GetComponent<Collider>());
             projectile.transform.position = barrelHole.position;
             projectile.transform.rotation = tankTurretBarrel.rotation;
-            projectile.GetComponent<Rigidbody>().velocity = tankTurretBody.transform.forward + tankTurretBarrel.transform.up * projectileSpeed;
+            projectile.GetComponent<Rigidbody>().velocity = (tankTurretBody.transform.forward + tankTurretBarrel.transform.up) * projectileSpeed;
             projectile.SetActive(true);
         }
+
+        pressedLeftClick = false;
     }
 }
