@@ -130,9 +130,10 @@ MonoBehaviour:
   maxDistanceFromTarget: 1
   randomDistanceMin: 40
   randomDistanceMax: 80
-  rotationSpeed: 100
+  rotationSpeed: 75
+  turretRotationSpeed: 50
   moveSpeed: 5.5
-  playerDistanceThreshold: 75
+  playerDistanceThreshold: 50
 --- !u!114 &6759389467644901481
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Linq;
 using System.Collections;
 
 public class TankEnemy : Tank, IDamageable
@@ -10,9 +9,9 @@ public class TankEnemy : Tank, IDamageable
     private TankEnemyAttack enemyAttack;
 
     [SerializeField]
-    private Transform turretBody;
+    private Transform turretBody = default;
     [SerializeField]
-    private Transform player;
+    private Transform player = default;
 
     private Vector3 targetPoint;
 
@@ -34,8 +33,11 @@ public class TankEnemy : Tank, IDamageable
     private float targetDistance;
     private float playerDistance;
 
+    private bool rotateDefault;
+
     private Vector3 tankDirection;
     private Quaternion tankLookRotation;
+
     private Vector3 tankTurretDirection;
     private Quaternion tankTurretLookRotation;
 
@@ -62,22 +64,25 @@ public class TankEnemy : Tank, IDamageable
 
     protected override void UpdateState()
     {
+        #if UNITY_EDITOR
+        // Log state changes in the unity editor.
+        LogState();
+        #endif
+        // Check every frame if hitpoints are below zero.
         CheckDestroySelf();
+        // Keep track of player's distance.
         playerDistance = Vector3.Distance(transform.position, player.position);
 
         switch (currentState)
         {
             case TankStates.Stop:
                 Stop();
-                Debug.Log($"{gameObject.name} stopped.");
                 break;
             case TankStates.Patrol:
                 Patrol();
-                Debug.Log($"{gameObject.name} started patrolling.");
                 break;
             case TankStates.Attack:
                 Attack();
-                Debug.Log($"{gameObject.name} started attacking.");
                 break;
             default:
                 break;
@@ -86,33 +91,40 @@ public class TankEnemy : Tank, IDamageable
 
     private void Stop()
     {
-        GetNewDestination();
         StartCoroutine(Wait());
     }
 
     private IEnumerator Wait()
     {
         yield return new WaitForSeconds(Random.Range(0, 2.5f));
-        Debug.Log($"{gameObject.name} started patrolling.");
+        GetNewDestination();
         currentState = TankStates.Patrol;
     }
 
     private void Patrol()
     {
+        // Rotate the turret to default position when player gets out of range.
+        if (rotateDefault)
+        {
+            turretBody.rotation = Quaternion.RotateTowards(turretBody.rotation, transform.rotation, turretRotationSpeed * Time.deltaTime);
+            if (turretBody.rotation == transform.rotation)
+            {
+                rotateDefault = false;
+            }
+        }
         // Check if player is within distance.
         if (playerDistance <= playerDistanceThreshold)
         {
             currentState = TankStates.Attack;
         }
-
         // Move towards target.
         targetDistance = Vector3.Distance(transform.position, targetPoint);
         transform.position = Vector3.MoveTowards(transform.position, targetPoint, moveSpeed * Time.deltaTime);
+        // Stop if reached the target destination.
         if (targetDistance <= maxDistanceFromTarget)
         {
             currentState = TankStates.Stop;
         }
-
         // Rotate towards target.
         tankDirection = (targetPoint - transform.position).normalized;
         tankLookRotation = Quaternion.LookRotation(tankDirection);
@@ -122,6 +134,7 @@ public class TankEnemy : Tank, IDamageable
     private void GetNewDestination()
     {
         Debug.Log($"{gameObject.name} is retrieving a new destination.");
+        // Randomise the targetPoint vector.
         targetPoint.x = Random.Range(randomDistanceMin, randomDistanceMax);
         targetPoint.y = transform.position.y;
         targetPoint.z = Random.Range(randomDistanceMin, randomDistanceMax);
@@ -131,14 +144,18 @@ public class TankEnemy : Tank, IDamageable
     {
         if (playerDistance >= playerDistanceThreshold)
         {
-            //turretBody.rotation = Quaternion.identity;
+            rotateDefault = true;
             currentState = TankStates.Patrol;
         }
-
         // Rotate turret towards target.
         tankTurretDirection = (player.position - transform.position).normalized;
         tankTurretLookRotation = Quaternion.LookRotation(tankTurretDirection);
         turretBody.rotation = Quaternion.RotateTowards(turretBody.rotation, tankTurretLookRotation, turretRotationSpeed * Time.deltaTime);
+    }
+
+    private void Shoot()
+    {
+
     }
 
     #region Interface Methods
@@ -154,5 +171,35 @@ public class TankEnemy : Tank, IDamageable
             Destroy(gameObject);
         }
     }
+    #endregion
+
+    #region Debug Logs
+    private void LogState()
+    {
+        switch (currentState)
+        {
+            case TankStates.Stop:
+                Debug.Log($"{gameObject.name} stopped.");
+                break;
+            case TankStates.Patrol:
+                Debug.Log($"{gameObject.name} started patrolling.");
+                break;
+            case TankStates.Attack:
+                Debug.Log($"{gameObject.name} started attacking.");
+                break;
+            default:
+                break;
+        }
+    }
+    #endregion
+
+    #region Gizmos
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(transform.position, targetPoint);
+        Gizmos.DrawWireSphere(transform.position, playerDistanceThreshold);
+    }
+    #endif
     #endregion
 }
