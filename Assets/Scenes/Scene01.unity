@@ -360,6 +360,12 @@ Terrain:
   m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
   m_GroupingID: 0
   m_AllowAutoConnect: 1
+--- !u!4 &316018610 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 29147180342812351, guid: 7a4be20a687289c4c82eb2b7a9609490,
+    type: 3}
+  m_PrefabInstance: {fileID: 337923105}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &337923105
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -872,7 +878,7 @@ PrefabInstance:
     - target: {fileID: 7842677082127561831, guid: ec3f77bc9fe04f340ad6a82ebb89f684,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.68
+      value: 108.8
       objectReference: {fileID: 0}
     - target: {fileID: 7842677082127561831, guid: ec3f77bc9fe04f340ad6a82ebb89f684,
         type: 3}
@@ -882,7 +888,7 @@ PrefabInstance:
     - target: {fileID: 7842677082127561831, guid: ec3f77bc9fe04f340ad6a82ebb89f684,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 16.83
+      value: 99.8
       objectReference: {fileID: 0}
     - target: {fileID: 7842677082127561831, guid: ec3f77bc9fe04f340ad6a82ebb89f684,
         type: 3}
@@ -924,6 +930,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1284353591362647133, guid: ec3f77bc9fe04f340ad6a82ebb89f684,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 316018610}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec3f77bc9fe04f340ad6a82ebb89f684, type: 3}
 --- !u!1 &1788135317

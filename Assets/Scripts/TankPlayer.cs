@@ -7,14 +7,14 @@
         
     }
 
+    protected override void StartState()
+    {
+
+    }
+
     protected override void UpdateState()
     {
         CheckDestroySelf();
-    }
-
-    protected override void UpdateStateFixed()
-    {
-
     }
 
     public void TakeDamage(float damage)
