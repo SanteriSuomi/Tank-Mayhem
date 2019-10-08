@@ -28,7 +28,7 @@ public class EnemyHealthBar : MonoBehaviour
     private void LateUpdate()
     {
         playerDistanceCheckTimer += Time.deltaTime;
-        if (playerDistanceCheckTimer >= playerDistanceCheckTime)
+        if (player != null && playerDistanceCheckTimer >= playerDistanceCheckTime)
         {
             playerDistanceCheckTimer = 0;
             playerDistance = Vector3.Distance(transform.position, player.position);
@@ -36,7 +36,6 @@ public class EnemyHealthBar : MonoBehaviour
 
         healthBar.transform.LookAt(player);
         healthBar.value = tankEnemy.GetHitpoints();
-
         healthBar.transform.localScale = new Vector3(playerDistance / healthBarScaleReductionX, playerDistance / healthBarScaleReductionY, 0);
     }
 }

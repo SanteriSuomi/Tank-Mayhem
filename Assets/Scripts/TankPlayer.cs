@@ -2,6 +2,8 @@
 {
     protected override float HitPoints { get; set; } = 400;
 
+    public float GetHitPoints() { return HitPoints; }
+
     protected override void Initialize()
     {
         
