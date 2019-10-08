@@ -359,8 +359,9 @@ GameObject:
   - component: {fileID: 8807332700096618904}
   - component: {fileID: 782226120}
   - component: {fileID: 8536799647837131656}
+  - component: {fileID: 2115061037}
   m_Layer: 0
-  m_Name: PRE_Tank
+  m_Name: PRE_Tank_Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -425,6 +426,18 @@ MonoBehaviour:
   moveSpeed: 25
   rotationSpeed: 1
   shiftMultiplier: 1.5
+--- !u!114 &2115061037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 29147180342812352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4cd962e0e0ed3845ab86e8e312df9fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &29147180443418061
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,6 +4,8 @@ public class TankTurretController : MonoBehaviour
 {
     [SerializeField]
     private Transform turretBarrelBase = default;
+    [SerializeField]
+    private RectTransform crosshair = default;
 
     [SerializeField] [Range(0, 1.0f)]
     private float turretRotationSpeed = 0.6f;
@@ -38,5 +40,6 @@ public class TankTurretController : MonoBehaviour
         transform.localRotation = Quaternion.Slerp(Quaternion.identity, Quaternion.Euler(0, mouseHorizontalClamp, 0), turretRotationSpeed);
         // Rotate the turret barrel up and down using a empty gameobject base.
         turretBarrelBase.transform.localRotation = Quaternion.Slerp(Quaternion.identity, Quaternion.Euler(mouseVerticalClamp, 0, 0), barrelRotationSpeed);
+        crosshair.anchoredPosition = new Vector2(0, -40) + new Vector2(0, -mouseVerticalClamp * 2);
     }
 }
