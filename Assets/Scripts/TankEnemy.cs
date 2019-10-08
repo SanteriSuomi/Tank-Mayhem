@@ -3,10 +3,12 @@ using System.Collections;
 
 public class TankEnemy : Tank, IDamageable
 {
-    protected override float HitPoints { get; set; } = 50;
+    protected override float HitPoints { get; set; } = 100;
 
-    private TankEnemyPatrol enemyPatrol;
-    private TankEnemyAttack enemyAttack;
+    public float GetHitpoints() { return HitPoints; }
+
+    //private TankEnemyPatrol enemyPatrol;
+    //private TankEnemyAttack enemyAttack;
 
     [SerializeField]
     private Transform turretBody = default;
@@ -41,6 +43,8 @@ public class TankEnemy : Tank, IDamageable
     private float moveSpeed = 5.5f;
     [SerializeField]
     private float playerDistanceThreshold = 75;
+    [SerializeField]
+    private float playerDistanceCheckTime = 0.5f;
     [SerializeField]
     private float projectileSpeed = 55;
     [SerializeField]
@@ -89,7 +93,7 @@ public class TankEnemy : Tank, IDamageable
         LogState();
 #endif
         #endregion
-        // Check every frame if hitpoints are below zero.
+        // Destroy enemy if hitpoints below zero.
         CheckDestroySelf();
         // Keep track of player's distance every X seconds.
         PlayerDistanceCheckTimer();
@@ -113,13 +117,9 @@ public class TankEnemy : Tank, IDamageable
     private void PlayerDistanceCheckTimer()
     {
         playerDistanceCheckTimer += Time.deltaTime;
-        if (playerDistanceCheckTimer >= 0.5f)
+        if (player != null && playerDistanceCheckTimer >= playerDistanceCheckTime)
         {
-            playerDistanceCheckTimer = 0;
-            if (player != null)
-            {
-                playerDistance = Vector3.Distance(transform.position, player.position);
-            }
+            playerDistance = Vector3.Distance(transform.position, player.position);
         }
     }
 
@@ -143,6 +143,11 @@ public class TankEnemy : Tank, IDamageable
 
     private void Patrol()
     {
+        // Check if player is within distance.
+        if (playerDistance <= playerDistanceThreshold)
+        {
+            currentState = TankStates.Attack;
+        }
         // Rotate the turret to default position when player gets out of range.
         if (rotateDefault)
         {
@@ -152,15 +157,10 @@ public class TankEnemy : Tank, IDamageable
                 rotateDefault = false;
             }
         }
-        // Check if player is within distance.
-        if (playerDistance <= playerDistanceThreshold)
-        {
-            currentState = TankStates.Attack;
-        }
         // Move towards target.
         targetDistance = Vector3.Distance(transform.position, targetPoint);
         transform.position = Vector3.MoveTowards(transform.position, targetPoint, moveSpeed * Time.deltaTime);
-        // Stop if reached the target destination.
+        // Stop when reached the target destination.
         if (targetDistance <= maxDistanceFromTarget)
         {
             currentState = TankStates.Stop;
@@ -174,9 +174,32 @@ public class TankEnemy : Tank, IDamageable
     private void GetNewDestination()
     {
         // Randomise the targetPoint vector.
-        targetPoint.x = Random.Range(randomDistanceMin, randomDistanceMax);
-        targetPoint.y = transform.position.y;
-        targetPoint.z = Random.Range(randomDistanceMin, randomDistanceMax);
+        float random = Random.Range(0, 3);
+        if (random == 0)
+        {
+            targetPoint.x = transform.position.x + Random.Range(randomDistanceMin, randomDistanceMax);
+            targetPoint.y = transform.position.y;
+            targetPoint.z = transform.position.z + Random.Range(randomDistanceMin, randomDistanceMax);
+        }
+        else if (random == 1)
+        {
+            targetPoint.x = transform.position.x - Random.Range(randomDistanceMin, randomDistanceMax);
+            targetPoint.y = transform.position.y;
+            targetPoint.z = transform.position.z - Random.Range(randomDistanceMin, randomDistanceMax);
+        }
+        else if (random == 2)
+        {
+            targetPoint.x = transform.position.x + Random.Range(randomDistanceMin, randomDistanceMax);
+            targetPoint.y = transform.position.y;
+            targetPoint.z = transform.position.z - Random.Range(randomDistanceMin, randomDistanceMax);
+        }
+        else
+        {
+            targetPoint.x = transform.position.x - Random.Range(randomDistanceMin, randomDistanceMax);
+            targetPoint.y = transform.position.y;
+            targetPoint.z = transform.position.z + Random.Range(randomDistanceMin, randomDistanceMax);
+        }
+
         Debug.Log($"{gameObject.name} is retrieving a new destination X {targetPoint.x}, Z {targetPoint.z}");
     }
 

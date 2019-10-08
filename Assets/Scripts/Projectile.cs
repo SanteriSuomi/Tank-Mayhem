@@ -6,9 +6,9 @@ public class Projectile : MonoBehaviour
     [SerializeField]
     private float deactiveTimer = 7.5f;
     [SerializeField]
-    private int projectileDamageMin = 20;
+    private int projectileDamageMin = 30;
     [SerializeField]
-    private int projectileDamageMax = 30;
+    private int projectileDamageMax = 50;
 
     private void OnEnable()
     {
