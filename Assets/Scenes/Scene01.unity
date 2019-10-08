@@ -121,6 +121,18 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &33139037 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7842677083192283589, guid: ec3f77bc9fe04f340ad6a82ebb89f684,
+    type: 3}
+  m_PrefabInstance: {fileID: 1640380096}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &33139038 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 7263400974917981723, guid: ec3f77bc9fe04f340ad6a82ebb89f684,
+    type: 3}
+  m_PrefabInstance: {fileID: 1640380096}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &108226661
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,6 +447,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a4be20a687289c4c82eb2b7a9609490, type: 3}
+--- !u!4 &386039608 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7832116500496510550, guid: ec3f77bc9fe04f340ad6a82ebb89f684,
+    type: 3}
+  m_PrefabInstance: {fileID: 1640380096}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &462433070
 GameObject:
   m_ObjectHideFlags: 3
@@ -935,6 +953,38 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 316018610}
+    - target: {fileID: 1284353591362647133, guid: ec3f77bc9fe04f340ad6a82ebb89f684,
+        type: 3}
+      propertyPath: turretBarrelHole
+      value: 
+      objectReference: {fileID: 386039608}
+    - target: {fileID: 1284353591362647133, guid: ec3f77bc9fe04f340ad6a82ebb89f684,
+        type: 3}
+      propertyPath: projectile
+      value: 
+      objectReference: {fileID: 1997985812582198032, guid: 1d5f1688b981cb74dbc3b84c76592c1a,
+        type: 3}
+    - target: {fileID: 1284353591362647133, guid: ec3f77bc9fe04f340ad6a82ebb89f684,
+        type: 3}
+      propertyPath: tankTurretBarrel
+      value: 
+      objectReference: {fileID: 33139037}
+    - target: {fileID: 1284353591362647133, guid: ec3f77bc9fe04f340ad6a82ebb89f684,
+        type: 3}
+      propertyPath: tankTurretBody
+      value: 
+      objectReference: {fileID: 1838724291}
+    - target: {fileID: 1284353591362647133, guid: ec3f77bc9fe04f340ad6a82ebb89f684,
+        type: 3}
+      propertyPath: ammo
+      value: 
+      objectReference: {fileID: 1997985812582198032, guid: 1d5f1688b981cb74dbc3b84c76592c1a,
+        type: 3}
+    - target: {fileID: 1284353591362647133, guid: ec3f77bc9fe04f340ad6a82ebb89f684,
+        type: 3}
+      propertyPath: barrelCollider
+      value: 
+      objectReference: {fileID: 33139038}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec3f77bc9fe04f340ad6a82ebb89f684, type: 3}
 --- !u!1 &1788135317
@@ -1062,6 +1112,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 55, y: -30, z: 0}
+--- !u!4 &1838724291 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7842677083447357063, guid: ec3f77bc9fe04f340ad6a82ebb89f684,
+    type: 3}
+  m_PrefabInstance: {fileID: 1640380096}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2008842339
 GameObject:
   m_ObjectHideFlags: 0

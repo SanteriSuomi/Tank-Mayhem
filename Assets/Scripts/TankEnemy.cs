@@ -11,7 +11,17 @@ public class TankEnemy : Tank, IDamageable
     [SerializeField]
     private Transform turretBody = default;
     [SerializeField]
+    private Transform turretBarrelHole = default;
+    [SerializeField]
+    private Transform tankTurretBarrel = default;
+    [SerializeField]
+    private Transform tankTurretBody = default;
+    [SerializeField]
     private Transform player = default;
+    [SerializeField]
+    private GameObject ammo = default;
+    [SerializeField]
+    private Collider barrelCollider = default;
 
     private Vector3 targetPoint;
 
@@ -22,6 +32,8 @@ public class TankEnemy : Tank, IDamageable
     [SerializeField]
     private int randomDistanceMax = 60;
     [SerializeField]
+    private float stopWaitTimeMax = 2.5f;
+    [SerializeField]
     private float rotationSpeed = 80;
     [SerializeField]
     private float turretRotationSpeed = 120;
@@ -29,11 +41,18 @@ public class TankEnemy : Tank, IDamageable
     private float moveSpeed = 5.5f;
     [SerializeField]
     private float playerDistanceThreshold = 75;
+    [SerializeField]
+    private float projectileSpeed = 55;
+    [SerializeField]
+    private float shootRate = 0.5f;
 
     private float targetDistance;
     private float playerDistance;
+    private float playerDistanceCheckTimer;
+    private float shootTimer;
 
     private bool rotateDefault;
+    private bool executedWait;
 
     private Vector3 tankDirection;
     private Quaternion tankLookRotation;
@@ -64,14 +83,16 @@ public class TankEnemy : Tank, IDamageable
 
     protected override void UpdateState()
     {
-        #if UNITY_EDITOR
+        #region LogState
+#if UNITY_EDITOR
         // Log state changes in the unity editor.
         LogState();
-        #endif
+#endif
+        #endregion
         // Check every frame if hitpoints are below zero.
         CheckDestroySelf();
-        // Keep track of player's distance.
-        playerDistance = Vector3.Distance(transform.position, player.position);
+        // Keep track of player's distance every X seconds.
+        PlayerDistanceCheckTimer();
 
         switch (currentState)
         {
@@ -89,14 +110,33 @@ public class TankEnemy : Tank, IDamageable
         }
     }
 
+    private void PlayerDistanceCheckTimer()
+    {
+        playerDistanceCheckTimer += Time.deltaTime;
+        if (playerDistanceCheckTimer >= 0.5f)
+        {
+            playerDistanceCheckTimer = 0;
+            if (player != null)
+            {
+                playerDistance = Vector3.Distance(transform.position, player.position);
+            }
+        }
+    }
+
     private void Stop()
     {
-        StartCoroutine(Wait());
+        if (!executedWait)
+        {
+            executedWait = true;
+            StartCoroutine(Wait());
+        }
     }
 
     private IEnumerator Wait()
     {
-        yield return new WaitForSeconds(Random.Range(0, 2.5f));
+        // Wait for a random amount of seconds before getting a new destination.
+        yield return new WaitForSeconds(Random.Range(0, stopWaitTimeMax));
+        executedWait = false;
         GetNewDestination();
         currentState = TankStates.Patrol;
     }
@@ -133,29 +173,55 @@ public class TankEnemy : Tank, IDamageable
 
     private void GetNewDestination()
     {
-        Debug.Log($"{gameObject.name} is retrieving a new destination.");
         // Randomise the targetPoint vector.
         targetPoint.x = Random.Range(randomDistanceMin, randomDistanceMax);
         targetPoint.y = transform.position.y;
         targetPoint.z = Random.Range(randomDistanceMin, randomDistanceMax);
+        Debug.Log($"{gameObject.name} is retrieving a new destination X {targetPoint.x}, Z {targetPoint.z}");
     }
 
     private void Attack()
     {
+        // Check if player has left the check distance.
         if (playerDistance >= playerDistanceThreshold)
         {
             rotateDefault = true;
             currentState = TankStates.Patrol;
         }
         // Rotate turret towards target.
-        tankTurretDirection = (player.position - transform.position).normalized;
-        tankTurretLookRotation = Quaternion.LookRotation(tankTurretDirection);
-        turretBody.rotation = Quaternion.RotateTowards(turretBody.rotation, tankTurretLookRotation, turretRotationSpeed * Time.deltaTime);
+        if (player != null)
+        {
+            tankTurretDirection = (player.position - transform.position).normalized;
+            tankTurretLookRotation = Quaternion.LookRotation(tankTurretDirection);
+            turretBody.rotation = Quaternion.RotateTowards(turretBody.rotation, tankTurretLookRotation, turretRotationSpeed * Time.deltaTime);
+        }
+
+        Shoot();
     }
 
     private void Shoot()
     {
+        shootTimer += Time.deltaTime;
 
+        RaycastHit rayHit;
+        Vector3 forward = turretBarrelHole.TransformDirection(Vector3.up);
+        Physics.Raycast(turretBarrelHole.position, forward, out rayHit);
+
+        #if UNITY_EDITOR
+        Debug.DrawRay(turretBarrelHole.position, forward);
+        #endif
+
+        if (rayHit.collider != null && rayHit.collider.gameObject.CompareTag("Player") && shootTimer >= shootRate)
+        {
+            shootTimer = 0;
+
+            GameObject projectile = Instantiate(ammo);
+            Physics.IgnoreCollision(barrelCollider, projectile.GetComponent<Collider>());
+            projectile.transform.position = turretBarrelHole.position;
+            projectile.transform.rotation = tankTurretBarrel.rotation;
+            projectile.GetComponent<Rigidbody>().velocity = (tankTurretBody.forward + tankTurretBarrel.up) * projectileSpeed;
+            projectile.SetActive(true);
+        }
     }
 
     #region Interface Methods
