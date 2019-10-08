@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 426142501}
   - component: {fileID: 426142502}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -441,8 +441,6 @@ GameObject:
   - component: {fileID: 7842677082127561831}
   - component: {fileID: 1623734688629001024}
   - component: {fileID: 1284353591362647133}
-  - component: {fileID: 6759389467644901481}
-  - component: {fileID: 7201202346659482728}
   - component: {fileID: 1681103891}
   m_Layer: 0
   m_Name: PRE_Tank_Enemy
@@ -506,37 +504,13 @@ MonoBehaviour:
   randomDistanceMin: 10
   randomDistanceMax: 80
   stopWaitTimeMax: 2.5
-  rotationSpeed: 75
+  rotationSpeed: 100
   turretRotationSpeed: 55
-  moveSpeed: 5.75
+  moveSpeed: 6
   playerDistanceThreshold: 75
   playerDistanceCheckTime: 0.4
-  projectileSpeed: 50
+  projectileSpeed: 55
   shootRate: 1.5
---- !u!114 &6759389467644901481
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7842677082127561752}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f89055e6faa075847a1d673a8a2b89f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &7201202346659482728
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7842677082127561752}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bdaf883931005942928913bc3694b0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1681103891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -551,7 +525,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 426142502}
   tankEnemy: {fileID: 1284353591362647133}
-  playerDistanceCheckTime: 0.5
+  playerDistanceCheckTime: 0.4
   healthBarScaleReductionX: 1750
   healthBarScaleReductionY: 1000
 --- !u!1 &7842677082187350012

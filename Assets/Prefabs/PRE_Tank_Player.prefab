@@ -135,9 +135,9 @@ GameObject:
   - component: {fileID: 29147179431953503}
   - component: {fileID: 29147179431953504}
   - component: {fileID: 29147179431953505}
+  - component: {fileID: 5223483504813557769}
   - component: {fileID: 29147180215406337}
   - component: {fileID: 183931864819676018}
-  - component: {fileID: 5223483504813557769}
   m_Layer: 0
   m_Name: TankTurretBody
   m_TagString: Player
@@ -206,6 +206,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &5223483504813557769
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 29147179431953507}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &29147180215406337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,6 +232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turretBarrelBase: {fileID: 8891075882001772977}
+  crosshair: {fileID: 0}
   turretRotationSpeed: 0.6
   barrelRotationSpeed: 0.5
   horizontalClampRange: 150
@@ -240,21 +254,8 @@ MonoBehaviour:
   tankTurretBarrel: {fileID: 29147181323860765}
   barrelHole: {fileID: 962004110}
   barrelCollider: {fileID: 611799888605265091}
-  projectileSpeed: 60
+  projectileSpeed: 75
   timerThreshold: 1.2
---- !u!65 &5223483504813557769
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 29147179431953507}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &29147180318676260
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,7 +360,6 @@ GameObject:
   - component: {fileID: 8807332700096618904}
   - component: {fileID: 782226120}
   - component: {fileID: 8536799647837131656}
-  - component: {fileID: 2115061037}
   m_Layer: 0
   m_Name: PRE_Tank_Player
   m_TagString: Player
@@ -426,18 +426,6 @@ MonoBehaviour:
   moveSpeed: 25
   rotationSpeed: 1
   shiftMultiplier: 1.5
---- !u!114 &2115061037
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 29147180342812352}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4cd962e0e0ed3845ab86e8e312df9fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &29147180443418061
 GameObject:
   m_ObjectHideFlags: 0

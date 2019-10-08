@@ -171,6 +171,14 @@ public class TankEnemy : Tank, IDamageable
         transform.rotation = Quaternion.RotateTowards(transform.rotation, tankLookRotation, rotationSpeed * Time.deltaTime);
     }
 
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.collider.GetType() != typeof(TerrainCollider))
+        {
+            GetNewDestination();
+        }
+    }
+
     private void GetNewDestination()
     {
         // Randomise the targetPoint vector.
@@ -229,10 +237,6 @@ public class TankEnemy : Tank, IDamageable
         RaycastHit rayHit;
         Physics.Raycast(turretBarrelHole.position, forward, out rayHit);
 
-        #if UNITY_EDITOR
-        Debug.DrawRay(turretBarrelHole.position, forward, Color.green);
-        #endif
-
         if (rayHit.collider != null && rayHit.collider.gameObject.CompareTag("Player") && shootTimer >= shootRate)
         {
             shootTimer = 0;
@@ -287,8 +291,10 @@ public class TankEnemy : Tank, IDamageable
     #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
+        Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position, targetPoint);
         Gizmos.DrawWireSphere(transform.position, playerDistanceThreshold);
+        Gizmos.DrawRay(turretBarrelHole.position, turretBarrelHole.up * playerDistanceThreshold);
     }
     #endif
     #endregion
