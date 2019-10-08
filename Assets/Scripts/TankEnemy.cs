@@ -15,13 +15,14 @@ public class TankEnemy : Tank, IDamageable
     private Transform tankTurretBarrel = default;
     [SerializeField]
     private Transform tankTurretBody = default;
-    //[SerializeField]
-    //private GameObject ammo = default;
     [SerializeField]
     private Collider barrelCollider = default;
     private Transform player = default;
 
     private Vector3 targetPoint;
+
+    private Vector3 rayForward;
+    private RaycastHit rayHit;
 
     [SerializeField]
     private int maxDistanceFromTarget = 1;
@@ -88,6 +89,8 @@ public class TankEnemy : Tank, IDamageable
         LogState();
 #endif
         #endregion
+        // Draw a ray from the gun barrel.
+        DrawBarrelRay();
         // Destroy enemy if hitpoints below zero.
         CheckDestroySelf();
         // Keep track of player's distance every X seconds.
@@ -107,6 +110,12 @@ public class TankEnemy : Tank, IDamageable
             default:
                 break;
         }
+    }
+    
+    private void DrawBarrelRay()
+    {
+        rayForward = turretBarrelHole.TransformDirection(Vector3.up);
+        Physics.Raycast(turretBarrelHole.position, rayForward * playerDistanceThreshold, out rayHit);
     }
 
     private void PlayerDistanceCheck()
@@ -208,6 +217,7 @@ public class TankEnemy : Tank, IDamageable
     private void Attack()
     {
         // Check if player has left the check distance.
+        StartCoroutine(WaitRayCheck());
         if (playerDistance >= playerDistanceThreshold)
         {
             rotateDefault = true;
@@ -224,15 +234,20 @@ public class TankEnemy : Tank, IDamageable
         Shoot();
     }
 
+    private IEnumerator WaitRayCheck()
+    {
+        yield return new WaitForSeconds(3);
+        if (rayHit.collider != null && !rayHit.collider.CompareTag("Player"))
+        {
+            currentState = TankStates.Patrol;
+        }
+    }
+
     private void Shoot()
     {
         shootTimer += Time.deltaTime;
 
-        Vector3 forward = turretBarrelHole.TransformDirection(Vector3.up);
-        RaycastHit rayHit;
-        Physics.Raycast(turretBarrelHole.position, forward, out rayHit);
-
-        if (rayHit.collider != null && rayHit.collider.gameObject.CompareTag("Player") && shootTimer >= shootRate)
+        if (rayHit.collider != null && rayHit.collider.CompareTag("Player") && shootTimer >= shootRate)
         {
             shootTimer = 0;
 
