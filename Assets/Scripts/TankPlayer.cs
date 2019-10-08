@@ -1,4 +1,6 @@
-﻿public class TankPlayer : Tank, IDamageable
+﻿using UnityEngine.SceneManagement;
+
+public class TankPlayer : Tank, IDamageable
 {
     protected override float HitPoints { get; set; } = 400;
 
@@ -28,7 +30,8 @@
     {
         if (HitPoints <= 0)
         {
-            Destroy(gameObject);
+            SceneManager.LoadScene("Scene01");
+            //Destroy(gameObject);
         }
     }
 }

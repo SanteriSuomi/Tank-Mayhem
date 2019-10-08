@@ -7,9 +7,6 @@ public class TankEnemy : Tank, IDamageable
 
     public float GetHitpoints() { return HitPoints; }
 
-    //private TankEnemyPatrol enemyPatrol;
-    //private TankEnemyAttack enemyAttack;
-
     [SerializeField]
     private Transform turretBody = default;
     [SerializeField]
@@ -18,8 +15,8 @@ public class TankEnemy : Tank, IDamageable
     private Transform tankTurretBarrel = default;
     [SerializeField]
     private Transform tankTurretBody = default;
-    [SerializeField]
-    private GameObject ammo = default;
+    //[SerializeField]
+    //private GameObject ammo = default;
     [SerializeField]
     private Collider barrelCollider = default;
     private Transform player = default;
@@ -66,8 +63,6 @@ public class TankEnemy : Tank, IDamageable
     protected override void Initialize()
     {
         player = GameObject.Find("PRE_Tank_Player").GetComponent<Transform>();
-        //enemyPatrol = GetComponent<TankEnemyPatrol>();
-        //enemyAttack = GetComponent<TankEnemyAttack>();
     }
 
     protected override void StartState()
@@ -241,7 +236,7 @@ public class TankEnemy : Tank, IDamageable
         {
             shootTimer = 0;
 
-            GameObject projectile = Instantiate(ammo);
+            GameObject projectile = PoolManager.Instance.PopAmmo();
             Physics.IgnoreCollision(barrelCollider, projectile.GetComponent<Collider>());
             projectile.transform.position = turretBarrelHole.position;
             projectile.transform.rotation = tankTurretBarrel.rotation;

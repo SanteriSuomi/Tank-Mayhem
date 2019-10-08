@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 426142501}
   - component: {fileID: 426142502}
   m_Layer: 5
-  m_Name: HealthBar
+  m_Name: Healthbar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -502,15 +502,15 @@ MonoBehaviour:
   barrelCollider: {fileID: 7263400974917981723}
   maxDistanceFromTarget: 1
   randomDistanceMin: 10
-  randomDistanceMax: 80
+  randomDistanceMax: 90
   stopWaitTimeMax: 2.5
   rotationSpeed: 100
   turretRotationSpeed: 55
   moveSpeed: 6
-  playerDistanceThreshold: 75
+  playerDistanceThreshold: 90
   playerDistanceCheckTime: 0.4
-  projectileSpeed: 55
-  shootRate: 1.5
+  projectileSpeed: 60
+  shootRate: 1.6
 --- !u!114 &1681103891
 MonoBehaviour:
   m_ObjectHideFlags: 0
