@@ -124,5 +124,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deactiveTimer: 7.5
-  projectileDamageMin: 20
-  projectileDamageMax: 30
+  projectileDamageMin: 30
+  projectileDamageMax: 50

@@ -19,11 +19,10 @@ public class TankEnemy : Tank, IDamageable
     [SerializeField]
     private Transform tankTurretBody = default;
     [SerializeField]
-    private Transform player = default;
-    [SerializeField]
     private GameObject ammo = default;
     [SerializeField]
     private Collider barrelCollider = default;
+    private Transform player = default;
 
     private Vector3 targetPoint;
 
@@ -66,6 +65,7 @@ public class TankEnemy : Tank, IDamageable
 
     protected override void Initialize()
     {
+        player = GameObject.Find("PRE_Tank_Player").GetComponent<Transform>();
         //enemyPatrol = GetComponent<TankEnemyPatrol>();
         //enemyAttack = GetComponent<TankEnemyAttack>();
     }
@@ -88,7 +88,7 @@ public class TankEnemy : Tank, IDamageable
     protected override void UpdateState()
     {
         #region LogState
-#if UNITY_EDITOR
+        #if UNITY_EDITOR
         // Log state changes in the unity editor.
         LogState();
 #endif
@@ -96,7 +96,7 @@ public class TankEnemy : Tank, IDamageable
         // Destroy enemy if hitpoints below zero.
         CheckDestroySelf();
         // Keep track of player's distance every X seconds.
-        PlayerDistanceCheckTimer();
+        PlayerDistanceCheck();
 
         switch (currentState)
         {
@@ -114,7 +114,7 @@ public class TankEnemy : Tank, IDamageable
         }
     }
 
-    private void PlayerDistanceCheckTimer()
+    private void PlayerDistanceCheck()
     {
         playerDistanceCheckTimer += Time.deltaTime;
         if (player != null && playerDistanceCheckTimer >= playerDistanceCheckTime)
@@ -178,29 +178,28 @@ public class TankEnemy : Tank, IDamageable
         if (random == 0)
         {
             targetPoint.x = transform.position.x + Random.Range(randomDistanceMin, randomDistanceMax);
-            targetPoint.y = transform.position.y;
             targetPoint.z = transform.position.z + Random.Range(randomDistanceMin, randomDistanceMax);
         }
         else if (random == 1)
         {
             targetPoint.x = transform.position.x - Random.Range(randomDistanceMin, randomDistanceMax);
-            targetPoint.y = transform.position.y;
             targetPoint.z = transform.position.z - Random.Range(randomDistanceMin, randomDistanceMax);
         }
         else if (random == 2)
         {
             targetPoint.x = transform.position.x + Random.Range(randomDistanceMin, randomDistanceMax);
-            targetPoint.y = transform.position.y;
             targetPoint.z = transform.position.z - Random.Range(randomDistanceMin, randomDistanceMax);
         }
         else
         {
             targetPoint.x = transform.position.x - Random.Range(randomDistanceMin, randomDistanceMax);
-            targetPoint.y = transform.position.y;
             targetPoint.z = transform.position.z + Random.Range(randomDistanceMin, randomDistanceMax);
         }
+        targetPoint.y = transform.position.y;
 
+        #if UNITY_EDITOR
         Debug.Log($"{gameObject.name} is retrieving a new destination X {targetPoint.x}, Z {targetPoint.z}");
+        #endif
     }
 
     private void Attack()
@@ -226,12 +225,12 @@ public class TankEnemy : Tank, IDamageable
     {
         shootTimer += Time.deltaTime;
 
-        RaycastHit rayHit;
         Vector3 forward = turretBarrelHole.TransformDirection(Vector3.up);
+        RaycastHit rayHit;
         Physics.Raycast(turretBarrelHole.position, forward, out rayHit);
 
         #if UNITY_EDITOR
-        Debug.DrawRay(turretBarrelHole.position, forward);
+        Debug.DrawRay(turretBarrelHole.position, forward, Color.green);
         #endif
 
         if (rayHit.collider != null && rayHit.collider.gameObject.CompareTag("Player") && shootTimer >= shootRate)
@@ -262,7 +261,8 @@ public class TankEnemy : Tank, IDamageable
     }
     #endregion
 
-    #region Debug Logs
+    #region State Debug Logs
+    #if UNITY_EDITOR
     private void LogState()
     {
         switch (currentState)
@@ -280,10 +280,11 @@ public class TankEnemy : Tank, IDamageable
                 break;
         }
     }
+    #endif
     #endregion
 
     #region Gizmos
-#if UNITY_EDITOR
+    #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         Gizmos.DrawLine(transform.position, targetPoint);
