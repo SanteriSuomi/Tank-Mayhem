@@ -33,6 +33,17 @@ public class PoolManager : MonoBehaviour
     {
         // Initialize the ammo pool.
         ammoStack = new Stack<GameObject>();
+        InitializePool();
+    }
+
+    public void InitializePool()
+    {
+        // If this is called a second time, re-fill the ammo pool.
+        if (ammoStack.Count > 0)
+        {
+            ammoStack.Clear();
+        }
+
         for (int i = 0; i < ammoPoolAmount; i++)
         {
             GameObject ammo = Instantiate(projectile);
@@ -41,14 +52,16 @@ public class PoolManager : MonoBehaviour
             ammoStack.Push(ammo);
         }
     }
-    // Return ammo from the stack.
+
     public GameObject PopAmmo()
     {
+        // Return ammo from the stack.
         return ammoStack.Pop();
     }
-    // Push new ammo to the stack.
+
     public void PushAmmo(GameObject ammo)
     {
+        // Push new ammo to the stack.
         ammoStack.Push(ammo);
     }
 }

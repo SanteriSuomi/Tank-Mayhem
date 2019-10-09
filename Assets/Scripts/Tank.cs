@@ -2,8 +2,6 @@
 
 public abstract class Tank : MonoBehaviour
 {
-    protected abstract float HitPoints { get; set; }
-
     protected abstract void Initialize();
 
     protected abstract void StartState();

@@ -3,9 +3,9 @@ using System.Collections;
 
 public class TankEnemy : Tank, IDamageable
 {
-    protected override float HitPoints { get; set; } = 100;
+    public float HitPoints { get; set; } = 100;
 
-    public float GetHitpoints() { return HitPoints; }
+    private WaveManager waveManager;
 
     [SerializeField]
     private Transform turretBody = default;
@@ -46,6 +46,8 @@ public class TankEnemy : Tank, IDamageable
     private float projectileSpeed = 55;
     [SerializeField]
     private float shootRate = 0.5f;
+    [SerializeField]
+    private float attackRayCheckTime = 3;
 
     private float targetDistance;
     private float playerDistance;
@@ -64,6 +66,7 @@ public class TankEnemy : Tank, IDamageable
     protected override void Initialize()
     {
         player = GameObject.Find("PRE_Tank_Player").GetComponent<Transform>();
+        waveManager = GameObject.Find("WaveManager").GetComponent<WaveManager>();
     }
 
     protected override void StartState()
@@ -174,7 +177,7 @@ public class TankEnemy : Tank, IDamageable
         tankLookRotation = Quaternion.LookRotation(tankDirection);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, tankLookRotation, rotationSpeed * Time.deltaTime);
     }
-
+    // Change direction when colliding with environment.
     private void OnCollisionStay(Collision collision)
     {
         if (collision.collider.GetType() != typeof(TerrainCollider))
@@ -216,8 +219,9 @@ public class TankEnemy : Tank, IDamageable
 
     private void Attack()
     {
-        // Check if player has left the check distance.
+        // Switch to patrol for a moment if the barrel ray doesn't hit player.
         StartCoroutine(WaitRayCheck());
+        // Check if player has left the check distance.
         if (playerDistance >= playerDistanceThreshold)
         {
             rotateDefault = true;
@@ -236,7 +240,7 @@ public class TankEnemy : Tank, IDamageable
 
     private IEnumerator WaitRayCheck()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(attackRayCheckTime);
         if (rayHit.collider != null && !rayHit.collider.CompareTag("Player"))
         {
             currentState = TankStates.Patrol;
@@ -250,7 +254,7 @@ public class TankEnemy : Tank, IDamageable
         if (rayHit.collider != null && rayHit.collider.CompareTag("Player") && shootTimer >= shootRate)
         {
             shootTimer = 0;
-
+            // Get ammo from the ammo pool and fire it from the barrel.
             GameObject projectile = PoolManager.Instance.PopAmmo();
             Physics.IgnoreCollision(barrelCollider, projectile.GetComponent<Collider>());
             projectile.transform.position = turretBarrelHole.position;
@@ -258,6 +262,11 @@ public class TankEnemy : Tank, IDamageable
             projectile.GetComponent<Rigidbody>().velocity = (tankTurretBody.forward + tankTurretBarrel.up) * projectileSpeed;
             projectile.SetActive(true);
         }
+    }
+
+    private void OnDestroy()
+    {
+        waveManager.aliveEnemies.Remove(gameObject);
     }
 
     #region Interface Methods

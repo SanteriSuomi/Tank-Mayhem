@@ -22,7 +22,7 @@ public class EnemyHealthBar : MonoBehaviour
     private void Awake()
     {
         player = GameObject.Find("PRE_Tank_Player").GetComponent<Transform>();
-        healthBar.maxValue = tankEnemy.GetHitpoints();
+        healthBar.maxValue = tankEnemy.HitPoints;
     }
 
     private void LateUpdate()
@@ -35,7 +35,7 @@ public class EnemyHealthBar : MonoBehaviour
         }
 
         healthBar.transform.LookAt(player);
-        healthBar.value = tankEnemy.GetHitpoints();
+        healthBar.value = tankEnemy.HitPoints;
         healthBar.transform.localScale = new Vector3(playerDistance / healthBarScaleReductionX, playerDistance / healthBarScaleReductionY, 0);
     }
 }

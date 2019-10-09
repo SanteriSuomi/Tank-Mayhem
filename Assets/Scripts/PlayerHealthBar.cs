@@ -14,11 +14,11 @@ public class PlayerHealthBar : MonoBehaviour
 
     private void Start()
     {
-        healthBar.maxValue = player.GetHitPoints();
+        healthBar.maxValue = player.HitPoints;
     }
 
-    private void Update()
+    private void LateUpdate()
     {
-        healthBar.value = player.GetHitPoints();
+        healthBar.value = player.HitPoints;
     }
 }

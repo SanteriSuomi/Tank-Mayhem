@@ -444,7 +444,7 @@ GameObject:
   - component: {fileID: 1681103891}
   m_Layer: 0
   m_Name: PRE_Tank_Enemy
-  m_TagString: Player
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -500,16 +500,17 @@ MonoBehaviour:
   tankTurretBody: {fileID: 7842677083447357063}
   barrelCollider: {fileID: 7263400974917981723}
   maxDistanceFromTarget: 1
-  randomDistanceMin: 10
-  randomDistanceMax: 90
-  stopWaitTimeMax: 2.5
+  randomDistanceMin: 30
+  randomDistanceMax: 110
+  stopWaitTimeMax: 2.25
   rotationSpeed: 100
-  turretRotationSpeed: 55
-  moveSpeed: 6
-  playerDistanceThreshold: 90
+  turretRotationSpeed: 60
+  moveSpeed: 0
+  playerDistanceThreshold: 110
   playerDistanceCheckTime: 0.4
-  projectileSpeed: 60
-  shootRate: 1.6
+  projectileSpeed: 55
+  shootRate: 1.55
+  attackRayCheckTime: 5
 --- !u!114 &1681103891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -524,7 +525,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 426142502}
   tankEnemy: {fileID: 1284353591362647133}
-  playerDistanceCheckTime: 0.4
+  playerDistanceCheckTime: 0.3
   healthBarScaleReductionX: 1750
   healthBarScaleReductionY: 1000
 --- !u!1 &7842677082187350012

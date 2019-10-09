@@ -2,9 +2,7 @@
 
 public class TankPlayer : Tank, IDamageable
 {
-    protected override float HitPoints { get; set; } = 400;
-
-    public float GetHitPoints() { return HitPoints; }
+    public float HitPoints { get; set; } = 500;
 
     protected override void Initialize()
     {
@@ -30,8 +28,9 @@ public class TankPlayer : Tank, IDamageable
     {
         if (HitPoints <= 0)
         {
+            // Re-initialize the ammo pool.
+            PoolManager.Instance.InitializePool();
             SceneManager.LoadScene("Scene01");
-            //Destroy(gameObject);
         }
     }
 }

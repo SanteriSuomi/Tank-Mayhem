@@ -254,7 +254,7 @@ MonoBehaviour:
   tankTurretBarrel: {fileID: 29147181323860765}
   barrelHole: {fileID: 962004110}
   barrelCollider: {fileID: 611799888605265091}
-  projectileSpeed: 75
+  projectileSpeed: 77.5
   timerThreshold: 1.2
 --- !u!1 &29147180318676260
 GameObject:
