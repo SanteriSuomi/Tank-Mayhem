@@ -30,8 +30,6 @@ public class TankPlayer : Tank, IDamageable
     {
         if (HitPoints <= 0)
         {
-            // Re-initialize the ammo pool.
-            PoolManager.Instance.InitializePool();
             SceneManager.LoadScene("Scene01");
         }
     }

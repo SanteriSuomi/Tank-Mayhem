@@ -103,10 +103,10 @@ public class WaveManager : MonoBehaviour
             if (!waveOnGoing)
             {
                 waveOnGoing = true;
-                SpawnEnemies(1);
+                SpawnEnemies(3);
             }
 
-            waveText.text = $"Wave 1: alive enemies {aliveEnemies.Count}";
+            waveText.text = $"Wave 1: enemies alive {aliveEnemies.Count}";
 
             if (aliveEnemies.Count <= 0)
             {
@@ -124,10 +124,10 @@ public class WaveManager : MonoBehaviour
             if (!waveOnGoing)
             {
                 waveOnGoing = true;
-                SpawnEnemies(6);
+                SpawnEnemies(5);
             }
 
-            waveText.text = $"Wave 2: alive enemies {aliveEnemies.Count}";
+            waveText.text = $"Wave 2: enemies alive {aliveEnemies.Count}";
 
             if (aliveEnemies.Count <= 0)
             {
@@ -146,10 +146,10 @@ public class WaveManager : MonoBehaviour
             if (!waveOnGoing)
             {
                 waveOnGoing = true;
-                SpawnEnemies(8);
+                SpawnEnemies(7);
             }
 
-            waveText.text = $"Wave 3: alive enemies {aliveEnemies.Count}";
+            waveText.text = $"Wave 3: enemies alive {aliveEnemies.Count}";
 
             if (aliveEnemies.Count <= 0)
             {

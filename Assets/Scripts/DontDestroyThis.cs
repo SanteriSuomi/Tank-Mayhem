@@ -2,9 +2,14 @@
 
 public class DontDestroyThis : MonoBehaviour
 {
+    [SerializeField]
+    private bool dontDestroy = default;
+
     private void Awake()
     {
-        // Don't destroy objects this script is attached to when loading scenes.
-        DontDestroyOnLoad(gameObject);
+        if (dontDestroy)
+        {
+            DontDestroyOnLoad(gameObject);
+        }
     }
 }
