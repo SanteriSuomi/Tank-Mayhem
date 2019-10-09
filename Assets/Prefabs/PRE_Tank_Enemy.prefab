@@ -501,15 +501,15 @@ MonoBehaviour:
   barrelCollider: {fileID: 7263400974917981723}
   maxDistanceFromTarget: 1
   randomDistanceMin: 30
-  randomDistanceMax: 110
+  randomDistanceMax: 120
   stopWaitTimeMax: 2.25
-  rotationSpeed: 100
-  turretRotationSpeed: 60
-  moveSpeed: 0
-  playerDistanceThreshold: 110
+  rotationSpeed: 105
+  turretRotationSpeed: 65
+  moveSpeed: 6.25
+  playerDistanceThreshold: 120
   playerDistanceCheckTime: 0.4
-  projectileSpeed: 55
-  shootRate: 1.55
+  projectileSpeed: 60
+  shootRate: 1.6
   attackRayCheckTime: 5
 --- !u!114 &1681103891
 MonoBehaviour:

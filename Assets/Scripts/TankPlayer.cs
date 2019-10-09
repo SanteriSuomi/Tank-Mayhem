@@ -4,9 +4,11 @@ public class TankPlayer : Tank, IDamageable
 {
     public float HitPoints { get; set; } = 500;
 
+    public float MaxHitpoints { get; private set; }
+
     protected override void Initialize()
     {
-        
+        MaxHitpoints = HitPoints;
     }
 
     protected override void StartState()
