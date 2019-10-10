@@ -4,6 +4,8 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [SerializeField]
+    private GameObject explosionPrefab = default;
+    [SerializeField]
     private float deactiveTimer = 7.5f;
     [SerializeField]
     private int projectileDamageMin = 30;
@@ -17,13 +19,19 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        ContactPoint contact = collision.GetContact(0);
+        GameObject explosion = Instantiate(explosionPrefab);
+        explosion.transform.position = contact.point;
+        explosion.transform.rotation = Quaternion.FromToRotation(explosion.transform.up, contact.normal);
+
         IDamageable collisionObject = collision.transform.root.gameObject.GetComponent<IDamageable>();
         if (collisionObject != null)
         {
             int randomDamage = Random.Range(projectileDamageMin, projectileDamageMax);
             collisionObject.TakeDamage(randomDamage);
-            DeactivateAndPush();
         }
+
+        DeactivateAndPush();
     }
 
     private IEnumerator DeactivateTimer()

@@ -106,7 +106,7 @@ public class WaveManager : MonoBehaviour
                 SpawnEnemies(3);
             }
 
-            waveText.text = $"Wave 1: enemies alive {aliveEnemies.Count}";
+            WaveText(1, false);
 
             if (aliveEnemies.Count <= 0)
             {
@@ -127,7 +127,7 @@ public class WaveManager : MonoBehaviour
                 SpawnEnemies(5);
             }
 
-            waveText.text = $"Wave 2: enemies alive {aliveEnemies.Count}";
+            WaveText(2, false);
 
             if (aliveEnemies.Count <= 0)
             {
@@ -149,7 +149,7 @@ public class WaveManager : MonoBehaviour
                 SpawnEnemies(7);
             }
 
-            waveText.text = $"Wave 3: enemies alive {aliveEnemies.Count}";
+            WaveText(3, false);
 
             if (aliveEnemies.Count <= 0)
             {
@@ -163,7 +163,7 @@ public class WaveManager : MonoBehaviour
 
     private void Boss()
     {
-        waveText.text = "Boss";
+        WaveText(0, isBoss: true);
     }
 
     private IEnumerator WaveCountdown(Waves changeWave)
@@ -171,7 +171,7 @@ public class WaveManager : MonoBehaviour
         startedWaveCountdown = true;
         if (countdownText != null)
         {
-        countdownText.enabled = true;
+            countdownText.enabled = true;
         }
 
         while (waveCountdownTime > 0)
@@ -181,7 +181,10 @@ public class WaveManager : MonoBehaviour
             waveCountdownTime--;
         }
 
+        if (countdownText != null)
+        {
         countdownText.enabled = false;
+        }
         waveCountdownTime = waveCountdownTimeMax;
         startedWaveCountdown = false;
         currentWave = changeWave;
@@ -202,6 +205,18 @@ public class WaveManager : MonoBehaviour
         if (playerTank.HitPoints <= playerTank.MaxHitpoints / 2)
         {
             playerTank.HitPoints += 100;
+        }
+    }
+
+    private void WaveText(int waveNumber, bool isBoss)
+    {
+        if (isBoss)
+        {
+            waveText.text = "Boss";
+        }
+        else
+        {
+            waveText.text = $"Wave {waveNumber}: enemies alive {aliveEnemies.Count}";
         }
     }
 }

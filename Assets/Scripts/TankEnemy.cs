@@ -253,7 +253,7 @@ public class TankEnemy : Tank, IDamageable
     {
         shootTimer += Time.deltaTime;
 
-        GameObject projectile = null;
+        GameObject projectile;
         if (rayHit.collider != null && rayHit.collider.CompareTag("Player") && shootTimer >= shootRate)
         {
             shootTimer = 0;
@@ -269,7 +269,7 @@ public class TankEnemy : Tank, IDamageable
             Physics.IgnoreCollision(barrelCollider, projectile.GetComponent<Collider>());
             projectile.transform.position = turretBarrelHole.position;
             projectile.transform.rotation = tankTurretBarrel.rotation;
-            projectile.GetComponent<Rigidbody>().velocity = (turretBody.forward + tankTurretBarrel.up) * projectileSpeed;
+            projectile.GetComponent<Rigidbody>().velocity = (turretBody.forward + tankTurretBarrel.up + new Vector3(0, 0.0735f, 0)) * projectileSpeed;
             projectile.SetActive(true);
         }
     }

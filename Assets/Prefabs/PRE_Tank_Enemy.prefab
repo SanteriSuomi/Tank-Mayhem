@@ -664,13 +664,13 @@ MonoBehaviour:
   tankTurretBarrel: {fileID: 5151646783479568187}
   barrelCollider: {fileID: 5720788142238650597}
   maxDistanceFromTarget: 1
-  randomDistanceMin: 45
-  randomDistanceMax: 145
+  randomDistanceMin: 50
+  randomDistanceMax: 150
   stopWaitTimeMax: 2.25
   rotationSpeed: 105
   turretRotationSpeed: 65
-  moveSpeed: 6.85
-  playerDistanceThreshold: 145
+  moveSpeed: 7
+  playerDistanceThreshold: 150
   playerDistanceCheckTime: 0.4
   projectileSpeed: 65
   shootRate: 1.6

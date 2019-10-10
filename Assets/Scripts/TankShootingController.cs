@@ -35,11 +35,14 @@ public class TankShootingController : MonoBehaviour
             timer = 0;
 
             GameObject projectile = PoolManager.Instance.PopAmmo();
+            if (projectile != null)
+            {
             Physics.IgnoreCollision(barrelCollider, projectile.GetComponent<Collider>());
             projectile.transform.position = barrelHole.position;
             projectile.transform.rotation = tankTurretBarrel.rotation;
             projectile.GetComponent<Rigidbody>().velocity = (tankTurretBody.transform.forward + tankTurretBarrel.transform.up) * projectileSpeed;
             projectile.SetActive(true);
+            }
         }
 
         pressedLeftClick = false;
