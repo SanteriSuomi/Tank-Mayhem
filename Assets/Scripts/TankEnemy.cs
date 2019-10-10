@@ -8,13 +8,13 @@ public class TankEnemy : Tank, IDamageable
     private WaveManager waveManager;
 
     [SerializeField]
+    private GameObject bossProjectile = default;
+    [SerializeField]
     private Transform turretBody = default;
     [SerializeField]
     private Transform turretBarrelHole = default;
     [SerializeField]
     private Transform tankTurretBarrel = default;
-    [SerializeField]
-    private Transform tankTurretBody = default;
     [SerializeField]
     private Collider barrelCollider = default;
     private Transform player = default;
@@ -54,6 +54,8 @@ public class TankEnemy : Tank, IDamageable
     private float playerDistanceCheckTimer;
     private float shootTimer;
 
+    [SerializeField]
+    private bool isBoss = default;
     private bool rotateDefault;
     private bool executedWait;
 
@@ -251,11 +253,19 @@ public class TankEnemy : Tank, IDamageable
     {
         shootTimer += Time.deltaTime;
 
+        GameObject projectile = null;
         if (rayHit.collider != null && rayHit.collider.CompareTag("Player") && shootTimer >= shootRate)
         {
             shootTimer = 0;
             // Get ammo from the ammo pool and fire it from the barrel.
-            GameObject projectile = PoolManager.Instance.PopAmmo();
+            if (isBoss)
+            {
+                projectile = Instantiate(bossProjectile);
+            }
+            else
+            {
+                projectile = PoolManager.Instance.PopAmmo();
+            }
             Physics.IgnoreCollision(barrelCollider, projectile.GetComponent<Collider>());
             projectile.transform.position = turretBarrelHole.position;
             projectile.transform.rotation = tankTurretBarrel.rotation;

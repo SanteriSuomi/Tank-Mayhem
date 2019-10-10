@@ -169,7 +169,10 @@ public class WaveManager : MonoBehaviour
     private IEnumerator WaveCountdown(Waves changeWave)
     {
         startedWaveCountdown = true;
+        if (countdownText != null)
+        {
         countdownText.enabled = true;
+        }
 
         while (waveCountdownTime > 0)
         {

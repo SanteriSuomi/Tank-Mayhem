@@ -657,23 +657,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36f1351e7a0147d4db1418d267ff4add, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bossProjectile: {fileID: 7936457555565096641, guid: c0ae1ace246c2894ca21eb0a64c29bad,
+    type: 3}
   turretBody: {fileID: 5151646781585057913}
   turretBarrelHole: {fileID: 5123370420753492136}
   tankTurretBarrel: {fileID: 5151646783479568187}
-  tankTurretBody: {fileID: 5151646781585057913}
   barrelCollider: {fileID: 5720788142238650597}
   maxDistanceFromTarget: 1
-  randomDistanceMin: 50
-  randomDistanceMax: 150
-  stopWaitTimeMax: 2.5
+  randomDistanceMin: 45
+  randomDistanceMax: 145
+  stopWaitTimeMax: 2.25
   rotationSpeed: 105
   turretRotationSpeed: 65
   moveSpeed: 6.85
-  playerDistanceThreshold: 150
+  playerDistanceThreshold: 145
   playerDistanceCheckTime: 0.4
-  projectileSpeed: 65.5
+  projectileSpeed: 65
   shootRate: 1.6
   attackRayCheckTime: 5.5
+  isBoss: 0
 --- !u!114 &-3991888894288706007
 MonoBehaviour:
   m_ObjectHideFlags: 0
