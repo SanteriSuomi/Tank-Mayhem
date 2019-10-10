@@ -10,6 +10,8 @@ public class TankShootingController : MonoBehaviour
     private Transform barrelHole = default;
     [SerializeField]
     private Collider barrelCollider = default;
+    [SerializeField]
+    private GameObject shootParticle = default;
 
     [SerializeField]
     private float projectileSpeed = 55;
@@ -41,6 +43,11 @@ public class TankShootingController : MonoBehaviour
             projectile.transform.position = barrelHole.position;
             projectile.transform.rotation = tankTurretBarrel.rotation;
             projectile.GetComponent<Rigidbody>().velocity = (tankTurretBody.transform.forward + tankTurretBarrel.transform.up) * projectileSpeed;
+
+            GameObject fireParticle = Instantiate(shootParticle);
+            fireParticle.transform.position = barrelHole.position;
+            Destroy(fireParticle, 3);
+
             projectile.SetActive(true);
             }
         }

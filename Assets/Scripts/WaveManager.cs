@@ -30,6 +30,8 @@ public class WaveManager : MonoBehaviour
     [SerializeField]
     private int waveCountdownTime = 3;
     private int waveCountdownTimeMax;
+    [SerializeField]
+    private int healAmount = 150;
 
     [SerializeField]
     private TextMeshProUGUI waveText = default;
@@ -223,7 +225,7 @@ public class WaveManager : MonoBehaviour
     {
         if (playerTank.HitPoints <= playerTank.MaxHitpoints / 2)
         {
-            playerTank.HitPoints += 100;
+            playerTank.HitPoints += healAmount;
         }
     }
 

@@ -253,6 +253,8 @@ MonoBehaviour:
   tankTurretBarrel: {fileID: 29147181323860765}
   barrelHole: {fileID: 962004110}
   barrelCollider: {fileID: 611799888605265091}
+  shootParticle: {fileID: 578781619956718083, guid: 194bbaedd54dbc048b91a579d4d485c2,
+    type: 3}
   projectileSpeed: 77.5
   timerThreshold: 1.2
 --- !u!1 &29147180342812352
@@ -573,17 +575,17 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.9259257
       objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: 449bd5b8f17d89647aae9a1a1d760750,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 349a4544bfee4dc48b66f6ed4e019094, type: 2}
     - target: {fileID: -5178661895559278292, guid: 449bd5b8f17d89647aae9a1a1d760750,
         type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: -138112813453424187, guid: 25565a778c9e93a4bba9744374495eb9,
         type: 3}
-    - target: {fileID: -1504981713932161579, guid: 449bd5b8f17d89647aae9a1a1d760750,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 349a4544bfee4dc48b66f6ed4e019094, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 449bd5b8f17d89647aae9a1a1d760750, type: 3}
 --- !u!4 &8336152567479465577 stripped
