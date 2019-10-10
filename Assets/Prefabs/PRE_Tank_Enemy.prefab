@@ -663,17 +663,17 @@ MonoBehaviour:
   tankTurretBody: {fileID: 5151646781585057913}
   barrelCollider: {fileID: 5720788142238650597}
   maxDistanceFromTarget: 1
-  randomDistanceMin: 45
-  randomDistanceMax: 145
-  stopWaitTimeMax: 2.25
+  randomDistanceMin: 50
+  randomDistanceMax: 150
+  stopWaitTimeMax: 2.5
   rotationSpeed: 105
   turretRotationSpeed: 65
-  moveSpeed: 6.75
-  playerDistanceThreshold: 145
-  playerDistanceCheckTime: 0.35
-  projectileSpeed: 65
+  moveSpeed: 6.85
+  playerDistanceThreshold: 150
+  playerDistanceCheckTime: 0.4
+  projectileSpeed: 65.5
   shootRate: 1.6
-  attackRayCheckTime: 7
+  attackRayCheckTime: 5.5
 --- !u!114 &-3991888894288706007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -688,7 +688,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 1388376985784319497}
   tankEnemy: {fileID: -3410846705819758076}
-  playerDistanceCheckTime: 0.3
+  playerDistanceCheckTime: 0.2
   healthBarScaleReductionX: 1750
   healthBarScaleReductionY: 1000
 --- !u!1 &5151646783479568135

@@ -190,7 +190,7 @@ public class WaveManager : MonoBehaviour
         {
             GameObject spawn = Instantiate(enemyPrefab);
             aliveEnemies.Add(spawn);
-            spawn.transform.position = spawnPoints[Random.Range(0, spawnPoints.Length)].position + new Vector3(0, 0.5f, 0);
+            spawn.transform.position = spawnPoints[Random.Range(0, spawnPoints.Length)].position + Vector3.up;
         }
     }
 
