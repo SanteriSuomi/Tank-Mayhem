@@ -143,7 +143,7 @@ RectTransform:
   m_GameObject: {fileID: 5439142762077372684}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.25}
-  m_LocalScale: {x: 0.014085465, y: 0.024649564, z: 0}
+  m_LocalScale: {x: 0.0125, y: 0.015, z: 0}
   m_Children:
   - {fileID: 7568413290775550199}
   - {fileID: 3272640830762421034}
@@ -152,8 +152,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 2.25}
-  m_SizeDelta: {x: 160, y: 20}
+  m_AnchoredPosition: {x: 0, y: 2.5}
+  m_SizeDelta: {x: 200, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7487577118047027303
 MonoBehaviour:
@@ -214,6 +214,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6056798968827230518}
+  - component: {fileID: 5404559577351483681}
   m_Layer: 0
   m_Name: TankTurretBarrelHole
   m_TagString: Player
@@ -235,6 +236,102 @@ Transform:
   m_Father: {fileID: 6082568309749974693}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &5404559577351483681
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6056798968827230517}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 4497941ee22e926479060866b44d77c8, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.4
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 400
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &6082568309725242232
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,6 +396,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36f1351e7a0147d4db1418d267ff4add, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootParticle: {fileID: 578781619956718083, guid: 194bbaedd54dbc048b91a579d4d485c2,
+    type: 3}
   bossProjectile: {fileID: 7936457555565096641, guid: c0ae1ace246c2894ca21eb0a64c29bad,
     type: 3}
   destroyedTankPrefab: {fileID: 1615518915915467137, guid: c731bb050077dcd41ad140a67aa37aeb,
@@ -310,13 +409,13 @@ MonoBehaviour:
   maxDistanceFromTarget: 1
   randomDistanceMin: 50
   randomDistanceMax: 150
-  stopWaitTimeMax: 2.25
+  stopWaitTimeMax: 2
   rotationSpeed: 105
   turretRotationSpeed: 65
-  moveSpeed: 7
+  moveSpeed: 9
   playerDistanceThreshold: 150
   playerDistanceCheckTime: 0.4
-  projectileSpeed: 65
+  projectileSpeed: 75
   shootRate: 1.6
   attackRayCheckTime: 7.5
   isBoss: 0
@@ -334,7 +433,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 7487577118047027303}
   tankEnemy: {fileID: 2440059933037133444}
-  playerDistanceCheckTime: 0.5
+  playerDistanceCheckTime: 0.2
   healthBarScaleReductionX: 1750
   healthBarScaleReductionY: 1000
 --- !u!1 &6082568309749974681

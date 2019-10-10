@@ -8,6 +8,8 @@ public class TankEnemy : Tank, IDamageable
     private WaveManager waveManager;
 
     [SerializeField]
+    private GameObject shootParticle = default;
+    [SerializeField]
     private GameObject bossProjectile = default;
     [SerializeField]
     private GameObject destroyedTankPrefab = default;
@@ -19,10 +21,11 @@ public class TankEnemy : Tank, IDamageable
     private Transform tankTurretBarrel = default;
     [SerializeField]
     private Collider barrelCollider = default;
+
     private Transform player = default;
+    private AudioSource shootSound = default;
 
     private Vector3 targetPoint;
-
     private Vector3 rayForward;
     private RaycastHit rayHit;
 
@@ -72,9 +75,11 @@ public class TankEnemy : Tank, IDamageable
         player = GameObject.Find("PRE_Tank_Player").GetComponent<Transform>();
         waveManager = GameObject.Find("WaveManager").GetComponent<WaveManager>();
 
+        shootSound = GetComponentInChildren<AudioSource>();
+
         if (isBoss)
         {
-            HitPoints *= 5;
+            HitPoints *= 7.5f;
         }
     }
 
@@ -276,6 +281,7 @@ public class TankEnemy : Tank, IDamageable
             Physics.IgnoreCollision(barrelCollider, projectile.GetComponent<Collider>());
             projectile.transform.position = turretBarrelHole.position;
             projectile.transform.rotation = tankTurretBarrel.rotation;
+
             Vector3 projectileVelocity;
             if (isBoss)
             {
@@ -283,9 +289,16 @@ public class TankEnemy : Tank, IDamageable
             }
             else
             {
-                 projectileVelocity = turretBody.forward + tankTurretBarrel.up + new Vector3(0, 0.06f, 0);
+                 projectileVelocity = turretBody.forward + tankTurretBarrel.up + new Vector3(0, 0.07f, 0);
             }
             projectile.GetComponent<Rigidbody>().velocity = projectileVelocity * projectileSpeed;
+
+            GameObject fireParticle = Instantiate(shootParticle);
+            fireParticle.transform.position = turretBarrelHole.position;
+            Destroy(fireParticle, 3);
+
+            shootSound.Play();
+
             projectile.SetActive(true);
         }
     }
@@ -311,6 +324,7 @@ public class TankEnemy : Tank, IDamageable
                 destroyedTank.transform.position = transform.position + new Vector3(0, -0.5f, 0);
                 destroyedTank.transform.rotation = transform.rotation * Quaternion.Euler(13, 23, -4);
             }
+
             Destroy(gameObject);
         }
     }

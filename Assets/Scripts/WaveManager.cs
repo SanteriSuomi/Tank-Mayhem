@@ -32,6 +32,8 @@ public class WaveManager : MonoBehaviour
     private int waveCountdownTimeMax;
     [SerializeField]
     private int healAmount = 150;
+    [SerializeField]
+    private int initialWaveSize = 2;
 
     [SerializeField]
     private TextMeshProUGUI waveText = default;
@@ -39,6 +41,8 @@ public class WaveManager : MonoBehaviour
     private bool waveOnGoing;
     private bool startedWaveCountdown;
     private bool bossSpawned;
+
+    GameObject boss;
 
     private void Awake()
     {
@@ -110,7 +114,7 @@ public class WaveManager : MonoBehaviour
             if (!waveOnGoing)
             {
                 waveOnGoing = true;
-                SpawnEnemies(3);
+                SpawnEnemies(initialWaveSize);
             }
 
             WaveText(1, false);
@@ -131,7 +135,7 @@ public class WaveManager : MonoBehaviour
             if (!waveOnGoing)
             {
                 waveOnGoing = true;
-                SpawnEnemies(5);
+                SpawnEnemies(initialWaveSize + 2);
             }
 
             WaveText(2, false);
@@ -153,7 +157,7 @@ public class WaveManager : MonoBehaviour
             if (!waveOnGoing)
             {
                 waveOnGoing = true;
-                SpawnEnemies(7);
+                SpawnEnemies(initialWaveSize + 2);
             }
 
             WaveText(3, false);
@@ -172,7 +176,6 @@ public class WaveManager : MonoBehaviour
     {
         WaveText(0, isBoss: true);
         
-        GameObject boss = null;
         if (!bossSpawned)
         {
             boss = Instantiate(bossEnemyPrefab);
