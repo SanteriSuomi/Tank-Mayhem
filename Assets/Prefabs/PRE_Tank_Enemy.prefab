@@ -323,16 +323,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36f1351e7a0147d4db1418d267ff4add, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turretBody: {fileID: 7842677083447357063, guid: ec3f77bc9fe04f340ad6a82ebb89f684,
-    type: 3}
-  turretBarrelHole: {fileID: 7832116500496510550, guid: ec3f77bc9fe04f340ad6a82ebb89f684,
-    type: 3}
-  tankTurretBarrel: {fileID: 7842677083192283589, guid: ec3f77bc9fe04f340ad6a82ebb89f684,
-    type: 3}
-  tankTurretBody: {fileID: 7842677083447357063, guid: ec3f77bc9fe04f340ad6a82ebb89f684,
-    type: 3}
-  barrelCollider: {fileID: 7263400974917981723, guid: ec3f77bc9fe04f340ad6a82ebb89f684,
-    type: 3}
+  turretBody: {fileID: 5151646781585057913}
+  turretBarrelHole: {fileID: 5123370420753492136}
+  tankTurretBarrel: {fileID: 5151646783479568187}
+  tankTurretBody: {fileID: 5151646781585057913}
+  barrelCollider: {fileID: 5720788142238650597}
   maxDistanceFromTarget: 1
   randomDistanceMin: 45
   randomDistanceMax: 145
@@ -358,8 +353,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 426142502, guid: ec3f77bc9fe04f340ad6a82ebb89f684, type: 3}
-  tankEnemy: {fileID: 1284353591362647133, guid: ec3f77bc9fe04f340ad6a82ebb89f684,
-    type: 3}
+  tankEnemy: {fileID: -3410846705819758076}
   playerDistanceCheckTime: 0.3
   healthBarScaleReductionX: 1750
   healthBarScaleReductionY: 1000
