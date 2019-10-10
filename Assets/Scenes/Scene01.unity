@@ -1552,7 +1552,7 @@ MonoBehaviour:
   - {fileID: 121452470}
   - {fileID: 858036104}
   bossSpawnPoint: {fileID: 1141385554}
-  enemyPrefab: {fileID: 5151646782616236774, guid: 28e54a4c214fe204fa64935c91922390,
+  enemyPrefab: {fileID: 6082568309725242232, guid: 93e7b53febb43e342a933bbca66efda5,
     type: 3}
   bossEnemyPrefab: {fileID: 4508418325602990462, guid: 19edcdba597f95c469a91792a6614758,
     type: 3}
