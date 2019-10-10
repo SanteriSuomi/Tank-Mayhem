@@ -259,7 +259,7 @@ public class TankEnemy : Tank, IDamageable
             Physics.IgnoreCollision(barrelCollider, projectile.GetComponent<Collider>());
             projectile.transform.position = turretBarrelHole.position;
             projectile.transform.rotation = tankTurretBarrel.rotation;
-            projectile.GetComponent<Rigidbody>().velocity = (tankTurretBody.forward + tankTurretBarrel.up) * projectileSpeed;
+            projectile.GetComponent<Rigidbody>().velocity = (turretBody.forward + tankTurretBarrel.up) * projectileSpeed;
             projectile.SetActive(true);
         }
     }
