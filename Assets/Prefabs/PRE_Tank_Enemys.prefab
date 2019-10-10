@@ -123,9 +123,9 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 426142500}
-  m_LocalRotation: {x: 0.13611211, y: 0.68614334, z: -0.1330127, w: 0.7021314}
+  m_LocalRotation: {x: 0.0045835944, y: -0.51575756, z: 0.0027593954, w: 0.8567179}
   m_LocalPosition: {x: 0, y: 0, z: 0.5}
-  m_LocalScale: {x: 0.014085465, y: 0.024649564, z: 0}
+  m_LocalScale: {x: 0.1605497, y: 0.28096196, z: 0}
   m_Children:
   - {fileID: 1336171933}
   - {fileID: 2125926956}
@@ -183,7 +183,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 61
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
