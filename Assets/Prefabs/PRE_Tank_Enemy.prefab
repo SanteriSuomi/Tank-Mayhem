@@ -621,7 +621,7 @@ Transform:
   m_GameObject: {fileID: 5151646782616236774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1, y: 1, z: 1}
   m_Children:
   - {fileID: 5151646781470455946}
   - {fileID: 5151646781585057913}
@@ -659,6 +659,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossProjectile: {fileID: 7936457555565096641, guid: c0ae1ace246c2894ca21eb0a64c29bad,
     type: 3}
+  destroyedTankPrefab: {fileID: 1615518915915467137, guid: c731bb050077dcd41ad140a67aa37aeb,
+    type: 3}
   turretBody: {fileID: 5151646781585057913}
   turretBarrelHole: {fileID: 5123370420753492136}
   tankTurretBarrel: {fileID: 5151646783479568187}
@@ -674,7 +676,7 @@ MonoBehaviour:
   playerDistanceCheckTime: 0.4
   projectileSpeed: 65
   shootRate: 1.6
-  attackRayCheckTime: 5.5
+  attackRayCheckTime: 7.5
   isBoss: 0
 --- !u!114 &-3991888894288706007
 MonoBehaviour:

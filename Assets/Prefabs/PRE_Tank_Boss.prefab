@@ -107,17 +107,17 @@ MonoBehaviour:
   tankTurretBarrel: {fileID: 4508418325728451747}
   barrelCollider: {fileID: 3930269603549436797}
   maxDistanceFromTarget: 1
-  randomDistanceMin: 55
-  randomDistanceMax: 155
-  stopWaitTimeMax: 1.75
-  rotationSpeed: 115
-  turretRotationSpeed: 75
-  moveSpeed: 7
-  playerDistanceThreshold: 180
+  randomDistanceMin: 60
+  randomDistanceMax: 200
+  stopWaitTimeMax: 1.25
+  rotationSpeed: 120
+  turretRotationSpeed: 90
+  moveSpeed: 8.25
+  playerDistanceThreshold: 200
   playerDistanceCheckTime: 0.4
-  projectileSpeed: 75
-  shootRate: 1.6
-  attackRayCheckTime: 5.5
+  projectileSpeed: 80
+  shootRate: 1.5
+  attackRayCheckTime: 10
   isBoss: 1
 --- !u!114 &3564242672227634609
 MonoBehaviour:
@@ -468,7 +468,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 3.1}
-  m_SizeDelta: {x: 190, y: 27}
+  m_SizeDelta: {x: 200, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7686461918478005649
 MonoBehaviour:

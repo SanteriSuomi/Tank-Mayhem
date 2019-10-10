@@ -22,7 +22,7 @@ public class Projectile : MonoBehaviour
         ContactPoint contact = collision.GetContact(0);
         GameObject explosion = Instantiate(explosionPrefab);
         explosion.transform.position = contact.point;
-        explosion.transform.rotation = Quaternion.FromToRotation(explosion.transform.up, contact.normal);
+        Destroy(explosion, deactiveTimer);
 
         IDamageable collisionObject = collision.transform.root.gameObject.GetComponent<IDamageable>();
         if (collisionObject != null)

@@ -10,6 +10,8 @@ public class TankEnemy : Tank, IDamageable
     [SerializeField]
     private GameObject bossProjectile = default;
     [SerializeField]
+    private GameObject destroyedTankPrefab = default;
+    [SerializeField]
     private Transform turretBody = default;
     [SerializeField]
     private Transform turretBarrelHole = default;
@@ -69,6 +71,11 @@ public class TankEnemy : Tank, IDamageable
     {
         player = GameObject.Find("PRE_Tank_Player").GetComponent<Transform>();
         waveManager = GameObject.Find("WaveManager").GetComponent<WaveManager>();
+
+        if (isBoss)
+        {
+            HitPoints *= 5;
+        }
     }
 
     protected override void StartState()
@@ -269,7 +276,16 @@ public class TankEnemy : Tank, IDamageable
             Physics.IgnoreCollision(barrelCollider, projectile.GetComponent<Collider>());
             projectile.transform.position = turretBarrelHole.position;
             projectile.transform.rotation = tankTurretBarrel.rotation;
-            projectile.GetComponent<Rigidbody>().velocity = (turretBody.forward + tankTurretBarrel.up + new Vector3(0, 0.0735f, 0)) * projectileSpeed;
+            Vector3 projectileVelocity;
+            if (isBoss)
+            {
+                 projectileVelocity = turretBody.forward + tankTurretBarrel.up;
+            }
+            else
+            {
+                 projectileVelocity = turretBody.forward + tankTurretBarrel.up + new Vector3(0, 0.0735f, 0);
+            }
+            projectile.GetComponent<Rigidbody>().velocity = projectileVelocity * projectileSpeed;
             projectile.SetActive(true);
         }
     }
@@ -289,6 +305,12 @@ public class TankEnemy : Tank, IDamageable
     {
         if (HitPoints <= 0)
         {
+            if (!isBoss)
+            {
+                GameObject destroyedTank = Instantiate(destroyedTankPrefab);
+                destroyedTank.transform.position = transform.position + new Vector3(0, -0.5f, 0);
+                destroyedTank.transform.rotation = transform.rotation * Quaternion.Euler(13, 23, -4);
+            }
             Destroy(gameObject);
         }
     }

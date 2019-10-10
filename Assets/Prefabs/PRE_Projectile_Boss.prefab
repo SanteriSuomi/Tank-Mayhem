@@ -124,6 +124,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionPrefab: {fileID: 100008, guid: 875c9bcb71a8d7f46a64a8a7df5987e0, type: 3}
-  deactiveTimer: 7.5
+  deactiveTimer: 5.5
   projectileDamageMin: 45
   projectileDamageMax: 75

@@ -7,12 +7,16 @@ public class WaveManager : MonoBehaviour
 {
     [SerializeField]
     private Transform[] spawnPoints = default;
+    [SerializeField]
+    private Transform bossSpawnPoint = default;
     private GameObject player;
     private TankPlayer playerTank;
     private Rigidbody playerRb;
 
     [SerializeField]
     private GameObject enemyPrefab = default;
+    [SerializeField]
+    private GameObject bossEnemyPrefab = default;
     public List<GameObject> aliveEnemies;
 
     [SerializeField]
@@ -32,6 +36,7 @@ public class WaveManager : MonoBehaviour
 
     private bool waveOnGoing;
     private bool startedWaveCountdown;
+    private bool bossSpawned;
 
     private void Awake()
     {
@@ -164,6 +169,20 @@ public class WaveManager : MonoBehaviour
     private void Boss()
     {
         WaveText(0, isBoss: true);
+        
+        GameObject boss = null;
+        if (!bossSpawned)
+        {
+            boss = Instantiate(bossEnemyPrefab);
+            boss.transform.position = bossSpawnPoint.transform.position + new Vector3(0, 1.5f, 0);
+            bossSpawned = true;
+        }
+
+        if (boss == null)
+        {
+            countdownText.enabled = true;
+            countdownText.text = "Victory";
+        }
     }
 
     private IEnumerator WaveCountdown(Waves changeWave)
