@@ -81,6 +81,8 @@ public class WaveManager : MonoBehaviour
         Wave1,
         Wave2,
         Wave3,
+        Wave4,
+        Wave5,
         Boss
     }
 
@@ -98,6 +100,12 @@ public class WaveManager : MonoBehaviour
                 break;
             case Waves.Wave3:
                 Wave3();
+                break;
+            case Waves.Wave4:
+                Wave4();
+                break;
+            case Waves.Wave5:
+                Wave5();
                 break;
             case Waves.Boss:
                 Boss();
@@ -157,7 +165,51 @@ public class WaveManager : MonoBehaviour
             if (!waveOnGoing)
             {
                 waveOnGoing = true;
-                SpawnEnemies(initialWaveSize + 2);
+                SpawnEnemies(initialWaveSize + 3);
+            }
+
+            WaveText(3, false);
+
+            if (aliveEnemies.Count <= 0)
+            {
+                waveOnGoing = false;
+                startedWaveCountdown = true;
+                HealPlayer();
+                StartCoroutine(WaveCountdown(Waves.Wave4));
+            }
+        }
+    }
+
+    private void Wave4()
+    {
+        if (!startedWaveCountdown)
+        {
+            if (!waveOnGoing)
+            {
+                waveOnGoing = true;
+                SpawnEnemies(initialWaveSize + 4);
+            }
+
+            WaveText(3, false);
+
+            if (aliveEnemies.Count <= 0)
+            {
+                waveOnGoing = false;
+                startedWaveCountdown = true;
+                HealPlayer();
+                StartCoroutine(WaveCountdown(Waves.Wave5));
+            }
+        }
+    }
+
+    private void Wave5()
+    {
+        if (!startedWaveCountdown)
+        {
+            if (!waveOnGoing)
+            {
+                waveOnGoing = true;
+                SpawnEnemies(initialWaveSize + 5);
             }
 
             WaveText(3, false);
