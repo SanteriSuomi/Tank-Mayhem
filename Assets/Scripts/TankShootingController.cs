@@ -10,6 +10,10 @@ public class TankShootingController : MonoBehaviour
     private Transform barrelHole = default;
     [SerializeField]
     private Collider barrelCollider = default;
+    [SerializeField]
+    private GameObject shootParticle = default;
+
+    private AudioSource shootSound = default;
 
     [SerializeField]
     private float projectileSpeed = 55;
@@ -18,6 +22,11 @@ public class TankShootingController : MonoBehaviour
     private float timer;
 
     private bool pressedLeftClick;
+
+    private void Awake()
+    {
+        shootSound = GetComponentInChildren<AudioSource>();
+    }
 
     private void Update()
     {
@@ -35,11 +44,21 @@ public class TankShootingController : MonoBehaviour
             timer = 0;
 
             GameObject projectile = PoolManager.Instance.PopAmmo();
-            Physics.IgnoreCollision(barrelCollider, projectile.GetComponent<Collider>());
-            projectile.transform.position = barrelHole.position;
-            projectile.transform.rotation = tankTurretBarrel.rotation;
-            projectile.GetComponent<Rigidbody>().velocity = (tankTurretBody.transform.forward + tankTurretBarrel.transform.up) * projectileSpeed;
-            projectile.SetActive(true);
+            if (projectile != null)
+            {
+                Physics.IgnoreCollision(barrelCollider, projectile.GetComponent<Collider>());
+                projectile.transform.position = barrelHole.position;
+                projectile.transform.rotation = tankTurretBarrel.rotation;
+                projectile.GetComponent<Rigidbody>().velocity = (tankTurretBody.transform.forward + tankTurretBarrel.transform.up) * projectileSpeed;
+
+                GameObject fireParticle = Instantiate(shootParticle);
+                fireParticle.transform.position = barrelHole.position;
+                Destroy(fireParticle, 3);
+
+                shootSound.Play();
+
+                projectile.SetActive(true);
+            }
         }
 
         pressedLeftClick = false;

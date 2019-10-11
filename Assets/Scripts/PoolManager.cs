@@ -14,7 +14,7 @@ public class PoolManager : MonoBehaviour
     private Transform ammoParent = default;
 
     [SerializeField]
-    private int ammoPoolAmount = 50;
+    private int ammoPoolAmount = 500;
 
     private void Awake()
     {

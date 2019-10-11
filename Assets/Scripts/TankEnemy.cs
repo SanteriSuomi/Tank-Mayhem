@@ -3,10 +3,16 @@ using System.Collections;
 
 public class TankEnemy : Tank, IDamageable
 {
-    public float HitPoints { get; set; } = 100;
+    public float HitPoints { get; set; } = 50;
 
     private WaveManager waveManager;
 
+    [SerializeField]
+    private GameObject shootParticle = default;
+    [SerializeField]
+    private GameObject bossProjectile = default;
+    [SerializeField]
+    private GameObject destroyedTankPrefab = default;
     [SerializeField]
     private Transform turretBody = default;
     [SerializeField]
@@ -14,13 +20,12 @@ public class TankEnemy : Tank, IDamageable
     [SerializeField]
     private Transform tankTurretBarrel = default;
     [SerializeField]
-    private Transform tankTurretBody = default;
-    [SerializeField]
     private Collider barrelCollider = default;
+
     private Transform player = default;
+    private AudioSource shootSound = default;
 
     private Vector3 targetPoint;
-
     private Vector3 rayForward;
     private RaycastHit rayHit;
 
@@ -54,6 +59,8 @@ public class TankEnemy : Tank, IDamageable
     private float playerDistanceCheckTimer;
     private float shootTimer;
 
+    [SerializeField]
+    private bool isBoss = default;
     private bool rotateDefault;
     private bool executedWait;
 
@@ -67,6 +74,13 @@ public class TankEnemy : Tank, IDamageable
     {
         player = GameObject.Find("PRE_Tank_Player").GetComponent<Transform>();
         waveManager = GameObject.Find("WaveManager").GetComponent<WaveManager>();
+
+        shootSound = GetComponentInChildren<AudioSource>();
+
+        if (isBoss)
+        {
+            HitPoints *= 10f;
+        }
     }
 
     protected override void StartState()
@@ -251,15 +265,40 @@ public class TankEnemy : Tank, IDamageable
     {
         shootTimer += Time.deltaTime;
 
+        GameObject projectile;
         if (rayHit.collider != null && rayHit.collider.CompareTag("Player") && shootTimer >= shootRate)
         {
             shootTimer = 0;
             // Get ammo from the ammo pool and fire it from the barrel.
-            GameObject projectile = PoolManager.Instance.PopAmmo();
+            if (isBoss)
+            {
+                projectile = Instantiate(bossProjectile);
+            }
+            else
+            {
+                projectile = PoolManager.Instance.PopAmmo();
+            }
             Physics.IgnoreCollision(barrelCollider, projectile.GetComponent<Collider>());
             projectile.transform.position = turretBarrelHole.position;
             projectile.transform.rotation = tankTurretBarrel.rotation;
-            projectile.GetComponent<Rigidbody>().velocity = (tankTurretBody.forward + tankTurretBarrel.up) * projectileSpeed;
+
+            Vector3 projectileVelocity;
+            if (isBoss)
+            {
+                 projectileVelocity = turretBody.forward + tankTurretBarrel.up;
+            }
+            else
+            {
+                 projectileVelocity = turretBody.forward + tankTurretBarrel.up + new Vector3(0, 0.071f, 0);
+            }
+            projectile.GetComponent<Rigidbody>().velocity = projectileVelocity * projectileSpeed;
+
+            GameObject fireParticle = Instantiate(shootParticle);
+            fireParticle.transform.position = turretBarrelHole.position;
+            Destroy(fireParticle, 3);
+
+            shootSound.Play();
+
             projectile.SetActive(true);
         }
     }
@@ -279,6 +318,13 @@ public class TankEnemy : Tank, IDamageable
     {
         if (HitPoints <= 0)
         {
+            if (!isBoss)
+            {
+                GameObject destroyedTank = Instantiate(destroyedTankPrefab);
+                destroyedTank.transform.position = transform.position + new Vector3(0, -0.5f, 0);
+                destroyedTank.transform.rotation = transform.rotation * Quaternion.Euler(13, 23, -4);
+            }
+
             Destroy(gameObject);
         }
     }

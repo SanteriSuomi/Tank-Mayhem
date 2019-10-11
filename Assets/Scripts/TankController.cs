@@ -1,8 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class TankController : MonoBehaviour
 {
     private Rigidbody rigidBody;
+    private AudioSource tankAudio;
 
     [SerializeField]
     private float moveSpeed = 10;
@@ -10,9 +12,12 @@ public class TankController : MonoBehaviour
     private float rotationSpeed = 1;
     [SerializeField]
     private float shiftMultiplier = 1.5f;
+    [SerializeField]
+    private float audioFadeTime = 0.001f;
+
+    private float tankAudioVolumeStart;
 
     private float verticalMove;
-
     private bool pressingE;
     private bool pressingQ;
     private bool pressingShift;
@@ -20,6 +25,8 @@ public class TankController : MonoBehaviour
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody>();
+        tankAudio = GetComponent<AudioSource>();
+        tankAudioVolumeStart = tankAudio.volume;
     }
 
     private void Update()
@@ -33,7 +40,6 @@ public class TankController : MonoBehaviour
 
     private void FixedUpdate()
     {
-
         if (pressingE)
         {
             transform.Rotate(new Vector3(0, rotationSpeed, 0), Space.Self);
@@ -50,6 +56,31 @@ public class TankController : MonoBehaviour
         else
         {
             MoveForward(verticalMove);
+        }
+
+        if (pressingE || pressingQ || pressingShift || verticalMove >= 0.75 || verticalMove <= -0.75)
+        {
+            if (!tankAudio.isPlaying)
+            {
+                tankAudio.Play();
+            }
+            else
+            {
+                tankAudio.volume = tankAudioVolumeStart;
+            }
+        }
+        else
+        {
+            StartCoroutine(FadeOutVolume());
+        }
+    }
+
+    private IEnumerator FadeOutVolume()
+    {
+        while (tankAudio.volume > 0)
+        {
+            tankAudio.volume -= audioFadeTime;
+            yield return new WaitForEndOfFrame();
         }
     }
 
