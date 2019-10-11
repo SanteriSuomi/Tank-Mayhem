@@ -121,8 +121,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
-<<<<<<< HEAD
-=======
 --- !u!1 &55310058
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,7 +181,6 @@ Transform:
   m_Father: {fileID: 178625774}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
->>>>>>> Wave
 --- !u!1 &108226661
 GameObject:
   m_ObjectHideFlags: 0
@@ -590,11 +587,7 @@ PrefabInstance:
     - target: {fileID: 29147180342812351, guid: 7a4be20a687289c4c82eb2b7a9609490,
         type: 3}
       propertyPath: m_RootOrder
-<<<<<<< HEAD
-      value: 3
-=======
       value: 1
->>>>>>> Wave
       objectReference: {fileID: 0}
     - target: {fileID: 29147180342812351, guid: 7a4be20a687289c4c82eb2b7a9609490,
         type: 3}
@@ -631,11 +624,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 890692688012942272, guid: fd2838521d6029c4b956bb085b704290,
         type: 3}
-<<<<<<< HEAD
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
-=======
       propertyPath: m_Name
       value: Post-process Volume
       objectReference: {fileID: 0}
@@ -694,7 +682,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
->>>>>>> Wave
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd2838521d6029c4b956bb085b704290, type: 3}
 --- !u!1 &419191294
@@ -1129,13 +1116,8 @@ Transform:
   m_LocalPosition: {x: -136, y: 0, z: -57}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-<<<<<<< HEAD
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-=======
   m_Father: {fileID: 178625774}
   m_RootOrder: 22
->>>>>>> Wave
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &925490849
 GameObject:
@@ -1292,11 +1274,7 @@ RectTransform:
   - {fileID: 1606615421}
   - {fileID: 2128413306}
   m_Father: {fileID: 0}
-<<<<<<< HEAD
-  m_RootOrder: 4
-=======
   m_RootOrder: 6
->>>>>>> Wave
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1531,8 +1509,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 10
-<<<<<<< HEAD
-=======
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1225008052
 GameObject:
@@ -1563,7 +1539,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 178625774}
   m_RootOrder: 24
->>>>>>> Wave
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1236859702
 GameObject:
@@ -1827,11 +1802,7 @@ Transform:
   - {fileID: 126469761}
   - {fileID: 1401861414}
   m_Father: {fileID: 0}
-<<<<<<< HEAD
-  m_RootOrder: 5
-=======
   m_RootOrder: 7
->>>>>>> Wave
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1402265340
 MonoBehaviour:
@@ -2445,19 +2416,9 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -148, y: 0, z: 299}
   m_LocalScale: {x: 1, y: 1, z: 1}
-<<<<<<< HEAD
-  m_Children:
-  - {fileID: 174266733}
-  - {fileID: 1622019738}
-  - {fileID: 810776458}
-  - {fileID: 1511739735}
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-=======
   m_Children: []
   m_Father: {fileID: 178625774}
   m_RootOrder: 1
->>>>>>> Wave
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1842933503
 GameObject:
@@ -2530,15 +2491,9 @@ Transform:
   m_LocalPosition: {x: 141, y: 0, z: -130}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-<<<<<<< HEAD
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 55, y: -30, z: 0}
-=======
   m_Father: {fileID: 178625774}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
->>>>>>> Wave
 --- !u!1 &1989887015
 GameObject:
   m_ObjectHideFlags: 0
@@ -2638,11 +2593,7 @@ Transform:
   m_Children:
   - {fileID: 462433071}
   m_Father: {fileID: 0}
-<<<<<<< HEAD
-  m_RootOrder: 1
-=======
   m_RootOrder: 3
->>>>>>> Wave
   m_LocalEulerAnglesHint: {x: 15, y: 0, z: 0}
 --- !u!1 &2011820237
 GameObject:
