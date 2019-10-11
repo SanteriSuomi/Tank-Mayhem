@@ -289,7 +289,7 @@ public class TankEnemy : Tank, IDamageable
             }
             else
             {
-                 projectileVelocity = turretBody.forward + tankTurretBarrel.up + new Vector3(0, 0.07f, 0);
+                 projectileVelocity = turretBody.forward + tankTurretBarrel.up + new Vector3(0, 0.071f, 0);
             }
             projectile.GetComponent<Rigidbody>().velocity = projectileVelocity * projectileSpeed;
 
