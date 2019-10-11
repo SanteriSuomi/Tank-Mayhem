@@ -683,8 +683,6 @@ Transform:
   m_Father: {fileID: 29147179431953503}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
-=======
 --- !u!1001 &3951137199777078643
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -892,4 +890,3 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7626218884159950603}
   m_PrefabAsset: {fileID: 0}
->>>>>>> Wave
