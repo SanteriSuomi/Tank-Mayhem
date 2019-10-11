@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5901320406797562567}
   - component: {fileID: 5901320406797562569}
   - component: {fileID: 5901320406797562565}
+  - component: {fileID: 1653341078}
   m_Layer: 0
   m_Name: Camera_PostProcess
   m_TagString: MainCamera
@@ -26,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5901320406797562570}
-  m_LocalRotation: {x: -0.0020291335, y: -0.0026065155, z: -0.00013161916, w: -0.9999946}
+  m_LocalRotation: {x: -0.0020249407, y: -0.0026088993, z: -0.00013431422, w: -0.9999946}
   m_LocalPosition: {x: 503.5, y: 31.4, z: 419.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -56,9 +57,9 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 1350
-  field of view: 60
+  near clip plane: 0.1
+  far clip plane: 5000
+  field of view: 72.5
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -99,13 +100,13 @@ MonoBehaviour:
   volumeTrigger: {fileID: 5901320406797562566}
   volumeLayer:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 256
   stopNaNPropagation: 1
   finalBlitToCameraTarget: 1
   antialiasingMode: 3
   temporalAntialiasing:
     jitterSpread: 0.872
-    sharpness: 0
+    sharpness: 0.08
     stationaryBlending: 0.789
     motionBlending: 0.045
   subpixelMorphologicalAntialiasing:
@@ -144,3 +145,36 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!114 &1653341078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5901320406797562570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowDebugText: 0
+  m_ShowCameraFrustum: 1
+  m_IgnoreTimeScale: 0
+  m_WorldUpOverride: {fileID: 0}
+  m_UpdateMethod: 2
+  m_DefaultBlend:
+    m_Style: 1
+    m_Time: 2
+    m_CustomCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  m_CustomBlends: {fileID: 0}
+  m_CameraCutEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_CameraActivatedEvent:
+    m_PersistentCalls:
+      m_Calls: []
