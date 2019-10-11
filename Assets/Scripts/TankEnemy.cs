@@ -3,7 +3,7 @@ using System.Collections;
 
 public class TankEnemy : Tank, IDamageable
 {
-    public float HitPoints { get; set; } = 75;
+    public float HitPoints { get; set; } = 50;
 
     private WaveManager waveManager;
 
