@@ -5,6 +5,7 @@ public class PlayerHealthBar : MonoBehaviour
 {
     [SerializeField]
     private Slider healthBar = default;
+
     private TankPlayer player;
 
     private void Awake()

@@ -9,10 +9,10 @@ public class EnemyHealthBar : MonoBehaviour
     private TankEnemy tankEnemy = default;
     private Transform player;
 
-    private float playerDistance;
-    private float playerDistanceCheckTimer;
     [SerializeField]
     private float playerDistanceCheckTime = 0.5f;
+    private float playerDistance;
+    private float playerDistanceCheckTimer;
 
     [SerializeField]
     private int healthBarScaleReductionX = 1750;

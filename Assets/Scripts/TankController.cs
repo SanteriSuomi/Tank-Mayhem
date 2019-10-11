@@ -32,7 +32,6 @@ public class TankController : MonoBehaviour
     private void Update()
     {
         verticalMove = Input.GetAxis("Vertical") * moveSpeed;
-
         pressingE = Input.GetKey(KeyCode.E);
         pressingQ = Input.GetKey(KeyCode.Q);
         pressingShift = Input.GetKey(KeyCode.LeftShift);

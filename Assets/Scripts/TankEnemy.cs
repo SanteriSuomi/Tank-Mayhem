@@ -22,8 +22,8 @@ public class TankEnemy : Tank, IDamageable
     [SerializeField]
     private Collider barrelCollider = default;
 
-    private Transform player = default;
-    private AudioSource shootSound = default;
+    private Transform player;
+    private AudioSource shootSound;
 
     private Vector3 targetPoint;
     private Vector3 rayForward;
@@ -305,7 +305,7 @@ public class TankEnemy : Tank, IDamageable
 
     private void OnDestroy()
     {
-        waveManager.aliveEnemies.Remove(gameObject);
+        waveManager.AliveEnemies.Remove(gameObject);
     }
 
     #region Interface Methods

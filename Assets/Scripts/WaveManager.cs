@@ -9,18 +9,22 @@ public class WaveManager : MonoBehaviour
     private Transform[] spawnPoints = default;
     [SerializeField]
     private Transform bossSpawnPoint = default;
+
     private GameObject player;
-    private TankPlayer playerTank;
     private Rigidbody playerRb;
+    private TankPlayer playerTank;
 
     [SerializeField]
     private GameObject enemyPrefab = default;
     [SerializeField]
     private GameObject bossEnemyPrefab = default;
-    public List<GameObject> aliveEnemies;
+
+    public List<GameObject> AliveEnemies { get; set; }
 
     [SerializeField]
     private TextMeshProUGUI countdownText = default;
+    [SerializeField]
+    private TextMeshProUGUI waveText = default;
     [SerializeField]
     private string countdownTextString = "Game starts in:";
     [SerializeField]
@@ -35,9 +39,6 @@ public class WaveManager : MonoBehaviour
     [SerializeField]
     private int initialWaveSize = 4;
 
-    [SerializeField]
-    private TextMeshProUGUI waveText = default;
-
     private bool waveOnGoing;
     private bool startedWaveCountdown;
     private bool bossSpawned;
@@ -46,7 +47,7 @@ public class WaveManager : MonoBehaviour
 
     private void Awake()
     {
-        aliveEnemies = new List<GameObject>();
+        AliveEnemies = new List<GameObject>();
         player = GameObject.Find("PRE_Tank_Player");
         playerTank = player.GetComponent<TankPlayer>();
         playerRb = player.GetComponent<Rigidbody>();
@@ -127,7 +128,7 @@ public class WaveManager : MonoBehaviour
 
             WaveText(1, false);
 
-            if (aliveEnemies.Count <= 0)
+            if (AliveEnemies.Count <= 0)
             {
                 waveOnGoing = false;
                 HealPlayer();
@@ -148,7 +149,7 @@ public class WaveManager : MonoBehaviour
 
             WaveText(2, false);
 
-            if (aliveEnemies.Count <= 0)
+            if (AliveEnemies.Count <= 0)
             {
                 waveOnGoing = false;
                 startedWaveCountdown = true;
@@ -170,7 +171,7 @@ public class WaveManager : MonoBehaviour
 
             WaveText(3, false);
 
-            if (aliveEnemies.Count <= 0)
+            if (AliveEnemies.Count <= 0)
             {
                 waveOnGoing = false;
                 startedWaveCountdown = true;
@@ -192,7 +193,7 @@ public class WaveManager : MonoBehaviour
 
             WaveText(3, false);
 
-            if (aliveEnemies.Count <= 0)
+            if (AliveEnemies.Count <= 0)
             {
                 waveOnGoing = false;
                 startedWaveCountdown = true;
@@ -214,7 +215,7 @@ public class WaveManager : MonoBehaviour
 
             WaveText(3, false);
 
-            if (aliveEnemies.Count <= 0)
+            if (AliveEnemies.Count <= 0)
             {
                 waveOnGoing = false;
                 startedWaveCountdown = true;
@@ -271,7 +272,7 @@ public class WaveManager : MonoBehaviour
         for (int i = 0; i < amount; i++)
         {
             GameObject spawn = Instantiate(enemyPrefab);
-            aliveEnemies.Add(spawn);
+            AliveEnemies.Add(spawn);
             spawn.transform.position = spawnPoints[Random.Range(0, spawnPoints.Length)].position + Vector3.up;
         }
     }
@@ -292,7 +293,7 @@ public class WaveManager : MonoBehaviour
         }
         else
         {
-            waveText.text = $"Wave {waveNumber}: enemies alive {aliveEnemies.Count}";
+            waveText.text = $"Wave {waveNumber}: enemies alive {AliveEnemies.Count}";
         }
     }
 }
