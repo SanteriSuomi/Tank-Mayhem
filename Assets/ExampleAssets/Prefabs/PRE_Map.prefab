@@ -1614,7 +1614,7 @@ Terrain:
   m_DetailObjectDistance: 80
   m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5
-  m_SplatMapDistance: 30
+  m_SplatMapDistance: 2000
   m_HeightmapMaximumLOD: 0
   m_ShadowCastingMode: 2
   m_DrawHeightmap: 1
@@ -1678,14 +1678,14 @@ Terrain:
   m_Enabled: 1
   serializedVersion: 5
   m_TerrainData: {fileID: 15600000, guid: f8b9321ef2a59d446add69a1927b1d8f, type: 2}
-  m_TreeDistance: 2890
-  m_TreeBillboardDistance: 86
-  m_TreeCrossFadeLength: 14
-  m_TreeMaximumFullLODCount: 50
-  m_DetailObjectDistance: 150
+  m_TreeDistance: 3750
+  m_TreeBillboardDistance: 350
+  m_TreeCrossFadeLength: 150
+  m_TreeMaximumFullLODCount: 100
+  m_DetailObjectDistance: 250
   m_DetailObjectDensity: 0.585
   m_HeightmapPixelError: 12
-  m_SplatMapDistance: 100
+  m_SplatMapDistance: 2000
   m_HeightmapMaximumLOD: 0
   m_ShadowCastingMode: 1
   m_DrawHeightmap: 1
@@ -1710,7 +1710,7 @@ TerrainCollider:
   m_Material: {fileID: 0}
   m_Enabled: 1
   m_TerrainData: {fileID: 15600000, guid: f8b9321ef2a59d446add69a1927b1d8f, type: 2}
-  m_EnableTreeColliders: 1
+  m_EnableTreeColliders: 0
 --- !u!1 &4603677068595451604
 GameObject:
   m_ObjectHideFlags: 0
@@ -1887,7 +1887,7 @@ Terrain:
   m_DetailObjectDistance: 80
   m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5
-  m_SplatMapDistance: 30
+  m_SplatMapDistance: 2000
   m_HeightmapMaximumLOD: 0
   m_ShadowCastingMode: 2
   m_DrawHeightmap: 1
@@ -3566,7 +3566,7 @@ LODGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5531096478606302772}
   serializedVersion: 2
-  m_LocalReferencePoint: {x: 0.12940669, y: 0.17868817, z: 0.15668344}
+  m_LocalReferencePoint: {x: 0.12940669, y: 0.17869186, z: 0.15680552}
   m_Size: 4.600118
   m_FadeMode: 0
   m_AnimateCrossFading: 0
@@ -16312,6 +16312,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 2ae80ddfbc5bc7343a0a9296e54c0b5b, type: 2}
+    - target: {fileID: -1504981713932161579, guid: 70a016a5288197a429981107fe2b481f,
+        type: 3}
+      propertyPath: m_ScaleInLightmap
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70a016a5288197a429981107fe2b481f, type: 3}
 --- !u!23 &6124527146295372520 stripped
