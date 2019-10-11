@@ -3,7 +3,7 @@ using System.Collections;
 
 public class TankEnemy : Tank, IDamageable
 {
-    public float HitPoints { get; set; } = 100;
+    public float HitPoints { get; set; } = 75;
 
     private WaveManager waveManager;
 
@@ -79,7 +79,7 @@ public class TankEnemy : Tank, IDamageable
 
         if (isBoss)
         {
-            HitPoints *= 7.5f;
+            HitPoints *= 10f;
         }
     }
 

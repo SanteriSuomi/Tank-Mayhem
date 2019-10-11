@@ -33,7 +33,7 @@ public class WaveManager : MonoBehaviour
     [SerializeField]
     private int healAmount = 150;
     [SerializeField]
-    private int initialWaveSize = 2;
+    private int initialWaveSize = 4;
 
     [SerializeField]
     private TextMeshProUGUI waveText = default;
