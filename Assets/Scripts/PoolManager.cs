@@ -7,11 +7,11 @@ public class PoolManager : MonoBehaviour
     public static PoolManager Instance { get; private set; }
 
     [SerializeField]
-    private GameObject projectile = default;
-    private Stack<GameObject> ammoStack;
-
+    private GameObject ammoPrefab = default;
+    // Parent of the ammo in the hierarchy.
     [SerializeField]
     private Transform ammoParent = default;
+    private Stack<GameObject> ammoStack;
 
     [SerializeField]
     private int ammoPoolAmount = 500;
@@ -31,11 +31,11 @@ public class PoolManager : MonoBehaviour
 
     private void Start()
     {
-        // Initialize the ammo pool.
+        // Initialize the ammo pool every time scene is loaded.
         ammoStack = new Stack<GameObject>();
         for (int i = 0; i < ammoPoolAmount; i++)
         {
-            GameObject ammo = Instantiate(projectile);
+            GameObject ammo = Instantiate(ammoPrefab);
             ammo.transform.SetParent(ammoParent);
             ammo.SetActive(false);
             ammoStack.Push(ammo);

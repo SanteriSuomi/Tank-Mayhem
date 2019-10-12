@@ -3,7 +3,7 @@
 public class DontDestroyThis : MonoBehaviour
 {
     [SerializeField]
-    private bool dontDestroy = default;
+    private bool dontDestroy = false;
 
     private void Awake()
     {

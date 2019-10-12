@@ -3,21 +3,22 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    // Separate explosion prefabs for normal enemies and the boss.
     [SerializeField]
     private GameObject explosionPrefab = default;
     [SerializeField]
     private GameObject explosionPrefabBoss = default;
+    private GameObject explosion;
+    private AudioSource explosionSound;
+
+    private Vector3 regularSize;
+
     [SerializeField]
     private int projectileDamageMin = 30;
     [SerializeField]
     private int projectileDamageMax = 50;
 
-    private Vector3 regularSize;
-
     private bool alreadyHit;
-
-    private GameObject explosion;
-    private AudioSource explosionSound;
 
     private void Awake()
     {
@@ -33,36 +34,53 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        // Ensure OnCollision enter is run only once.
         if (!alreadyHit)
         {
             alreadyHit = true;
 
-            ContactPoint contact = collision.GetContact(0);
-            if (gameObject.name == "PRE_Projectile_Boss")
-            {
-                explosion = Instantiate(explosionPrefabBoss);
-            }
-            else
-            {
-                explosion = Instantiate(explosionPrefab);
-            }
-            explosion.transform.position = contact.point;
-            Destroy(explosion, 3);
-
-            if (!explosionSound.isPlaying)
-            {
-                explosionSound.Play();
-            }
-
-            IDamageable collisionObject = collision.transform.root.gameObject.GetComponent<IDamageable>();
-            if (collisionObject != null)
-            {
-                int randomDamage = Random.Range(projectileDamageMin, projectileDamageMax);
-                collisionObject.TakeDamage(randomDamage);
-            }
-
-            gameObject.transform.localScale = new Vector3(0, 0, 0);
+            InstantiateExplosion(collision);
+            PlayExplosionSound();
+            DamageObject(collision);
+            // Make object invisible.
+            gameObject.transform.localScale = Vector3.zero;
             DeactivateAndPush();
+        }
+    }
+
+    private void InstantiateExplosion(Collision collision)
+    {
+        // Instantiate different explosion prefab on collision according the name of the gameobject.
+        switch (gameObject.name)
+        {
+            case "PRE_Projectile_Boss":
+                explosion = Instantiate(explosionPrefabBoss);
+                break;
+            default:
+                explosion = Instantiate(explosionPrefab);
+                break;
+        }
+        // Instantiate the explosion at the first contact point.
+        ContactPoint contact = collision.GetContact(0);
+        explosion.transform.position = contact.point;
+        Destroy(explosion, 3);
+    }
+
+    private void PlayExplosionSound()
+    {
+        if (!explosionSound.isPlaying)
+        {
+            explosionSound.Play();
+        }
+    }
+
+    private void DamageObject(Collision collision)
+    {
+        IDamageable collisionObject = collision.transform.root.gameObject.GetComponent<IDamageable>();
+        if (collisionObject != null)
+        {
+            int randomDamage = Random.Range(projectileDamageMin, projectileDamageMax);
+            collisionObject.TakeDamage(randomDamage);
         }
     }
 
