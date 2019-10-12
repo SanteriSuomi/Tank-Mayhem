@@ -219,9 +219,16 @@ public class TankEnemy : Tank, IDamageable
     private void RotateTowardsTarget()
     {
         // Rotate towards target.
-        tankDirection = (targetPoint - transform.position).normalized;
-        tankLookRotation = Quaternion.LookRotation(tankDirection);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, tankLookRotation, rotationSpeed * Time.deltaTime);
+        if (isBoss && playerDistance <= playerDistanceThreshold)
+        {
+            turretBody.LookAt(player.transform);
+        }
+        else
+        {
+            tankDirection = (targetPoint - transform.position).normalized;
+            tankLookRotation = Quaternion.LookRotation(tankDirection);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, tankLookRotation, rotationSpeed * Time.deltaTime);
+        }
     }
 
     private void OnCollisionStay(Collision collision)
@@ -330,7 +337,7 @@ public class TankEnemy : Tank, IDamageable
         projectile.transform.position = turretBarrelHole.position;
         projectile.transform.rotation = tankTurretBarrel.rotation;
         // Set the projectile velocity depending on what enemy type this is.
-        Vector3 projectileVelocity = isBoss ? turretBody.forward + tankTurretBarrel.up : turretBody.forward + tankTurretBarrel.up + new Vector3(0, 0.07175f, 0);
+        Vector3 projectileVelocity = isBoss ? turretBody.forward + tankTurretBarrel.up + new Vector3(0, 0.04f, 0) : turretBody.forward + tankTurretBarrel.up + new Vector3(0, 0.07175f, 0);
         // Shoot the projectile using it's rigidbody.
         projectile.GetComponent<Rigidbody>().velocity = projectileVelocity * projectileSpeed;
         projectile.SetActive(true);

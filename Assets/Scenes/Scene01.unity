@@ -2677,6 +2677,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4603677068463369619, guid: ccd2923ab59493f43a3421083dc7adf5,
+        type: 3}
+      propertyPath: m_DetailObjectDistance
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603677068463369619, guid: ccd2923ab59493f43a3421083dc7adf5,
+        type: 3}
+      propertyPath: m_TreeDistance
+      value: 5000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603677068463369619, guid: ccd2923ab59493f43a3421083dc7adf5,
+        type: 3}
+      propertyPath: m_TreeBillboardDistance
+      value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603677068463369619, guid: ccd2923ab59493f43a3421083dc7adf5,
+        type: 3}
+      propertyPath: m_TreeCrossFadeLength
+      value: 200
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ccd2923ab59493f43a3421083dc7adf5, type: 3}
 --- !u!1001 &1653341076

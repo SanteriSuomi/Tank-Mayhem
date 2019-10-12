@@ -22,6 +22,10 @@ public class EnemyHealthBar : MonoBehaviour
     private void Awake()
     {
         player = GameObject.Find("PRE_Tank_Player").GetComponent<Transform>();
+    }
+
+    private void Start()
+    {
         healthBar.maxValue = tankEnemy.HitPoints;
     }
 

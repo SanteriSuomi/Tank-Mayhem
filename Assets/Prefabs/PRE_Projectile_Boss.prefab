@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 7936457555565096647}
   - component: {fileID: 8977076676206985945}
   - component: {fileID: 8196630864243626473}
-  - component: {fileID: 4181120770810370349}
   - component: {fileID: -155257754723746938}
+  - component: {fileID: 4181120770810370349}
   m_Layer: 0
   m_Name: PRE_Projectile_Boss
   m_TagString: Untagged
@@ -112,23 +112,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4181120770810370349
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7936457555565096641}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2df4f29ab31ef1641af0320c918c74fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  explosionPrefab: {fileID: 100008, guid: 875c9bcb71a8d7f46a64a8a7df5987e0, type: 3}
-  explosionPrefabBoss: {fileID: 5615849509284532275, guid: c78cfe79d11bbb94faa40d441894d684,
-    type: 3}
-  projectileDamageMin: 45
-  projectileDamageMax: 65
 --- !u!82 &-155257754723746938
 AudioSource:
   m_ObjectHideFlags: 0
@@ -225,3 +208,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4181120770810370349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7936457555565096641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2df4f29ab31ef1641af0320c918c74fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionPrefab: {fileID: 100008, guid: 875c9bcb71a8d7f46a64a8a7df5987e0, type: 3}
+  explosionPrefabBoss: {fileID: 5615849509284532275, guid: c78cfe79d11bbb94faa40d441894d684,
+    type: 3}
+  projectileDamageMin: 50
+  projectileDamageMax: 70

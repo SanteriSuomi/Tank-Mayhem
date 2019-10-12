@@ -361,7 +361,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 100
+  MinDistance: 75
   MaxDistance: 350
   Pan2D: 0
   rolloffMode: 0
@@ -608,18 +608,19 @@ MonoBehaviour:
   tankTurretBarrel: {fileID: 4605372820373085925}
   barrelCollider: {fileID: 4031728660978342203}
   maxDistanceFromTarget: 1
-  randomDistanceMin: 50
-  randomDistanceMax: 200
-  stopWaitTimeMax: 1
+  randomDistanceMin: 40
+  randomDistanceMax: 160
+  stopWaitTimeMax: 3
+  stopWaitTimeMin: 1
   rotationSpeed: 125
-  turretRotationSpeed: 84
-  moveSpeed: 18
-  playerDistanceThreshold: 300
+  turretRotationSpeed: 85
+  moveSpeed: 16.5
+  playerDistanceThreshold: 250
   playerDistanceCheckTime: 0.3
   projectileSpeed: 120
-  shootRate: 1.45
+  shootRate: 1.5
   attackRayCheckTime: 12.5
-  bossHealth: 8
+  bossHealth: 10
   isBoss: 1
 --- !u!114 &2521208530541561701
 MonoBehaviour:
@@ -636,8 +637,8 @@ MonoBehaviour:
   healthBar: {fileID: 894310044972668967}
   tankEnemy: {fileID: 5358395273237685956}
   playerDistanceCheckTime: 0.15
-  healthBarScaleReductionX: 1750
-  healthBarScaleReductionY: 1000
+  healthBarScaleReductionX: 2000
+  healthBarScaleReductionY: 1250
 --- !u!1 &4605372822270747035
 GameObject:
   m_ObjectHideFlags: 0
