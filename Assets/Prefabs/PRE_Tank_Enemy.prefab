@@ -328,7 +328,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 4497941ee22e926479060866b44d77c8, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.4
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -336,10 +336,10 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 400
+  MinDistance: 50
+  MaxDistance: 300
   Pan2D: 0
-  rolloffMode: 1
+  rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -488,17 +488,19 @@ MonoBehaviour:
   tankTurretBarrel: {fileID: 6082568309749974693}
   barrelCollider: {fileID: 6661842355349455227}
   maxDistanceFromTarget: 1
-  randomDistanceMin: 50
-  randomDistanceMax: 150
-  stopWaitTimeMax: 2
-  rotationSpeed: 105
-  turretRotationSpeed: 65
-  moveSpeed: 9
-  playerDistanceThreshold: 150
-  playerDistanceCheckTime: 0.4
-  projectileSpeed: 75
-  shootRate: 1.6
+  randomDistanceMin: 40
+  randomDistanceMax: 160
+  stopWaitTimeMax: 3
+  stopWaitTimeMin: 1
+  rotationSpeed: 100
+  turretRotationSpeed: 70
+  moveSpeed: 11.5
+  playerDistanceThreshold: 160
+  playerDistanceCheckTime: 0.3
+  projectileSpeed: 80
+  shootRate: 1.7
   attackRayCheckTime: 7.5
+  bossHealth: 9
   isBoss: 0
 --- !u!114 &-3927934627888701659
 MonoBehaviour:
@@ -703,8 +705,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.9999999, y: 12.018778, z: 2.2446792}
-  m_Center: {x: 0, y: 5.009388, z: 0.12233963}
+  m_Size: {x: 1.9999998, y: 2.0666502, z: 2.2446792}
+  m_Center: {x: 0, y: 0.03332673, z: 0.12233963}
 --- !u!1 &6082568310693816584
 GameObject:
   m_ObjectHideFlags: 0
@@ -1013,6 +1015,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6082568309749974693}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: 0e2e5e3783ee39946a39a871648a3010,
+        type: 3}
+      propertyPath: m_Name
+      value: TankTurretBarrelMesh
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 0e2e5e3783ee39946a39a871648a3010,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1082,11 +1089,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.9026561
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 0e2e5e3783ee39946a39a871648a3010,
-        type: 3}
-      propertyPath: m_Name
-      value: TankTurretBarrelMesh
       objectReference: {fileID: 0}
     - target: {fileID: -1504981713932161579, guid: 0e2e5e3783ee39946a39a871648a3010,
         type: 3}

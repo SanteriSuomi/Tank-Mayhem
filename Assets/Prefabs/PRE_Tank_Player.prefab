@@ -131,10 +131,10 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 50
   MaxDistance: 300
   Pan2D: 0
-  rolloffMode: 1
+  rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -409,7 +409,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turretBarrelBase: {fileID: 8891075882001772977}
   crosshair: {fileID: 0}
-  turretRotationSpeed: 0.6
+  turretRotationSpeed: 0.5
   barrelRotationSpeed: 0.5
   horizontalClampRange: 150
   verticalClampRange: 65
@@ -432,7 +432,7 @@ MonoBehaviour:
   barrelCollider: {fileID: 611799888605265091}
   shootParticle: {fileID: 578781619956718083, guid: 194bbaedd54dbc048b91a579d4d485c2,
     type: 3}
-  projectileSpeed: 77.5
+  projectileSpeed: 80
   timerThreshold: 1.2
 --- !u!1 &29147180342812352
 GameObject:
@@ -502,14 +502,14 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  MinDistance: 25
+  MaxDistance: 200
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -608,7 +608,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c73c8700f2b1d0a4dab3f15f55833fa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 27.5
+  moveSpeed: 30
   rotationSpeed: 1
   shiftMultiplier: 1.5
   audioFadeTime: 0.001

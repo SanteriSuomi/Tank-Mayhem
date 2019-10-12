@@ -12,8 +12,7 @@ public class TankShootingController : MonoBehaviour
     private Collider barrelCollider = default;
     [SerializeField]
     private GameObject shootParticle = default;
-
-    private AudioSource shootSound = default;
+    private AudioSource shootSound;
 
     [SerializeField]
     private float projectileSpeed = 55;
@@ -31,13 +30,20 @@ public class TankShootingController : MonoBehaviour
     private void Update()
     {
         timer += Time.deltaTime;
-        if (Input.GetMouseButtonDown(0))
-        {
-            pressedLeftClick = true;
-        }
+        GetInput();
+    }
+
+    private void GetInput()
+    {
+        pressedLeftClick = Input.GetMouseButtonDown(0);
     }
 
     private void FixedUpdate()
+    {
+        Shoot();
+    }
+
+    private void Shoot()
     {
         if (pressedLeftClick && timer > timerThreshold)
         {
@@ -46,21 +52,30 @@ public class TankShootingController : MonoBehaviour
             GameObject projectile = PoolManager.Instance.PopAmmo();
             if (projectile != null)
             {
-                Physics.IgnoreCollision(barrelCollider, projectile.GetComponent<Collider>());
-                projectile.transform.position = barrelHole.position;
-                projectile.transform.rotation = tankTurretBarrel.rotation;
-                projectile.GetComponent<Rigidbody>().velocity = (tankTurretBody.transform.forward + tankTurretBarrel.transform.up) * projectileSpeed;
-
-                GameObject fireParticle = Instantiate(shootParticle);
-                fireParticle.transform.position = barrelHole.position;
-                Destroy(fireParticle, 3);
-
+                ShootProjectile(projectile);
+                ShowFireParticle();
                 shootSound.Play();
-
-                projectile.SetActive(true);
             }
         }
 
         pressedLeftClick = false;
+    }
+
+    private void ShootProjectile(GameObject projectile)
+    {
+        // Shoot the projectile from the barrel.
+        Physics.IgnoreCollision(barrelCollider, projectile.GetComponent<Collider>());
+        projectile.transform.position = barrelHole.position;
+        projectile.transform.rotation = tankTurretBarrel.rotation;
+        projectile.GetComponent<Rigidbody>().velocity = (tankTurretBody.transform.forward + tankTurretBarrel.transform.up) * projectileSpeed;
+        projectile.SetActive(true);
+    }
+
+    private void ShowFireParticle()
+    {
+        // Instantiate the firing particle.
+        GameObject fireParticle = Instantiate(shootParticle);
+        fireParticle.transform.position = barrelHole.position;
+        Destroy(fireParticle, 3);
     }
 }

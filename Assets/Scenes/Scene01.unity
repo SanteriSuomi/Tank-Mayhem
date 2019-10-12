@@ -224,7 +224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f524048d299b914a95be1b4b84148f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 1997985812582198032, guid: 1d5f1688b981cb74dbc3b84c76592c1a,
+  ammoPrefab: {fileID: 1997985812582198032, guid: 1d5f1688b981cb74dbc3b84c76592c1a,
     type: 3}
   ammoParent: {fileID: 806901393}
   ammoPoolAmount: 500
@@ -271,7 +271,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: a89c49747d7f9ee428365ad795d6a51c, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.3
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1106,11 +1106,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6843733787584075822, guid: 7b6c117bc169d9145adb6877c651c9f1,
-        type: 3}
-      propertyPath: near clip plane
-      value: -1000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b6c117bc169d9145adb6877c651c9f1, type: 3}
@@ -1960,8 +1955,8 @@ MonoBehaviour:
   waveCountdownTextString: 'Next wave starts in:'
   countdownTime: 3
   waveCountdownTime: 3
-  healAmount: 150
-  initialWaveSize: 5
+  healAmount: 200
+  initialWaveSize: 4
 --- !u!1 &1355538059
 GameObject:
   m_ObjectHideFlags: 0

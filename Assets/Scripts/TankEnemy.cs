@@ -36,6 +36,8 @@ public class TankEnemy : Tank, IDamageable
     [SerializeField]
     private float stopWaitTimeMax = 2.5f;
     [SerializeField]
+    private float stopWaitTimeMin = 1;
+    [SerializeField]
     private float rotationSpeed = 80;
     [SerializeField]
     private float turretRotationSpeed = 120;
@@ -60,7 +62,7 @@ public class TankEnemy : Tank, IDamageable
     private float shootTimer;
 
     [SerializeField]
-    private bool isBoss = default;
+    private bool isBoss = false;
     private bool rotateToDefault;
     private bool executedWait;
     private bool executedRayCheck;
@@ -159,9 +161,9 @@ public class TankEnemy : Tank, IDamageable
 
     private IEnumerator Wait()
     {
-        executedWait = false;
         // Wait for a random amount of seconds before getting a new destination.
-        yield return new WaitForSeconds(Random.Range(0, stopWaitTimeMax));
+        yield return new WaitForSeconds(Random.Range(stopWaitTimeMin, stopWaitTimeMax));
+        executedWait = false;
         GetNewDestination();
         currentState = TankStates.Patrol;
     }
@@ -328,7 +330,7 @@ public class TankEnemy : Tank, IDamageable
         projectile.transform.position = turretBarrelHole.position;
         projectile.transform.rotation = tankTurretBarrel.rotation;
         // Set the projectile velocity depending on what enemy type this is.
-        Vector3 projectileVelocity = isBoss ? turretBody.forward + tankTurretBarrel.up : turretBody.forward + tankTurretBarrel.up + new Vector3(0, 0.071f, 0);
+        Vector3 projectileVelocity = isBoss ? turretBody.forward + tankTurretBarrel.up : turretBody.forward + tankTurretBarrel.up + new Vector3(0, 0.07175f, 0);
         // Shoot the projectile using it's rigidbody.
         projectile.GetComponent<Rigidbody>().velocity = projectileVelocity * projectileSpeed;
         projectile.SetActive(true);

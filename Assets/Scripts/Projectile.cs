@@ -29,6 +29,7 @@ public class Projectile : MonoBehaviour
     private void OnEnable()
     {
         alreadyHit = false;
+        // Initialize the size to be regular.
         gameObject.transform.localScale = regularSize;
     }
 
@@ -76,6 +77,7 @@ public class Projectile : MonoBehaviour
 
     private void DamageObject(Collision collision)
     {
+        // Deal random damage to the object if it has IDamageable interface.
         IDamageable collisionObject = collision.transform.root.gameObject.GetComponent<IDamageable>();
         if (collisionObject != null)
         {
@@ -86,6 +88,7 @@ public class Projectile : MonoBehaviour
 
     private IEnumerator DeactivateAndPush()
     {
+        // Put this instance back to the stack.
         yield return new WaitForSeconds(explosionSound.clip.length);
         gameObject.SetActive(false);
         PoolManager.Instance.PushAmmo(gameObject);

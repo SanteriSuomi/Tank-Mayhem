@@ -13,7 +13,7 @@ public class TankPlayer : Tank, IDamageable
 
     protected override void StartState()
     {
-
+        // Empty for a reason.
     }
 
     protected override void UpdateState()

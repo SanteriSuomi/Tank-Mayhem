@@ -16,8 +16,8 @@ public class TankController : MonoBehaviour
     private float audioFadeTime = 0.001f;
 
     private float tankAudioVolumeStart;
-
     private float verticalMove;
+
     private bool pressingE;
     private bool pressingQ;
     private bool pressingShift;
@@ -31,6 +31,12 @@ public class TankController : MonoBehaviour
 
     private void Update()
     {
+        GetInput();
+    }
+
+    private void GetInput()
+    {
+        // Get the necessary inputs for tank rotating and moving.
         verticalMove = Input.GetAxis("Vertical") * moveSpeed;
         pressingE = Input.GetKey(KeyCode.E);
         pressingQ = Input.GetKey(KeyCode.Q);
@@ -38,6 +44,30 @@ public class TankController : MonoBehaviour
     }
 
     private void FixedUpdate()
+    {
+        Rotate();
+        Move();
+        PlayTankSound();
+    }
+
+    private void Move()
+    {
+        if (pressingShift)
+        {
+            Forward(verticalMove * shiftMultiplier);
+        }
+        else
+        {
+            Forward(verticalMove);
+        }
+    }
+
+    private void Forward(float force)
+    {
+        rigidBody.AddRelativeForce(new Vector3(0, 0, force));
+    }
+
+    private void Rotate()
     {
         if (pressingE)
         {
@@ -47,16 +77,10 @@ public class TankController : MonoBehaviour
         {
             transform.Rotate(new Vector3(0, -rotationSpeed, 0), Space.Self);
         }
+    }
 
-        if (pressingShift)
-        {
-            MoveForward(verticalMove * shiftMultiplier);
-        }
-        else
-        {
-            MoveForward(verticalMove);
-        }
-
+    private void PlayTankSound()
+    {
         if (pressingE || pressingQ || pressingShift || verticalMove >= 0.75 || verticalMove <= -0.75)
         {
             if (!tankAudio.isPlaying)
@@ -76,15 +100,11 @@ public class TankController : MonoBehaviour
 
     private IEnumerator FadeOutVolume()
     {
+        // Fade out the volume when stopping.
         while (tankAudio.volume > 0)
         {
             tankAudio.volume -= audioFadeTime;
             yield return new WaitForEndOfFrame();
         }
-    }
-
-    private void MoveForward(float force)
-    {
-        rigidBody.AddRelativeForce(new Vector3(0, 0, force));
     }
 }
