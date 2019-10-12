@@ -1695,7 +1695,7 @@ Terrain:
   m_TreeCrossFadeLength: 200
   m_TreeMaximumFullLODCount: 100
   m_DetailObjectDistance: 250
-  m_DetailObjectDensity: 0.585
+  m_DetailObjectDensity: 0.75
   m_HeightmapPixelError: 12
   m_SplatMapDistance: 2000
   m_HeightmapMaximumLOD: 0
@@ -1722,7 +1722,7 @@ TerrainCollider:
   m_Material: {fileID: 0}
   m_Enabled: 1
   m_TerrainData: {fileID: 15600000, guid: f8b9321ef2a59d446add69a1927b1d8f, type: 2}
-  m_EnableTreeColliders: 0
+  m_EnableTreeColliders: 1
 --- !u!1 &4603677068595451604
 GameObject:
   m_ObjectHideFlags: 0
