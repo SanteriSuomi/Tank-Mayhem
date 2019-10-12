@@ -5,8 +5,6 @@ public class TankEnemy : Tank, IDamageable
 {
     public float HitPoints { get; set; } = 50;
 
-    private WaveManager waveManager;
-
     [SerializeField]
     private GameObject shootParticle = default;
     [SerializeField]
@@ -21,9 +19,9 @@ public class TankEnemy : Tank, IDamageable
     private Transform tankTurretBarrel = default;
     [SerializeField]
     private Collider barrelCollider = default;
-
     private Transform player;
     private AudioSource shootSound;
+    private WaveManager waveManager;
 
     private Vector3 targetPoint;
     private Vector3 rayForward;
@@ -53,6 +51,8 @@ public class TankEnemy : Tank, IDamageable
     private float shootRate = 0.5f;
     [SerializeField]
     private float attackRayCheckTime = 3;
+    [SerializeField]
+    private float bossHealth = 10;
 
     private float targetDistance;
     private float playerDistance;
@@ -61,12 +61,12 @@ public class TankEnemy : Tank, IDamageable
 
     [SerializeField]
     private bool isBoss = default;
-    private bool rotateDefault;
+    private bool rotateToDefault;
     private bool executedWait;
+    private bool executedRayCheck;
 
     private Vector3 tankDirection;
     private Quaternion tankLookRotation;
-
     private Vector3 tankTurretDirection;
     private Quaternion tankTurretLookRotation;
 
@@ -74,17 +74,17 @@ public class TankEnemy : Tank, IDamageable
     {
         player = GameObject.Find("PRE_Tank_Player").GetComponent<Transform>();
         waveManager = GameObject.Find("WaveManager").GetComponent<WaveManager>();
-
         shootSound = GetComponentInChildren<AudioSource>();
-
+        // If this instance is the boss, multiply health.
         if (isBoss)
         {
-            HitPoints *= 10f;
+            HitPoints *= bossHealth;
         }
     }
 
     protected override void StartState()
     {
+        // Start the AI by getting a new destination and settings initial state to patrol.
         GetNewDestination();
         currentState = TankStates.Patrol;
     }
@@ -104,13 +104,11 @@ public class TankEnemy : Tank, IDamageable
         #if UNITY_EDITOR
         // Log state changes in the unity editor.
         LogState();
-#endif
+        #endif
         #endregion
-        // Draw a ray from the gun barrel.
+
         DrawBarrelRay();
-        // Destroy enemy if hitpoints below zero.
         CheckDestroySelf();
-        // Keep track of player's distance every X seconds.
         PlayerDistanceCheck();
 
         switch (currentState)
@@ -125,27 +123,33 @@ public class TankEnemy : Tank, IDamageable
                 Attack();
                 break;
             default:
+                #if UNITY_EDITOR
+                Debug.Log($"{name} currentState probably shouldn't be default");
+                #endif
                 break;
         }
     }
     
     private void DrawBarrelRay()
     {
+        // Raycast from barrel for future use.
         rayForward = turretBarrelHole.TransformDirection(Vector3.up);
         Physics.Raycast(turretBarrelHole.position, rayForward * playerDistanceThreshold, out rayHit);
     }
 
     private void PlayerDistanceCheck()
     {
+        // Constantly check the player distance including a timer.
         playerDistanceCheckTimer += Time.deltaTime;
         if (player != null && playerDistanceCheckTimer >= playerDistanceCheckTime)
         {
             playerDistance = Vector3.Distance(transform.position, player.position);
         }
     }
-
+    // Patrol state.
     private void Stop()
     {
+        // Ensure coroutine isn't executed constantly.
         if (!executedWait)
         {
             executedWait = true;
@@ -155,45 +159,72 @@ public class TankEnemy : Tank, IDamageable
 
     private IEnumerator Wait()
     {
+        executedWait = false;
         // Wait for a random amount of seconds before getting a new destination.
         yield return new WaitForSeconds(Random.Range(0, stopWaitTimeMax));
-        executedWait = false;
         GetNewDestination();
         currentState = TankStates.Patrol;
     }
 
     private void Patrol()
     {
-        // Check if player is within distance.
+        CheckPlayerDistance();
+        RotateToDefault();
+        MoveToTarget();
+        StopAtDestination();
+        RotateTowardsTarget();
+    }
+
+    private void CheckPlayerDistance()
+    {
+        // First check if player is within the threshold distance.
         if (playerDistance <= playerDistanceThreshold)
         {
             currentState = TankStates.Attack;
         }
+    }
+
+    private void RotateToDefault()
+    {
         // Rotate the turret to default position when player gets out of range.
-        if (rotateDefault)
+        if (rotateToDefault)
         {
             turretBody.rotation = Quaternion.RotateTowards(turretBody.rotation, transform.rotation, turretRotationSpeed * Time.deltaTime);
+            // Stop the rotation when it's the same as the body of the object.
             if (turretBody.rotation == transform.rotation)
             {
-                rotateDefault = false;
+                rotateToDefault = false;
             }
         }
+    }
+
+    private void MoveToTarget()
+    {
         // Move towards target.
         targetDistance = Vector3.Distance(transform.position, targetPoint);
         transform.position = Vector3.MoveTowards(transform.position, targetPoint, moveSpeed * Time.deltaTime);
+    }
+
+    private void StopAtDestination()
+    {
         // Stop when reached the target destination.
         if (targetDistance <= maxDistanceFromTarget)
         {
             currentState = TankStates.Stop;
         }
+    }
+
+    private void RotateTowardsTarget()
+    {
         // Rotate towards target.
         tankDirection = (targetPoint - transform.position).normalized;
         tankLookRotation = Quaternion.LookRotation(tankDirection);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, tankLookRotation, rotationSpeed * Time.deltaTime);
     }
-    // Change direction when colliding with environment.
+
     private void OnCollisionStay(Collision collision)
     {
+        // Get a new destination when colliding with environment colliders.
         if (collision.collider.GetType() != typeof(TerrainCollider))
         {
             GetNewDestination();
@@ -202,28 +233,28 @@ public class TankEnemy : Tank, IDamageable
 
     private void GetNewDestination()
     {
-        // Randomise the targetPoint vector.
+        // Randomize the target destination.
         float random = Random.Range(0, 3);
-        if (random == 0)
+        switch (random)
         {
-            targetPoint.x = transform.position.x + Random.Range(randomDistanceMin, randomDistanceMax);
-            targetPoint.z = transform.position.z + Random.Range(randomDistanceMin, randomDistanceMax);
+            case 0:
+                targetPoint.x = transform.position.x + Random.Range(randomDistanceMin, randomDistanceMax);
+                targetPoint.z = transform.position.z + Random.Range(randomDistanceMin, randomDistanceMax);
+                break;
+            case 1:
+                targetPoint.x = transform.position.x - Random.Range(randomDistanceMin, randomDistanceMax);
+                targetPoint.z = transform.position.z - Random.Range(randomDistanceMin, randomDistanceMax);
+                break;
+            case 2:
+                targetPoint.x = transform.position.x + Random.Range(randomDistanceMin, randomDistanceMax);
+                targetPoint.z = transform.position.z - Random.Range(randomDistanceMin, randomDistanceMax);
+                break;
+            default:
+                targetPoint.x = transform.position.x - Random.Range(randomDistanceMin, randomDistanceMax);
+                targetPoint.z = transform.position.z + Random.Range(randomDistanceMin, randomDistanceMax);
+                break;
         }
-        else if (random == 1)
-        {
-            targetPoint.x = transform.position.x - Random.Range(randomDistanceMin, randomDistanceMax);
-            targetPoint.z = transform.position.z - Random.Range(randomDistanceMin, randomDistanceMax);
-        }
-        else if (random == 2)
-        {
-            targetPoint.x = transform.position.x + Random.Range(randomDistanceMin, randomDistanceMax);
-            targetPoint.z = transform.position.z - Random.Range(randomDistanceMin, randomDistanceMax);
-        }
-        else
-        {
-            targetPoint.x = transform.position.x - Random.Range(randomDistanceMin, randomDistanceMax);
-            targetPoint.z = transform.position.z + Random.Range(randomDistanceMin, randomDistanceMax);
-        }
+        // Always keep the destination Y vector at the same height.
         targetPoint.y = transform.position.y;
 
         #if UNITY_EDITOR
@@ -233,12 +264,11 @@ public class TankEnemy : Tank, IDamageable
 
     private void Attack()
     {
-        // Switch to patrol for a moment if the barrel ray doesn't hit player.
-        StartCoroutine(WaitRayCheck());
+        RayCheck();
         // Check if player has left the check distance.
         if (playerDistance >= playerDistanceThreshold)
         {
-            rotateDefault = true;
+            rotateToDefault = true;
             currentState = TankStates.Patrol;
         }
         // Rotate turret towards target.
@@ -252,9 +282,21 @@ public class TankEnemy : Tank, IDamageable
         Shoot();
     }
 
+    private void RayCheck()
+    {
+        // Only have one raycheck running at a time.
+        if (!executedRayCheck)
+        {
+            executedRayCheck = true;
+            StartCoroutine(WaitRayCheck());
+        }
+    }
+
     private IEnumerator WaitRayCheck()
     {
         yield return new WaitForSeconds(attackRayCheckTime);
+        executedRayCheck = false;
+
         if (rayHit.collider != null && !rayHit.collider.CompareTag("Player"))
         {
             currentState = TankStates.Patrol;
@@ -265,42 +307,39 @@ public class TankEnemy : Tank, IDamageable
     {
         shootTimer += Time.deltaTime;
 
-        GameObject projectile;
         if (rayHit.collider != null && rayHit.collider.CompareTag("Player") && shootTimer >= shootRate)
         {
             shootTimer = 0;
-            // Get ammo from the ammo pool and fire it from the barrel.
-            if (isBoss)
-            {
-                projectile = Instantiate(bossProjectile);
-            }
-            else
-            {
-                projectile = PoolManager.Instance.PopAmmo();
-            }
-            Physics.IgnoreCollision(barrelCollider, projectile.GetComponent<Collider>());
-            projectile.transform.position = turretBarrelHole.position;
-            projectile.transform.rotation = tankTurretBarrel.rotation;
 
-            Vector3 projectileVelocity;
-            if (isBoss)
-            {
-                 projectileVelocity = turretBody.forward + tankTurretBarrel.up;
-            }
-            else
-            {
-                 projectileVelocity = turretBody.forward + tankTurretBarrel.up + new Vector3(0, 0.071f, 0);
-            }
-            projectile.GetComponent<Rigidbody>().velocity = projectileVelocity * projectileSpeed;
-
-            GameObject fireParticle = Instantiate(shootParticle);
-            fireParticle.transform.position = turretBarrelHole.position;
-            Destroy(fireParticle, 3);
-
+            ShootProjectile();
+            ShowFiringParticle();
             shootSound.Play();
-
-            projectile.SetActive(true);
         }
+    }
+
+    private void ShootProjectile()
+    {
+        GameObject projectile;
+        // Instantiate projectile depending on what enemy type this is.
+        projectile = isBoss ? Instantiate(bossProjectile) : PoolManager.Instance.PopAmmo();
+        // Ignore collision with the starting collider.
+        Physics.IgnoreCollision(barrelCollider, projectile.GetComponent<Collider>());
+        // Initialize projectile position and rotation.
+        projectile.transform.position = turretBarrelHole.position;
+        projectile.transform.rotation = tankTurretBarrel.rotation;
+        // Set the projectile velocity depending on what enemy type this is.
+        Vector3 projectileVelocity = isBoss ? turretBody.forward + tankTurretBarrel.up : turretBody.forward + tankTurretBarrel.up + new Vector3(0, 0.071f, 0);
+        // Shoot the projectile using it's rigidbody.
+        projectile.GetComponent<Rigidbody>().velocity = projectileVelocity * projectileSpeed;
+        projectile.SetActive(true);
+    }
+
+    private void ShowFiringParticle()
+    {
+        // Show the firing particle effect.
+        GameObject fireParticle = Instantiate(shootParticle);
+        fireParticle.transform.position = turretBarrelHole.position;
+        Destroy(fireParticle, 3);
     }
 
     private void OnDestroy()
