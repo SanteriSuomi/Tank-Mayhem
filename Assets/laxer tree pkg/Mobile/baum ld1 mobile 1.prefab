@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1912035151471591589}
   - component: {fileID: 1912035151474458757}
   - component: {fileID: 1912035151473492549}
+  - component: {fileID: 519773561472634621}
   m_Layer: 0
   m_Name: baum ld1 mobile 1
   m_TagString: Untagged
@@ -79,3 +80,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &519773561472634621
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1912035151471303813}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.67, y: 7.819065, z: 0.5}
+  m_Center: {x: -0.22999999, y: 3.6757398, z: -0.20999998}
