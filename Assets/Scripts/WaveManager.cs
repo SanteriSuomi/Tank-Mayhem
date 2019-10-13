@@ -148,7 +148,7 @@ public class WaveManager : MonoBehaviour
     {
         if (!startedWaveCountdown)
         {
-            WaveStageEnemies(4);
+            WaveStageEnemies(3);
 
             WaveText(3, false);
 
@@ -160,7 +160,7 @@ public class WaveManager : MonoBehaviour
     {
         if (!startedWaveCountdown)
         {
-            WaveStageEnemies(6);
+            WaveStageEnemies(4);
 
             WaveText(4, false);
 
@@ -172,11 +172,28 @@ public class WaveManager : MonoBehaviour
     {
         if (!startedWaveCountdown)
         {
-            WaveStageEnemies(8);
+            WaveStageEnemies(5);
 
             WaveText(5, false);
 
             WaveStateNext(Waves.Boss);
+        }
+    }
+
+    private void Boss()
+    {
+        WaveText(0, isBoss: true);
+
+        if (!bossSpawned)
+        {
+            boss = Instantiate(bossEnemyPrefab);
+            boss.transform.position = bossSpawnPoint.transform.position + new Vector3(0, 1.5f, 0);
+            bossSpawned = true;
+        }
+        else if (boss == null)
+        {
+            countdownText.enabled = true;
+            countdownText.text = "Victory";
         }
     }
 
@@ -196,23 +213,6 @@ public class WaveManager : MonoBehaviour
             waveOnGoing = false;
             HealPlayer();
             StartCoroutine(WaveCountdown(nextWave));
-        }
-    }
-
-    private void Boss()
-    {
-        WaveText(0, isBoss: true);
-
-        if (!bossSpawned)
-        {
-            boss = Instantiate(bossEnemyPrefab);
-            boss.transform.position = bossSpawnPoint.transform.position + new Vector3(0, 1.5f, 0);
-            bossSpawned = true;
-        }
-        else if (boss == null)
-        {
-            countdownText.enabled = true;
-            countdownText.text = "Victory";
         }
     }
 
