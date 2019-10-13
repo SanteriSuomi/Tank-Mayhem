@@ -30,7 +30,7 @@ public class TankPlayer : Tank, IDamageable
     {
         if (HitPoints <= 0)
         {
-            SceneManager.LoadScene("Scene01");
+            SceneManager.LoadScene("Scene01", LoadSceneMode.Single);
         }
     }
 }

@@ -228,7 +228,7 @@ MonoBehaviour:
   ammoPrefab: {fileID: 1997985812582198032, guid: 1d5f1688b981cb74dbc3b84c76592c1a,
     type: 3}
   ammoParent: {fileID: 806901393}
-  ammoPoolAmount: 500
+  ammoPoolAmount: 25
 --- !u!1 &126469760
 GameObject:
   m_ObjectHideFlags: 0
@@ -1956,7 +1956,7 @@ MonoBehaviour:
   waveCountdownTextString: 'Next wave starts in:'
   countdownTime: 3
   waveCountdownTime: 3
-  healAmount: 200
+  healAmount: 250
   initialWaveSize: 4
 --- !u!1 &1355538059
 GameObject:

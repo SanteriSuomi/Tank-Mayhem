@@ -48,6 +48,8 @@ public class TankShootingController : MonoBehaviour
         if (pressedLeftClick && timer > timerThreshold)
         {
             timer = 0;
+            // Prevent accidental double clicking by instantly setting left click to false.
+            pressedLeftClick = false;
 
             GameObject projectile = PoolManager.Instance.PopAmmo();
             if (projectile != null)
@@ -57,23 +59,23 @@ public class TankShootingController : MonoBehaviour
                 shootSound.Play();
             }
         }
-
-        pressedLeftClick = false;
     }
 
     private void ShootProjectile(GameObject projectile)
     {
         // Shoot the projectile from the barrel.
         Physics.IgnoreCollision(barrelCollider, projectile.GetComponent<Collider>());
+        // Set the position and transform of the projectile to match the tank.
         projectile.transform.position = barrelHole.position;
         projectile.transform.rotation = tankTurretBarrel.rotation;
+        // Add velocity for the projectile forward.
         projectile.GetComponent<Rigidbody>().velocity = (tankTurretBody.transform.forward + tankTurretBarrel.transform.up) * projectileSpeed;
         projectile.SetActive(true);
     }
 
     private void ShowFireParticle()
     {
-        // Instantiate the firing particle.
+        // Instantiate the firing particle at the barrel.
         GameObject fireParticle = Instantiate(shootParticle);
         fireParticle.transform.position = barrelHole.position;
         Destroy(fireParticle, 3);

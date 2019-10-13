@@ -42,10 +42,10 @@ public class Projectile : MonoBehaviour
 
             InstantiateExplosion(collision);
             PlayExplosionSound();
-            DamageObject(collision);
+            DamageCollision(collision);
             // Make object invisible.
             gameObject.transform.localScale = Vector3.zero;
-            DeactivateAndPush();
+            StartCoroutine(DeactivateAndPush());
         }
     }
 
@@ -75,7 +75,7 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    private void DamageObject(Collision collision)
+    private void DamageCollision(Collision collision)
     {
         // Deal random damage to the object if it has IDamageable interface.
         IDamageable collisionObject = collision.transform.root.gameObject.GetComponent<IDamageable>();

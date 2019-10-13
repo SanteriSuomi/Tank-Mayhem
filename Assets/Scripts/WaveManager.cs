@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class WaveManager : MonoBehaviour
 {
+    public static WaveManager Instance { get; private set; }
+
     public List<GameObject> AliveEnemies { get; set; }
 
     [SerializeField]
@@ -45,6 +47,15 @@ public class WaveManager : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+
         AliveEnemies = new List<GameObject>();
         player = GameObject.Find("PRE_Tank_Player");
         playerTank = player.GetComponent<TankPlayer>();
@@ -95,6 +106,7 @@ public class WaveManager : MonoBehaviour
 
     private void Update()
     {
+        // All the wave states.
         switch (currentWave)
         {
             case Waves.Wave1:
@@ -218,12 +230,13 @@ public class WaveManager : MonoBehaviour
 
     private IEnumerator WaveCountdown(Waves changeWave)
     {
+        // Countdown timer for use in between waves.
         startedWaveCountdown = true;
         if (countdownText != null)
         {
             countdownText.enabled = true;
         }
-
+        // Pause coroutine until timer has completed.
         while (waveCountdownTime > 0)
         {
             countdownText.text = $"{waveCountdownTextString} {waveCountdownTime}";
@@ -237,11 +250,13 @@ public class WaveManager : MonoBehaviour
         }
         waveCountdownTime = waveCountdownTimeMax;
         startedWaveCountdown = false;
+        // Change the wave.
         currentWave = changeWave;
     }
 
     private void SpawnEnemies(int amount)
     {
+        // Spawn enemies at random spawnpoints.
         for (int i = 0; i < amount; i++)
         {
             GameObject spawn = Instantiate(enemyPrefab);

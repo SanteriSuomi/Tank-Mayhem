@@ -21,7 +21,6 @@ public class TankEnemy : Tank, IDamageable
     private Collider barrelCollider = default;
     private Transform player;
     private AudioSource shootSound;
-    private WaveManager waveManager;
 
     private Vector3 targetPoint;
     private Vector3 rayForward;
@@ -75,7 +74,6 @@ public class TankEnemy : Tank, IDamageable
     protected override void Initialize()
     {
         player = GameObject.Find("PRE_Tank_Player").GetComponent<Transform>();
-        waveManager = GameObject.Find("WaveManager").GetComponent<WaveManager>();
         shootSound = GetComponentInChildren<AudioSource>();
         // If this instance is the boss, multiply health.
         if (isBoss)
@@ -148,7 +146,7 @@ public class TankEnemy : Tank, IDamageable
             playerDistance = Vector3.Distance(transform.position, player.position);
         }
     }
-    // Patrol state.
+
     private void Stop()
     {
         // Ensure coroutine isn't executed constantly.
@@ -353,7 +351,8 @@ public class TankEnemy : Tank, IDamageable
 
     private void OnDestroy()
     {
-        waveManager.AliveEnemies.Remove(gameObject);
+        // Remove this from the alive enemies counter when destroyed.
+        WaveManager.Instance.AliveEnemies.Remove(gameObject);
     }
 
     #region Interface Methods
@@ -366,6 +365,7 @@ public class TankEnemy : Tank, IDamageable
     {
         if (HitPoints <= 0)
         {
+            // If the enemy isn't a boss, instantiate a destroyed prefab with it's position and rotation slight altered.
             if (!isBoss)
             {
                 GameObject destroyedTank = Instantiate(destroyedTankPrefab);
