@@ -63,8 +63,8 @@ LightmapSettings:
     m_CompAOExponent: 1
     m_CompAOExponentDirect: 0
     m_ExtractAmbientOcclusion: 0
-    m_Padding: 4
-    m_LightmapParameters: {fileID: 15204, guid: 0000000000000000f000000000000000,
+    m_Padding: 8
+    m_LightmapParameters: {fileID: 15200, guid: 0000000000000000f000000000000000,
       type: 0}
     m_LightmapsBakeMode: 1
     m_TextureCompression: 1
@@ -77,7 +77,7 @@ LightmapSettings:
     m_PVRSampling: 1
     m_PVRDirectSampleCount: 64
     m_PVRSampleCount: 1024
-    m_PVRBounces: 3
+    m_PVRBounces: 2
     m_PVREnvironmentSampleCount: 512
     m_PVREnvironmentReferencePointCount: 2048
     m_PVRFilteringMode: 1
@@ -658,7 +658,7 @@ PrefabInstance:
     - target: {fileID: 890692688012942272, guid: fd2838521d6029c4b956bb085b704290,
         type: 3}
       propertyPath: m_Name
-      value: Post-process Volume
+      value: PRE_Post-process Volume
       objectReference: {fileID: 0}
     - target: {fileID: 890692688012942277, guid: fd2838521d6029c4b956bb085b704290,
         type: 3}
@@ -982,7 +982,7 @@ PrefabInstance:
     - target: {fileID: 8978569723643013545, guid: 52e08639da48c4547bf1b2457b5a1596,
         type: 3}
       propertyPath: m_Name
-      value: Directional Light
+      value: PRE_Directional Light
       objectReference: {fileID: 0}
     - target: {fileID: 8978569723643013559, guid: 52e08639da48c4547bf1b2457b5a1596,
         type: 3}
@@ -1051,7 +1051,7 @@ PrefabInstance:
     - target: {fileID: 6843733787584075820, guid: 7b6c117bc169d9145adb6877c651c9f1,
         type: 3}
       propertyPath: m_Name
-      value: MinimapCamera
+      value: PRE_MinimapCamera
       objectReference: {fileID: 0}
     - target: {fileID: 6843733787584075817, guid: 7b6c117bc169d9145adb6877c651c9f1,
         type: 3}
@@ -2690,7 +2690,7 @@ PrefabInstance:
     - target: {fileID: 5901320406797562570, guid: 21fa849d33bb0e94f94490717474e7d6,
         type: 3}
       propertyPath: m_Name
-      value: Camera_PostProcess
+      value: PRE_Camera_PostProcess
       objectReference: {fileID: 0}
     - target: {fileID: 5901320406797562566, guid: 21fa849d33bb0e94f94490717474e7d6,
         type: 3}
