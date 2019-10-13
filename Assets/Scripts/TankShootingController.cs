@@ -35,7 +35,10 @@ public class TankShootingController : MonoBehaviour
 
     private void GetInput()
     {
-        pressedLeftClick = Input.GetMouseButtonDown(0);
+        if (Input.GetMouseButtonDown(0))
+        {
+            pressedLeftClick = true;
+        }
     }
 
     private void FixedUpdate()
@@ -48,8 +51,6 @@ public class TankShootingController : MonoBehaviour
         if (pressedLeftClick && timer > timerThreshold)
         {
             timer = 0;
-            // Prevent accidental double clicking by instantly setting left click to false.
-            pressedLeftClick = false;
 
             GameObject projectile = PoolManager.Instance.PopAmmo();
             if (projectile != null)
@@ -59,6 +60,8 @@ public class TankShootingController : MonoBehaviour
                 shootSound.Play();
             }
         }
+
+        pressedLeftClick = false;
     }
 
     private void ShootProjectile(GameObject projectile)
