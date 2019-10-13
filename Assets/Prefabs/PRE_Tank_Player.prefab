@@ -433,7 +433,7 @@ MonoBehaviour:
   shootParticle: {fileID: 578781619956718083, guid: 194bbaedd54dbc048b91a579d4d485c2,
     type: 3}
   projectileSpeed: 80
-  timerThreshold: 1.2
+  timerThreshold: 1.1
 --- !u!1 &29147180342812352
 GameObject:
   m_ObjectHideFlags: 0
