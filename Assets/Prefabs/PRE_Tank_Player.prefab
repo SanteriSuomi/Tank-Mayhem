@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 566596581}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: 0, y: 100, z: 0}
   m_LocalScale: {x: 300, y: 300, z: 1}
   m_Children: []
   m_Father: {fileID: 29147180342812351}
@@ -883,11 +883,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 29147181323860765}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 0e2e5e3783ee39946a39a871648a3010,
-        type: 3}
-      propertyPath: m_Name
-      value: TankTurretBarrelMesh
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 0e2e5e3783ee39946a39a871648a3010,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -957,6 +952,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.9026561
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 0e2e5e3783ee39946a39a871648a3010,
+        type: 3}
+      propertyPath: m_Name
+      value: TankTurretBarrelMesh
       objectReference: {fileID: 0}
     - target: {fileID: -1504981713932161579, guid: 0e2e5e3783ee39946a39a871648a3010,
         type: 3}
