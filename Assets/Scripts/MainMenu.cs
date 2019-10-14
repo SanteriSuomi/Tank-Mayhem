@@ -2,8 +2,9 @@
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
-public class MenuLogic : MonoBehaviour
+public class MainMenu : MonoBehaviour
 {
     [SerializeField]
     private GameObject menuButtonsParent = default;
@@ -13,6 +14,8 @@ public class MenuLogic : MonoBehaviour
     private Slider volumeSlider = default;
     [SerializeField]
     private Slider qualitySlider = default;
+    [SerializeField]
+    private TextMeshProUGUI volumeNameText = default;
     [SerializeField]
     private TextMeshProUGUI qualityNameText = default;
 
@@ -39,6 +42,19 @@ public class MenuLogic : MonoBehaviour
     private void VolumeSlider()
     {
         AudioListener.volume = volumeSlider.value;
+
+        try
+        {
+            int volumeMultiplier = Mathf.RoundToInt(AudioListener.volume * 100);
+            string volumeToString = Convert.ToString(volumeMultiplier);
+            volumeNameText.text = volumeToString;
+        }
+        catch (Exception e)
+        {
+            #if UNITY_EDITOR
+            Debug.Log(e);
+            #endif
+        }
     }
 
     private void QualitySlider()
@@ -48,7 +64,7 @@ public class MenuLogic : MonoBehaviour
             QualitySettings.SetQualityLevel((int)qualitySlider.value);
             qualityNameText.text = qualitySettings[(int)qualitySlider.value];
         }
-        catch (System.Exception e)
+        catch (Exception e)
         {
             #if UNITY_EDITOR
             Debug.Log(e);
