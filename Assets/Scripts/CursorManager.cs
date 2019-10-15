@@ -4,7 +4,7 @@ public class CursorManager : MonoBehaviour
 {
     private void Awake()
     {
-        // Lock cursor to the center of the game.
+        // Main game starts with cursor locked.
         Cursor.lockState = CursorLockMode.Locked;
     }
 }

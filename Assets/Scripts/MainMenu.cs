@@ -1,8 +1,8 @@
-﻿using UnityEngine;
+﻿using System;
+using TMPro;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using TMPro;
-using System;
 
 public class MainMenu : MonoBehaviour
 {
@@ -20,15 +20,27 @@ public class MainMenu : MonoBehaviour
     private TextMeshProUGUI qualityNameText = default;
 
     private string[] qualitySettings;
-
-    private void Awake()
+    // Initialize at start because menusettings is awake.
+    private void Start()
     {
         qualitySettings = QualitySettings.names;
+        // Initialize these settings only once during the game.
+        if (!MenuSettings.Instance.MainMenuHasInitialized)
+        {
+            #if UNITY_EDITOR
+            Debug.Log($"{gameObject} initialized.");
+            #endif
 
-        volumeSlider.maxValue = AudioListener.volume;
-        volumeSlider.value = AudioListener.volume / 2;
+            MenuSettings.Instance.MainMenuHasInitialized = true;
 
-        QualitySettings.SetQualityLevel(qualitySettings.Length - 1);
+            volumeSlider.maxValue = MenuSettings.Instance.VolumeValue;
+            //volumeSlider.value = MenuSettings.Instance.VolumeValue;
+
+            QualitySettings.SetQualityLevel(qualitySettings.Length - 1);
+        }
+        // Update the volume and quality sliders after scene switches.
+        volumeSlider.value = MenuSettings.Instance.VolumeValue;
+
         qualitySlider.maxValue = qualitySettings.Length - 1;
         qualitySlider.value = QualitySettings.GetQualityLevel();
     }
@@ -38,15 +50,22 @@ public class MainMenu : MonoBehaviour
         VolumeSlider();
         QualitySlider();
     }
-    
+
+    #region Private Methods
     private void VolumeSlider()
     {
+        // Update the volume to correspont the slider value.
         AudioListener.volume = volumeSlider.value;
+        // Store the volume.
+        MenuSettings.Instance.VolumeValue = AudioListener.volume;
 
         try
         {
+            // Round the multiplied slider value.
             int volumeMultiplier = Mathf.RoundToInt(AudioListener.volume * 100);
+            // Convert this value to string.
             string volumeToString = Convert.ToString(volumeMultiplier);
+            // Update the volume text.
             volumeNameText.text = volumeToString;
         }
         catch (Exception e)
@@ -61,6 +80,7 @@ public class MainMenu : MonoBehaviour
     {
         try
         {
+            // Update quality to correspond the slider value.
             QualitySettings.SetQualityLevel((int)qualitySlider.value);
             qualityNameText.text = qualitySettings[(int)qualitySlider.value];
         }
@@ -71,15 +91,12 @@ public class MainMenu : MonoBehaviour
             #endif
         }
     }
+    #endregion
 
+    #region Public Methods
     public void LoadScene(string scene)
     {
         SceneManager.LoadScene(scene);
-    }
-
-    public void ExitGame()
-    {
-        Application.Quit(0);
     }
 
     public void OptionsEnable()
@@ -93,4 +110,10 @@ public class MainMenu : MonoBehaviour
         menuButtonsParent.SetActive(true);
         optionsButtonsParent.SetActive(false);
     }
+
+    public void ExitGame()
+    {
+        Application.Quit(0);
+    }
+    #endregion
 }

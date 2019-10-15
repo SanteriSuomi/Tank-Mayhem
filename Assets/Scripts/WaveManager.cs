@@ -98,7 +98,6 @@ public class WaveManager : MonoBehaviour
         Wave2,
         Wave3,
         Wave4,
-        Wave5,
         Boss
     }
 
@@ -120,9 +119,6 @@ public class WaveManager : MonoBehaviour
                 break;
             case Waves.Wave4:
                 Wave4();
-                break;
-            case Waves.Wave5:
-                Wave5();
                 break;
             case Waves.Boss:
                 Boss();
@@ -175,18 +171,6 @@ public class WaveManager : MonoBehaviour
             WaveStageEnemies(4);
 
             WaveText(4, false);
-
-            WaveStateNext(Waves.Wave5);
-        }
-    }
-
-    private void Wave5()
-    {
-        if (!startedWaveCountdown)
-        {
-            WaveStageEnemies(5);
-
-            WaveText(5, false);
 
             WaveStateNext(Waves.Boss);
         }
