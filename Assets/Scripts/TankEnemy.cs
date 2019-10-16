@@ -3,7 +3,7 @@ using System.Collections;
 
 public class TankEnemy : Tank, IDamageable
 {
-    public float HitPoints { get; set; } = 50;
+    public float HitPoints { get; set; } = 60;
 
     [SerializeField]
     private GameObject shootParticle = default;

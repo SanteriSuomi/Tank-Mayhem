@@ -56,6 +56,6 @@ public class TankTurretController : MonoBehaviour
     private void MoveCrosshair()
     {
         // Move crosshair with the turretBarrel.
-        crosshair.anchoredPosition = new Vector2(0, -36.5f) + new Vector2(0, -mouseVerticalClamp * 2.15f);
+        crosshair.anchoredPosition = new Vector2(0, -35.75f) + new Vector2(0, -mouseVerticalClamp * 2.15f);
     }
 }

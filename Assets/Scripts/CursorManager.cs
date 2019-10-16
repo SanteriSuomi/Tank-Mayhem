@@ -6,5 +6,7 @@ public class CursorManager : MonoBehaviour
     {
         // Main game starts with cursor locked.
         Cursor.lockState = CursorLockMode.Locked;
+        // Cursor shouldn't be visible at the start.
+        Cursor.visible = false;
     }
 }

@@ -23,7 +23,29 @@ public class MainMenu : MonoBehaviour
     // Initialize at start because menusettings is awake.
     private void Start()
     {
+        ManyInitializeMenu();
+        SingleInitializeMenu();
+    }
+
+    private void ManyInitializeMenu()
+    {
+        // These should be initialized every time the menu is loaded.
+        // Unpause the game.
+        Time.timeScale = 1;
+        // Unpause the audio.
+        AudioListener.pause = false;
+        // Show the cursor in the menu.
+        Cursor.visible = true;
+        // Get the current qualitysettings and store them in an array.
         qualitySettings = QualitySettings.names;
+        // Update the volume and quality sliders after scene switches.
+        volumeSlider.value = MenuSettings.Instance.VolumeValue;
+        qualitySlider.maxValue = qualitySettings.Length - 1;
+        qualitySlider.value = QualitySettings.GetQualityLevel();
+    }
+
+    private void SingleInitializeMenu()
+    {
         // Initialize these settings only once during the game.
         if (!MenuSettings.Instance.MainMenuHasInitialized)
         {
@@ -32,17 +54,9 @@ public class MainMenu : MonoBehaviour
             #endif
 
             MenuSettings.Instance.MainMenuHasInitialized = true;
-
             volumeSlider.maxValue = MenuSettings.Instance.VolumeValue;
-            //volumeSlider.value = MenuSettings.Instance.VolumeValue;
-
             QualitySettings.SetQualityLevel(qualitySettings.Length - 1);
         }
-        // Update the volume and quality sliders after scene switches.
-        volumeSlider.value = MenuSettings.Instance.VolumeValue;
-
-        qualitySlider.maxValue = qualitySettings.Length - 1;
-        qualitySlider.value = QualitySettings.GetQualityLevel();
     }
 
     private void Update()

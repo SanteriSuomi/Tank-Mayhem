@@ -11,11 +11,17 @@ public class GameMenu : MonoBehaviour
         // Halt the game progress while in game menu.
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            ShowCursor();
             FreezeAudio();
             ChangeCursorMode();
             ShowHideMenu();
             FreezeUnFreezeGame();
         }
+    }
+
+    private void ShowCursor()
+    {
+        Cursor.visible = !Cursor.visible;
     }
 
     private void FreezeAudio()
@@ -54,8 +60,7 @@ public class GameMenu : MonoBehaviour
 
     public void LoadSceneGameMenu(string scene)
     {
-        Time.timeScale = 1;
-        AudioListener.pause = false;
+
         SceneManager.LoadScene(scene);
     }
 }

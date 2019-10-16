@@ -618,7 +618,7 @@ MonoBehaviour:
   playerDistanceThreshold: 250
   playerDistanceCheckTime: 0.3
   projectileSpeed: 120
-  shootRate: 1.5
+  shootRate: 1.4
   attackRayCheckTime: 12.5
   bossHealth: 10
   isBoss: 1
