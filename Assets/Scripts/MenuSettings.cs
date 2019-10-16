@@ -7,7 +7,7 @@ public class MenuSettings : MonoBehaviour
 
     public bool MainMenuHasInitialized { get; set; } = false;
 
-    public float VolumeValue { get; set; } = 1f;
+    public float VolumeValue { get; set; } = 1;
 
     private void Awake()
     {
